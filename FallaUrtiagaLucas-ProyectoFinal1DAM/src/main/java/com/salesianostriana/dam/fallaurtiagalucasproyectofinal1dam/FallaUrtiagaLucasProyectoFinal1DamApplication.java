@@ -1,4 +1,4 @@
-package com.salesianostriana.dam;
+package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
