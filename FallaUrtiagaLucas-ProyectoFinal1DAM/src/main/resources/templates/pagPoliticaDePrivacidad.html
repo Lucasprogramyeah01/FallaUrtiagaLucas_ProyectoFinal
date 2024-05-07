@@ -1,0 +1,321 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MANGAZO VERSE | Política de Privacidad</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <header class="bg-primary text-white text-center">
+          <div class="container-fluid p-0">
+              <img src="../static/img/bannerMarca.png" style="width:100%;" alt="Banner de MANGAZO VERSE">
+          </div>
+        </header>
+
+<!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-3">
+          <div class="container-fluid d-flex justify-content-around">
+            <!--Logo-->
+            <div>
+              <a class="navbar-brand ps-3" href="pagInicio.html"><img src="../static/img/logoMarca.png" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill"></a>
+            </div>
+            <!--Barra de búsqueda e icono de lupa-->
+            <div class="col-md-5 mx-2">
+              <form class="d-flex pe-3 flex-grow-1 ps-3">
+                <input class="form-control me-1" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="button"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+            <!--Botón menú desplegable (para dispositivos móviles)-->
+            <div>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#barraInicio">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+            <!--<div>--> <!--Si quieres que el "justify-around" se aplique a los nav-items sólo tienes que activar el div situado a la izquierda de este comentario. Eso si, el desplegable se moverá un poco.-->
+              <div class="collapse navbar-collapse" id="barraInicio">
+                <ul class="navbar-nav me-auto text-center align-items-center flex-md-row">
+                  <li class="nav-item mx-3">
+                    <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciarSesion"><i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Usuario</a>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <a class="nav-link" href=""><i class="bi bi-bag-fill text-success" style="font-size: 25px;"></i> Cesta</a>
+                  </li>
+                  <li class="nav-item mx-3"> 
+                    <a class="nav-link" href=""><i class="bi bi-suit-heart-fill text-danger" style="font-size: 25px;"></i> Favoritos</a>
+                  </li>
+                </ul>
+              </div>
+            <!--</div>-->
+          </div>
+        </nav>
+
+        <!--Inicio de sesión (al clickar en "Usuario")-->
+        <div class="modal fade" id="modalIniciarSesion" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-md">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">INICIAR SESIÓN</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body p-0">
+                <form action="">
+                  <div class="m-4">
+                    <label for="email" class="form-label mb-1">Email</label>
+                    <input type="email" class="form-control bg-secondary bg-opacity-25" id="emailIni" placeholder="Introduzca su correo electrónico" name="email">
+                  </div>
+                  <div class="mb-4 mx-4">
+                    <label for="pwd" class="form-label mb-1">Contraseña</label>
+                    <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni" placeholder="Introduzca su contraseña" name="pwd">
+                  </div>
+                  <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
+                    <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary" data-bs-dismiss="modal">Iniciar sesión</button>
+                  </div>
+                </form>
+              </div>
+              
+              <!-- Modal footer -->
+                <div class="modal-footer bg-secondary d-flex justify-content-center flex-column w-100 p-16 border border-0">
+                  <div class="row">
+                    <h6 class="text-light text-center">¿No tienes una cuenta?</h6>
+                    <a type="button" href="pagRegistro.html" id="botonReg" class="btn btn-lg btn-dark">Regístrate</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <main class="d-flex flex-wrap">
+            <div class="container-fluid py-2 px-5 mb-4 mt-2">
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-primary">P</span>olítica de privacidad</h1>
+            </div>
+
+            <!--Columna izquierda-->
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            </div>
+
+            <!--Contenido central-->
+            <div class="container w-75 mb-2 mt-4 pb-5 pt-3 px-4">
+
+              <div class="container-fluid">
+                <div class="row pb-4 px-5 d-flex flex-row">
+
+                  <p class="py-2" style="text-align: justify;">En virtud de lo dispuesto en el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, 
+                    relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos, 
+                    se le informa de lo siguiente:</p>
+
+                  <!--Acordeón-->
+                  <div class="accordion" id="accordionExample">
+
+                    <!--Responsable del tratamiento-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                          <h3 class="m-0">Responsable del tratamiento</h3>
+                        </button>
+                      </h2>
+                      <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p class="py-2 px-2 mb-0" style="text-align: justify;">MANGAZO VERSE S.A., con Código de Identificación Fiscal ABCDE1234, con domicilio social en CALLE MONTE ALDAMIZ 8., 48001 - BILBAO (ESPAÑA), 
+                            inscrita en el Registro Mercantil, en el tomo 28340, folio 279 hoja A62500 e inscripción 10ª.<br/><br/>
+                            Puede contactarnos a través del teléfono + 34 719 221 959, o por correo electrónico en la dirección info@mangazoverse.com.</p>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!--Recogida y tratamiento de datos de carácter personal-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading2">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                          <h3 class="m-0">Recogida y tratamiento de datos de carácter personal</h3>
+                        </button>
+                      </h2>
+                      <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p class="py-2 px-2 mb-0" style="text-align: justify;">Los datos que nos comunique a través de esta página web, o durante el proceso de pedido o apertura de una nueva 
+                            cuenta, serán objeto de tratamiento.<br/><br/>
+                            La finalidad de dicho tratamiento es la gestión de la relación comercial con usted y la tramitación y ejecución del pedido. También podrá tratarse su dirección de correo 
+                            electrónico para el envío de comunicaciones comerciales. Usted puede darse de baja de las mismas en cualquier momento, enviando un mensaje a nuestra dirección de contacto 
+                            aquí descrita o haciendo clic en el enlace previsto para ello en el correo electrónico con dicha comunicación comercial.<br/><br/>
+                            Es necesario que usted proporcione los datos para poder prestar los servicios encomendados. En caso de no facilitarse dichos datos, el responsable del tratamiento no podrá 
+                            llevar a cabo los servicios que le haya solicitado.<br/><br/>
+                            Usted puede retirar su consentimiento en cualquier momento, sin que eso afecte a la licitud de los tratamientos basados en el consentimiento previo a su retirada.<br/><br/>
+                            Los datos que nos proporcione no serán usados para decisiones individuales automatizadas.<br/><br/>
+                            Salvo que usted consienta de forma expresa la continuación del uso de sus datos personales, estos serán bloqueados una vez se haya ejecutado el pedido y el precio de compra 
+                            haya sido abonado en su totalidad. Sus datos personales serán eliminados transcurrido el plazo legalmente establecido para el cumplimiento de nuestras obligaciones legales, 
+                            más un periodo adicional de cuatro años, siempre y cuando usted no haya autorizado expresamente la continuación de su uso.</p>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!--Destinatarios de los datos de carácter personal-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                          <h3 class="m-0">Destinatarios de los datos de carácter personal</h3>
+                        </button>
+                      </h2>
+                      <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p class="py-2 px-2 mb-0" style="text-align: justify;">Los datos podrán ser comunicados a las empresas de mensajería o logística encargadas del transporte y entrega de los 
+                            productos. Igualmente sus datos podrán ser comunicados, en su caso, a la entidad de crédito prestadora de los servicios del pago dentro del marco de la gestión del pago.<br/><br/>
+                            El tratamiento incluye la conservación de los datos, la comunicación a los departamentos apropiados de la empresa responsable del tratamiento e incluso la comunicación 
+                            de los datos entre las distintas empresas del grupo.</p>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!--Base jurídica del tratamiento-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading4">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                          <h3 class="m-0">Base jurídica del tratamiento</h3>
+                        </button>
+                      </h2>
+                      <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p class="py-2 px-2 mb-0" style="text-align: justify;">Las bases jurídicas del tratamiento son el consentimiento expreso proporcionado por el interesado y, para el 
+                            caso de las comunicaciones comerciales, el interés legítimo del responsable.</p>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!--Derechos del interesado-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading5">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                          <h3 class="m-0">Derechos del interesado</h3>
+                        </button>
+                      </h2>
+                      <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p class="py-2 px-2 mb-0" style="text-align: justify;">Usted tiene la posibilidad de solicitar al responsable el acceso a sus datos personales, su rectificación, su supresión, 
+                            la limitación de su tratamiento, oponerse a dicho tratamiento o ejercer la portabilidad de los datos que sean tratados de forma automatizada.<br/><br/>
+                            En caso de conflicto, usted puede acudir a la Agencia Española de Protección de Datos o a cualquier otra autoridad de control competente para entender de sus reclamaciones.</p>
+                          </div>
+                      </div>
+                    </div>
+
+                    <!--Política de "cookies"-->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="heading6">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                          <h3 class="m-0">Política de <i>cookies</i></h3>
+                        </button>
+                      </h2>
+                      <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <p class="py-2 px-2 mb-0" style="text-align: justify;">La presente página wed de MANGAZO VERSE utiliza cookies, que son pequeños ficheros que se descargan en su ordenador al 
+                            acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario 
+                            o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.<br/><br/>
+                            La Web hace uso de Google Analytics, un servicio de analítica de Google, Inc. (<i>Google</i>). Google Analytics utiliza cookies, archivos de texto ubicados en tu ordenador, con 
+                            el objetivo de llevar a cabo una analítica Web acerca del modo de uso de los usuarios de la Web. La información generada por la cookie acerca de tu uso de la Web (incluyendo 
+                            tu dirección IP), será transmitida y almacenada por Google en los servidores de internet de Estados Unidos. Google no asociará su dirección IP con ningún otro dato del que 
+                            disponga Google.</p>
+                          </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+                <h5 class="pt-4" style="text-align: center;">Y por todo ello somos ¡TU LIBRERÍA ON-LINE DE CONFIANZA!</h5>
+            </div>
+
+            <!--Columna derecha-->
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            </div>
+        </main>
+
+<!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+          <div class="container-fluid p-0">
+            <footer class="text-center text-lg-start text-white bg-dark">
+
+              <!--Redes sociales-->
+              <section class="d-flex justify-content-between p-3 bg-primary">
+                <div class="me-5">
+                  <h5 class="mb-0">¡Síguenos en nuestras redes sociales para estar al tanto de lo último!</h5>
+                </div>
+
+                <div>
+                  <a href="https://www.facebook.com/" target="_blank" class="text-white me-4"><i class="bi bi-facebook" style="font-size: 20px;"></i></a>
+                  <a href="https://twitter.com/" target="_blank" class="text-white me-4"><i class="bi bi-twitter-x" style="font-size: 20px;"></i></a>
+                  <a href="https://www.tiktok.com/" target="_blank" class="text-white me-4"><i class="bi bi-tiktok" style="font-size: 20px;"></i></a>
+                  <a href="https://www.instagram.com/" target="_blank" class="text-white me-4"><i class="bi bi-instagram" style="font-size: 20px;"></i></a>
+                  <a href="https://es.linkedin.com/" target="_blank" class="text-white me-4"><i class="bi bi-linkedin" style="font-size: 20px;"></i></a>
+                  <a href="https://www.youtube.com/" target="_blank" class="text-white me-4"><i class="bi bi-youtube" style="font-size: 20px;"></i></a>
+                </div>
+              </section>
+
+              <!--Secciones en columna-->
+              <section>
+                <div class="container text-center text-md-start mt-4">
+                  <div class="row mt-3">
+
+                    <!--1ª columna-->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3">
+                      <h4 class="text-uppercase fw-bold">Mangazo Verse</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p>MANGAZO VERSE, ubicada en Bilbao, es una de las librerías especializadas en cómics y manga japonés y coreano más importantes de Europa, 
+                        donde se pueden encontrar los títulos de todas las mejores editoriales españolas.</p>
+                    </div>
+
+                    <!--2ª columna-->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">
+                      <h4 class="text-uppercase fw-bold">Libros</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p>Vendemos libros de todos los géneros, y además para todas las edades ¡La lectura está asegurada tanto para los más grandes 
+                        como para los más pequeños!</p>
+                    </div>
+
+                    <!--3ª columna-->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">
+                      <h4 class="text-uppercase fw-bold">Sobre nosotros</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p><a href="pagQuienesSomos.html" class="text-white">Quiénes somos</a></p>
+                      <p><a href="pagCondicionesDeUso.html" class="text-white">Condiciones de uso</a></p>
+                      <p><a href="pagPoliticaDePrivacidad.html" class="text-white">Política de privacidad</a></p>
+                      <p><a href="pagAyuda.html" class="text-white">Ayuda</a></p>
+                    </div>
+
+                    <!--4ª columna-->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">
+                      <h4 class="text-uppercase fw-bold">Contacto</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p><i class="bi bi-home mr-3"></i> C/ Monte Aldamiz 8.</p>
+                      <p><i class="fas fa-home mr-3"></i> 48001 - Bilbao, España.</p>
+                      <p><i class="fas fa-envelope mr-3"></i> info@mangazoverse.com</p>
+                      <p><i class="fas fa-phone mr-3"></i> + 34 719 221 959</p>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <!--Copyright-->
+              <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2024 Copyright: <span class="fw-bold">MANGAZO VERSE</span>. Todos los derechos reservados.
+              </div>
+
+            </footer>
+          </div>
+    </body>
+</html>

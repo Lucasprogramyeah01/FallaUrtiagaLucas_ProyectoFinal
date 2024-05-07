@@ -1,0 +1,24 @@
+.segContra{
+    font-weight: bold;
+    color: black;
+}
+
+.contraDebil{
+    font-weight: bold;
+    color: red;
+}
+
+.contraModerada{
+    font-weight: bold;
+    color: rgb(206, 110, 0);
+}
+
+.contraFuerte{
+    font-weight: bold;
+    color: rgb(0, 163, 0)
+}
+
+.contraSegura{
+    font-weight: bold;
+    color: rgb(0, 92, 0)
+}

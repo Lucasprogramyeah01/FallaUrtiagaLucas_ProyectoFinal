@@ -1,0 +1,236 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MANGAZO VERSE | Quiénes somos</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <header class="bg-primary text-white text-center">
+          <div class="container-fluid p-0">
+              <img src="../static/img/bannerMarca.png" style="width:100%;" alt="Banner de MANGAZO VERSE">
+          </div>
+        </header>
+
+<!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-3">
+          <div class="container-fluid d-flex justify-content-around">
+            <!--Logo-->
+            <div>
+              <a class="navbar-brand ps-3" href="pagInicio.html"><img src="../static/img/logoMarca.png" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill"></a>
+            </div>
+            <!--Barra de búsqueda e icono de lupa-->
+            <div class="col-md-5 mx-2">
+              <form class="d-flex pe-3 flex-grow-1 ps-3">
+                <input class="form-control me-1" type="text" placeholder="Search">
+                <button class="btn btn-primary" type="button"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+            <!--Botón menú desplegable (para dispositivos móviles)-->
+            <div>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#barraInicio">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+            <!--<div>--> <!--Si quieres que el "justify-around" se aplique a los nav-items sólo tienes que activar el div situado a la izquierda de este comentario. Eso si, el desplegable se moverá un poco.-->
+              <div class="collapse navbar-collapse" id="barraInicio">
+                <ul class="navbar-nav me-auto text-center align-items-center flex-md-row">
+                  <li class="nav-item mx-3">
+                    <a class="nav-link" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciarSesion"><i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Usuario</a>
+                  </li>
+                  <li class="nav-item mx-3">
+                    <a class="nav-link" href=""><i class="bi bi-bag-fill text-success" style="font-size: 25px;"></i> Cesta</a>
+                  </li>
+                  <li class="nav-item mx-3"> 
+                    <a class="nav-link" href=""><i class="bi bi-suit-heart-fill text-danger" style="font-size: 25px;"></i> Favoritos</a>
+                  </li>
+                </ul>
+              </div>
+            <!--</div>-->
+          </div>
+        </nav>
+
+        <!--Inicio de sesión (al clickar en "Usuario")-->
+        <div class="modal fade" id="modalIniciarSesion" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable modal-md">
+            <div class="modal-content">
+              <!-- Modal Header -->
+              <div class="modal-header bg-primary">
+                <h4 class="modal-title text-white">INICIAR SESIÓN</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body p-0">
+                <form action="">
+                  <div class="m-4">
+                    <label for="email" class="form-label mb-1">Email</label>
+                    <input type="email" class="form-control bg-secondary bg-opacity-25" id="emailIni" placeholder="Introduzca su correo electrónico" name="email">
+                  </div>
+                  <div class="mb-4 mx-4">
+                    <label for="pwd" class="form-label mb-1">Contraseña</label>
+                    <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni" placeholder="Introduzca su contraseña" name="pwd">
+                  </div>
+                  <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
+                    <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary" data-bs-dismiss="modal">Iniciar sesión</button>
+                  </div>
+                </form>
+              </div>
+              
+              <!-- Modal footer -->
+                <div class="modal-footer bg-secondary d-flex justify-content-center flex-column w-100 p-16 border border-0">
+                  <div class="row">
+                    <h6 class="text-light text-center">¿No tienes una cuenta?</h6>
+                    <a type="button" href="pagRegistro.html" id="botonReg" class="btn btn-lg btn-dark">Regístrate</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <main class="d-flex flex-wrap">
+            <div class="container-fluid py-2 px-5 mb-4 mt-2">
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-primary">Q</span>uiénes somos</h1>
+            </div>
+
+            <!--Columna izquierda-->
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            </div>
+
+            <!--Contenido central-->
+            <div class="container w-75 mb-2 mt-4 pb-5 pt-3 px-4">
+
+              <div class="container-fluid">
+                <div class="row pb-4 px-5 d-flex flex-row">
+                  <div class="col-md">
+                    <img src="../static/img/logoMarca.png" alt="Logo de MANGAZO VERSE" class="rounded-4">
+                  </div>
+                  <div class="col-md-8">
+                    <p class="pt-2" style="text-align: justify;"><span class="fw-bold">MANGAZO VERSE</span>, ubicada en Bilbao, es una de las librerías especializadas en cómics y mangas más 
+                      importantes de Europa, fundada por Lucas Falla Urtiaga, donde se pueden encontrar los títulos de todos los editores españoles.</p>
+
+                    <p style="text-align: justify;">La creación de esta librería fue motivada por la idea de ofrecerle al mundo la mayor selección de 
+                      libros, cuentos e historias jamás vista. Apasionados como ratones de biblioteca, todo el personal de MANGAZO VERSE siempre
+                      están preparados para brindarle al cliente el mejor de los tratos.</p>
+                  </div>
+                </div>
+              </div>
+
+                <p class="py-2" style="text-align: justify;">Fundada en 2024, la librería ha llevado a cabo varias reformas hasta convertirse en un gran espacio de ocio de más de 
+                  500 metros cuadrados repartidos en dos plantas, por las que han pasado más de 50.000 visitantes de momento. El éxito de la librería 
+                  también propició la apertura de una red de tiendas franquiciadas repartidas por toda la península, aunque solo la librería de 
+                  Bilbao está gestionada directamente por MANGAZO VERSE.</p>
+
+                <p class="py-2" style="text-align: justify;">MANGAZO VERSE está protagonizada por cuatro áreas bien diferenciadas, dedicadas al cómic, la literatura europea, el manga japonés y el manga coreano. 
+                  A su alrededor, también encontramos secciones de cómic infantil, libros ilustrados e incluso secciones para adultos. La librería también organiza 
+                  multitud de promociones y ofertas.</p>
+
+                <p class="py-2" style="text-align: justify;">Sin duda, se trata de un templo para todos los amantes de la cultura popular, donde cada día se reciben productos nuevos y donde todos encuentran 
+                  un espacio a su medida. Los amantes del cómic también valoran especialmente el amplísimo surtido de cómics atrasados y el servicio de pedidos a la 
+                  carta.</p>
+
+                <p class="py-2" style="text-align: justify;">Otro paso importante para MANGAZO VERSE fue la apertura de su tienda online, que ya es toda 
+                  una referencia en la venta de cómics y mangas en la red. Este 2024 la tienda ha experimentado una completa renovación, con un sistema de 
+                  personalización adaptado a cada usuario y un sistema de fidelización propio para que aquellos usuarios que se registren disfruten de 
+                  ventajas únicas, como la de canjeo de puntos, obtenidos por cada compra (Todo ello el mismo año de su apertura, vaya que sí). Esta tienda online 
+                  está gestionada por el propio equipo de la librería, por lo que su fiabilidad y rapidez están garantizadas.</p>
+
+                <p class="py-2" style="text-align: justify;">El último logro, del que estamos especialmente orgullosos, ha sido el haber ganado el premio Eisner (Will Eisner Spirit of Comics 
+                  Retailer Award) a la mejor tienda de cómics de este 2024 ¡Y eso sin siquiera haber acabado el año! Calidad indudable.</p>
+
+                <h5 class="pt-4" style="text-align: center;">Y por todo ello somos ¡TU LIBRERÍA ON-LINE DE CONFIANZA!</h5>
+            </div>
+
+            <!--Columna derecha-->
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            </div>
+        </main>
+
+<!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+          <div class="container-fluid p-0">
+            <footer class="text-center text-lg-start text-white bg-dark">
+
+              <!--Redes sociales-->
+              <section class="d-flex justify-content-between p-3 bg-primary">
+                <div class="me-5">
+                  <h5 class="mb-0">¡Síguenos en nuestras redes sociales para estar al tanto de lo último!</h5>
+                </div>
+
+                <div>
+                  <a href="https://www.facebook.com/" target="_blank" class="text-white me-4"><i class="bi bi-facebook" style="font-size: 20px;"></i></a>
+                  <a href="https://twitter.com/" target="_blank" class="text-white me-4"><i class="bi bi-twitter-x" style="font-size: 20px;"></i></a>
+                  <a href="https://www.tiktok.com/" target="_blank" class="text-white me-4"><i class="bi bi-tiktok" style="font-size: 20px;"></i></a>
+                  <a href="https://www.instagram.com/" target="_blank" class="text-white me-4"><i class="bi bi-instagram" style="font-size: 20px;"></i></a>
+                  <a href="https://es.linkedin.com/" target="_blank" class="text-white me-4"><i class="bi bi-linkedin" style="font-size: 20px;"></i></a>
+                  <a href="https://www.youtube.com/" target="_blank" class="text-white me-4"><i class="bi bi-youtube" style="font-size: 20px;"></i></a>
+                </div>
+              </section>
+
+              <!--Secciones en columna-->
+              <section>
+                <div class="container text-center text-md-start mt-4">
+                  <div class="row mt-3">
+
+                    <!--1ª columna-->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-3">
+                      <h4 class="text-uppercase fw-bold">Mangazo Verse</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p>MANGAZO VERSE, ubicada en Bilbao, es una de las librerías especializadas en cómics y manga japonés y coreano más importantes de Europa, 
+                        donde se pueden encontrar los títulos de todas las mejores editoriales españolas.</p>
+                    </div>
+
+                    <!--2ª columna-->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">
+                      <h4 class="text-uppercase fw-bold">Libros</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p>Vendemos libros de todos los géneros, y además para todas las edades ¡La lectura está asegurada tanto para los más grandes 
+                        como para los más pequeños!</p>
+                    </div>
+
+                    <!--3ª columna-->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-3">
+                      <h4 class="text-uppercase fw-bold">Sobre nosotros</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p><a href="pagQuienesSomos.html" class="text-white">Quiénes somos</a></p>
+                      <p><a href="pagCondicionesDeUso.html" class="text-white">Condiciones de uso</a></p>
+                      <p><a href="pagPoliticaDePrivacidad.html" class="text-white">Política de privacidad</a></p>
+                      <p><a href="pagAyuda.html" class="text-white">Ayuda</a></p>
+                    </div>
+
+                    <!--4ª columna-->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-3">
+                      <h4 class="text-uppercase fw-bold">Contacto</h4>
+                      <hr class="mb-4 mt-0 d-inline-block mx-auto bg-primary text-primary" style="width: 60px; height: 5px"/>
+                      <p><i class="bi bi-home mr-3"></i> C/ Monte Aldamiz 8.</p>
+                      <p><i class="fas fa-home mr-3"></i> 48001 - Bilbao, España.</p>
+                      <p><i class="fas fa-envelope mr-3"></i> info@mangazoverse.com</p>
+                      <p><i class="fas fa-phone mr-3"></i> + 34 719 221 959</p>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <!--Copyright-->
+              <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+                © 2024 Copyright: <span class="fw-bold">MANGAZO VERSE</span>. Todos los derechos reservados.
+              </div>
+
+            </footer>
+          </div>
+    </body>
+</html>

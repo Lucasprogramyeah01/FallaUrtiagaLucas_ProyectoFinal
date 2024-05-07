@@ -29,10 +29,10 @@ public class Libro {
 	
 	private String serie;
 	
-	 @Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.STRING)
 	private Tipo tipo;
 	
-	 @Enumerated(value = EnumType.STRING)
+	@Enumerated(value = EnumType.STRING)
 	private Genero genero;
 	
 	private double precio;
