@@ -1,9 +1,8 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -43,8 +42,8 @@ public class Libro {
 	
 	private String descripcion;
 	
-	@DateTimeFormat(iso = ISO.DATE_TIME)
-	private LocalDateTime fechaPublicacion;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate fechaPublicacion;
 	
 	private int numPaginas;
 	
