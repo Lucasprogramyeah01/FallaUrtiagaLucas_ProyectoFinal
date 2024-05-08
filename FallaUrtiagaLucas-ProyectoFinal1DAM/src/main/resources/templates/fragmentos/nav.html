@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<body>
 		
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top py-3">
 		    <div class="container-fluid d-flex justify-content-around">
 		      <!--Logo-->
 		      <div>
-		        <a class="navbar-brand ps-3" href="pagInicio.html">
+		        <a class="navbar-brand ps-3" href="/">
 					<img src="../static/img/logoMarca.png" th:src="@{../img/logoMarca.png}" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill">
 				</a>
 		      </div>
@@ -32,10 +32,10 @@
 		                class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Usuario</a>
 		          </li>
 		          <li class="nav-item mx-3">
-		            <a class="nav-link" href="/cesta"><i class="bi bi-bag-fill text-success" style="font-size: 25px;"></i> Cesta</a>
+		            <a class="nav-link" href="/cesta" th:href="@{/cesta}" ><i class="bi bi-bag-fill text-success" style="font-size: 25px;"></i> Cesta</a>
 		          </li>
 		          <li class="nav-item mx-3">
-		            <a class="nav-link" href="/favoritos"><i class="bi bi-suit-heart-fill text-danger" style="font-size: 25px;"></i>
+		            <a class="nav-link" href="/favoritos" th:href="@{/favoritos}"><i class="bi bi-suit-heart-fill text-danger" style="font-size: 25px;"></i>
 		              Favoritos</a>
 		          </li>
 		        </ul>
@@ -44,35 +44,5 @@
 		    </div>
 		  </nav>
 		
-		  <!--Inicio de sesión (al clickar en "Usuario")-->
-		  <div class="modal fade" id="modalIniciarSesion" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		    <div class="modal-dialog modal-dialog-scrollable modal-md">
-		      <div class="modal-content">
-		        <!-- Modal Header -->
-		        <div class="modal-header bg-primary">
-		          <h4 class="modal-title text-white">INICIAR SESIÓN</h4>
-		          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-		        </div>
-		
-		        <!-- Modal body -->
-		        <div class="modal-body p-0">
-		          <form action="">
-		            <div class="m-4">
-		              <label for="email" class="form-label mb-1">Email</label>
-		              <input type="email" class="form-control bg-secondary bg-opacity-25" id="emailIni"
-		                placeholder="Introduzca su correo electrónico" name="email">
-		            </div>
-		            <div class="mb-4 mx-4">
-		              <label for="pwd" class="form-label mb-1">Contraseña</label>
-		              <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni"
-		                placeholder="Introduzca su contraseña" name="pwd">
-		            </div>
-		            <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
-		              <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary" data-bs-dismiss="modal">Iniciar
-		                sesión</button>
-		            </div>
-		          </form>
-		        </div>
-				
 	</body>
 </html>

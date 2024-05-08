@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+
+			<!--Inicio de sesión (al clickar en "Usuario")-->
+				    <div class="modal fade" id="modalIniciarSesion" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				      <div class="modal-dialog modal-dialog-scrollable modal-md">
+				        <div class="modal-content">
+				          <!-- Modal Header -->
+				          <div class="modal-header bg-primary">
+				            <h4 class="modal-title text-white">INICIAR SESIÓN</h4>
+				            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				          </div>
+				          
+				          <!-- Modal body -->
+				          <div class="modal-body p-0">
+				            <form action="">
+				              <div class="m-4">
+				                <label for="email" class="form-label mb-1">Email</label>
+				                <input type="email" class="form-control bg-secondary bg-opacity-25" id="emailIni" placeholder="Introduzca su correo electrónico" name="email">
+				              </div>
+				              <div class="mb-4 mx-4">
+				                <label for="pwd" class="form-label mb-1">Contraseña</label>
+				                <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni" placeholder="Introduzca su contraseña" name="pwd">
+				              </div>
+				              <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
+				                <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary" data-bs-dismiss="modal">Iniciar sesión</button>
+				              </div>
+				            </form>
+				          </div>
+				          
+				          <!-- Modal footer -->
+				            <div class="modal-footer bg-secondary d-flex justify-content-center flex-column w-100 p-16 border border-0">
+				              <div class="row">
+				                <h6 class="text-light text-center">¿No tienes una cuenta?</h6>
+				                <a type="button" href="/registro" th:href="@{/registro}" id="botonReg" class="btn btn-lg btn-dark">Regístrate</a>
+				              </div>
+				            </div>
+				          </div>
+				        </div>
+				      </div>
+				    </div>
+					
+	</body>
+</html>
