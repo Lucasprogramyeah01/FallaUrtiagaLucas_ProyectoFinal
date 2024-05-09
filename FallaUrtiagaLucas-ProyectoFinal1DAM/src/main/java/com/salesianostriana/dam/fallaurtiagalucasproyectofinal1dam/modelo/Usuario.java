@@ -3,11 +3,15 @@ package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Data
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Usuario {
 	
 	@Id @GeneratedValue
@@ -23,17 +27,9 @@ public class Usuario {
 	
 	private String contrasenha;
 	
-	private String urlImagen;
+	private String imagen;
 
-	public Usuario(Long idUsuario, String nombre, String apellidos, String correo, String nombreUsuario,
-			String contrasenha, String urlImagen) {
-		super();
-		this.idUsuario = idUsuario;
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.correo = correo;
-		this.nombreUsuario = nombreUsuario;
-		this.contrasenha = contrasenha;
-		this.urlImagen = urlImagen;
-	}
+	private int numPuntos;
+	
+	private boolean admin;
 }

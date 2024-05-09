@@ -36,6 +36,8 @@ public class Libro {
 	
 	private double precio;
 	
+	private int stock;
+	
 	private String autor;
 	
 	private String editorial;
