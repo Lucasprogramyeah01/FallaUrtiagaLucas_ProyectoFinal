@@ -9,7 +9,8 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.Libr
 public class LibroControlador {
 
 	@Autowired
-	public LibroServicio servicio;
+	private LibroServicio servicio;
+	
 	
 	
 	

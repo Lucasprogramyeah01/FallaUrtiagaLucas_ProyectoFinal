@@ -11,23 +11,19 @@ public class MainControlador {
 		return "pagInicio";
 	}
 	
+	@GetMapping("/quienesSomos")
+	public String mostrarQuienesSomos() {
+		return "pagQuienesSomos";
+	}
 	
+	@GetMapping("/condicionesDeUso")
+	public String mostrarCondicionesDeUso() {
+		return "pagCondicionesDeUso";
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("/politicaDePrivacidad")
+	public String mostrarPoliticaDePrivacidad() {
+		return "pagPoliticaDePrivacidad";
+	}
 	
 }
