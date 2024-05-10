@@ -7,7 +7,9 @@
 		              
 		              <!--Logo-->
 		              <div>
-		                <a class="navbar-brand ps-3" href="pagInicio.html"><img src="../img/logoMarca.png" th:src="@{../img/logoMarca.png}" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill"></a>
+		                <a class="navbar-brand ps-3" href="/" th:href="@{/}">
+							<img src="../img/logoMarca.png" th:src="@{../img/logoMarca.png}" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill">
+						</a>
 		              </div>
 		  
 		              <!--Botón menú desplegable (para dispositivos móviles)-->
@@ -67,6 +69,18 @@
 		                  <li class="nav-item mx-3"> 
 		                    <a class="nav-link" href="/favoritos" th:href="@{/favoritos}"><i class="bi bi-suit-heart-fill" style="font-size: 25px; color: rgb(246, 55, 12);"></i> Favoritos</a>
 		                  </li>
+						  <li class="nav-item mx-3">
+						     <a class="nav-link" href="/admin/clientes" th:href="@{/admin/clientes}"><i class="bi bi-people-fill text-info" style="font-size: 25px;"></i> Clientes</a>
+						  </li>
+						  <li class="nav-item mx-3"> 
+						     <a class="nav-link" href=""><i class="bi bi-file-text-fill text-warning" style="font-size: 25px;"></i> Libros</a>
+						  </li>
+						  <li class="nav-item mx-3"> 
+						     <a class="nav-link" href=""><i class="bi bi-graph-up-arrow text-success" style="font-size: 25px;"></i> Ventas</a>
+						  </li>
+						  <li class="nav-item mx-3">
+						    <a type="button" href="pagInicio.html" id="botonCerrarSesion" class="btn btn-lg btn-danger">Cerrar Sesión</a>
+						  </li>
 		                </ul>
 		  
 		                  <!--Barra de búsqueda e icono de lupa-->

@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Libro {
 	
-	@Id
+	@Id @GeneratedValue
 	private Long isbn;
 	
 	private String titulo;
@@ -54,5 +55,5 @@ public class Libro {
 	
 	 @Enumerated(value = EnumType.STRING)
 	private Publico publico;
-	
+
 }
