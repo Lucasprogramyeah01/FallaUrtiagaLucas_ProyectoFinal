@@ -26,4 +26,9 @@ public class MainControlador {
 		return "pagPoliticaDePrivacidad";
 	}
 	
+	@GetMapping("/favoritos")
+	public String mostrarFavoritos() {
+		return "pagFavoritos";
+	}
+	
 }
