@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MANGAZO VERSE [Admin] | Clientes</title>
+        <title>MANGAZO VERSE [Admin] | Productos</title>
 
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
@@ -26,22 +26,22 @@
 
         <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
-                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">C</span>lientes</h1>
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">P</span>roductos</h1>
             </div>
 
-            <!--Columna izquierda-->
+            <!--Columna izquierda>
             <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
-            </div>
+            </div-->
 
 			<!--Contenido central-->
-			            <div class="container w-75 mb-2 mt-4 pb-5 pt-3 px-4">
+			            <div class="container-fluid mb-2 mt-4 pb-5 pt-3 px-4">
 			
 			              <div class="container-fluid">
 			                <div class="row pb-4 px-5 d-flex flex-row">
 			
 			                  <!--Botón de agregar clientes-->
 			                  <div class="text-center">
-			                    <a type="button" href="/admin/agregarCliente" th:href="@{/admin/agregarCliente}" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-person-fill-add m-0"></h1></a>
+			                    <a type="button" href="/admin/agregarCliente" th:href="@{/admin/agregarCliente}" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-plus-circle-fill m-0"></h1></a>
 			                  </div>
 			
 			                    <!--Tabla de clientes-->
@@ -50,19 +50,25 @@
 			                            <thead>
 			                                <tr class="text-center table-info align-middle">
 			                                    <th class="text-white rounded-start-3 border border-0 px-3" style="background-color: #369;"><h5 class="m-0">ID</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Foto de perfil</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Apellidos</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Correo</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre de usuario</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Puntos Hon</h5></th>
-			                                    <th colspan="2" class="border border-0" style="background-color: #369;"></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Título</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Serie</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Editorial</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Tipo</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Categorías</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Cubierta</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Público</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Descripción</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Número de páginas</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Fecha de publicación</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Precio</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Stock</h5></th>
+												<th colspan="2" class="border border-0" style="background-color: #369;"></th>
 			                                    <th colspan="2" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
 			                                </tr>
 			                            </thead>
 			
 			                            <tbody class="text-center align-center align-middle">
-			                                <tr th:each="usuario : ${listaClientes}">
+			                                <tr th:each="libro : ${listaLibros}">
 			                                    <td th:text="@{${usuario.idUsuario}}"></td>
 			                                    <td><img th:src="${usuario.imagen}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
 			                                    <td th:text="${usuario.nombre}"></td>
@@ -87,9 +93,9 @@
 			
 			            </div>
 
-            <!--Columna derecha-->
+            <!--Columna derecha>
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
-            </div>
+            </div-->
         </main>
 
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->

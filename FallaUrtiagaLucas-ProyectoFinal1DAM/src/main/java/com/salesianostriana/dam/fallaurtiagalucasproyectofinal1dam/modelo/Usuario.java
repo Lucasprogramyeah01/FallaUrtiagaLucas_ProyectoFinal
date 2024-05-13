@@ -35,6 +35,8 @@ public class Usuario {
 	private String contrasenha;
 	
 	private String imagen;
+	
+	private String textoAltImagen;
 
 	private int numPuntosHon;
 	
