@@ -36,17 +36,25 @@ public class Usuario {
 	
 	private String imagen;
 
-	private int numPuntos;
+	private int numPuntosHon;
 	
 	private boolean admin;
 	
 	
 	//ASOCIACIÓN CON VENTA [1U - MV]
 	
-	@ToString.Exclude
-	@EqualsAndHashCode.Exclude
-	@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
-	@Builder.Default
-	private List<Venta> venta = new ArrayList<>();
+		@ToString.Exclude
+		@EqualsAndHashCode.Exclude
+		@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+		@Builder.Default
+		private List<Venta> venta = new ArrayList<>();
+		
+	//ASOCIACIÓN CON ATRIBUTOS EXTRA [Favorito]
+		
+		@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
+		@Builder.Default
+		@EqualsAndHashCode.Exclude
+		@ToString.Exclude
+		private List<Favorito> listadoFavoritos = new ArrayList<>();
 	
 }
