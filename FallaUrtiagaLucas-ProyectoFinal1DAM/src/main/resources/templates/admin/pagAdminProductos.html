@@ -22,7 +22,7 @@
 
 		<nav th:replace="~{fragmentos/nav::nav}"></nav>
 
-<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+<!--CONTENIDO------------------------------------------------------------------------------------------------------------------------------------------------>
 
         <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
@@ -30,7 +30,7 @@
             </div>
 
             <!--Columna izquierda>
-            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div-->
 
 			<!--Contenido central-->
@@ -43,10 +43,10 @@
 								<div class="container-fluid">
 									<div class="row d-flex justify-content-between align-items-center">
 								    	<div class="text-center w-50">
-								        	<a type="button" href="/admin/agregarCliente" th:href="@{/admin/agregarCliente}" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-journal-plus m-0"></h1></a>
+								        	<a type="button" href="/admin/agregarLibro" th:href="@{/admin/agregarLibro}" id="botonAgregarLibro" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-journal-plus m-0"></h1></a>
 								        </div>
 								        <div class="text-center w-50">
-								            <a type="button" href="" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-3 text-white ms-1 bg-dark"><i class="bi bi-tag-fill m-0"></i><i class="bi bi-bookmark-star-fill m-0"></i> Tipos y Categorías</a>
+								            <a type="button" href="/admin/listaCategorias" th:href="@{/admin/listaCategorias}" id="botonCategorias" class="btn btn-lg mb-4 px-3 text-white ms-1 bg-dark"><i class="bi bi-tag-fill m-0"></i><i class="bi bi-bookmark-star-fill m-0"></i> Tipos y Categorías</a>
 								        </div>
 								    </div>
 								 </div>
@@ -74,11 +74,11 @@
 			                                    <th colspan="2" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
 			                                </tr>
 			                            </thead>
-			
+
 			                            <tbody class="text-center align-center align-middle">
 			                                <tr th:each="libro : ${listaLibros}">
 			                                    <td th:text="@{${libro.idLibro}}" class="fw-bold"></td>
-												<td th:text="@{${libro.titulo}}"></td>
+												<td th:text="${libro.titulo}"></td>
 			                                    <td><img th:src="${libro.imagenPortada}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
 			                                    <td th:text="${libro.serie}"></td>
 			                                    <td th:text="${libro.editorial}"></td>
@@ -109,7 +109,7 @@
 			            </div>
 
             <!--Columna derecha>
-            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div-->
         </main>
 

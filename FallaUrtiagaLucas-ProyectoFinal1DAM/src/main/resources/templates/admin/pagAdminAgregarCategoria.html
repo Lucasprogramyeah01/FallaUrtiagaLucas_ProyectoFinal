@@ -22,7 +22,7 @@
 
 		<nav th:replace="~{fragmentos/nav::nav}"></nav>
 
-<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+<!--CONTENIDO------------------------------------------------------------------------------------------------------------------------------------------------>
 
         <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
@@ -30,19 +30,21 @@
             </div>
 
             <!--Columna izquierda-->
-            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div>
 
 			<!--Formulario-->
 			            <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-			                <form action="" name="formularioTipCatReg" id="formularioTipCatReg">
+			                <form th:action="${categoria.idCategoria!=0} ? @{/admin/editarCategoria/submit} : @{/admin/agregarCategoria/submit}" th:object="${categoria}" method="post" name="formularioCategoriaReg" id="formularioCategoriaReg">
 			
 			                    <!--Título y Serie-->
 			                    <fieldset class="pb-2 pt-3">
 			                        <div class="row mb-3">
+										<input th:if="${categoria.idCategoria!=0}" type="hidden" name="idRegCategoria" th:field="*{idCategoria}"/>
+										
 			                            <div class="col mb-3 mx-4 d-flex justify-content-center flex-column">
 			                                <label for="nombreTipCatReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
-			                                <input type="text" class="form-control bg-secondary bg-opacity-25 w-50" id="nombreTipCatReg" placeholder="Introduzca el nombre del nuevo apartado" name="nombreTipCatReg" required>
+			                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25 w-100" id="nombreTipCatReg" placeholder="Introduzca el nombre del nuevo apartado" name="nombreTipCatReg" required>
 			                            </div>
 			                        </div>
 			                    </fieldset>
@@ -55,7 +57,7 @@
 			            </div>
 
             <!--Columna derecha-->
-            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div>
         </main>
 

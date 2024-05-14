@@ -30,7 +30,7 @@
             </div>
 
             <!--Columna izquierda-->
-            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div>
 
             <!--Formulario-->
@@ -148,6 +148,12 @@
                         <div class="col mb-3 mx-4">
                           <label for="editorialReg" class="form-label p-0 m-0"><h5>Categorías <span class="text-danger">*</h5></span></label>
                           <div class="d-flex flex-wrap">
+							
+							<div class="col-3 form-check pe-5 py-1" th:each="categoria : ${listaCategorias}">
+								<input type="checkbox" th:field="*{listadoCategorias}" th:value="${categoria.id}" class="form-check-input border border-1 border-dark" id="check2Reg" name="option2" value="">
+							    <label class="form-check-label" for="check2Reg"></label>
+							</div>
+							
                             <div class="col-3 form-check pe-5 py-1">
                               <input type="checkbox" class="form-check-input border border-1 border-dark" id="check1Reg" name="option1" value="">
                               <label class="form-check-label" for="check1Reg">Aventuras</label>
@@ -231,7 +237,7 @@
             </div>
 
             <!--Columna derecha-->
-            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div>
         </main>
 
