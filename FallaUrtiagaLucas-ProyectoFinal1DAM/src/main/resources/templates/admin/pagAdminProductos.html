@@ -26,7 +26,7 @@
 
         <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
-                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">P</span>roductos</h1>
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">L</span>ibros</h1>
             </div>
 
             <!--Columna izquierda>
@@ -39,10 +39,17 @@
 			              <div class="container-fluid">
 			                <div class="row pb-4 px-5 d-flex flex-row">
 			
-			                  <!--Botón de agregar clientes-->
-			                  <div class="text-center">
-			                    <a type="button" href="/admin/agregarCliente" th:href="@{/admin/agregarCliente}" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-plus-circle-fill m-0"></h1></a>
-			                  </div>
+								<!--Botón de agregar clientes-->
+								<div class="container-fluid">
+									<div class="row d-flex justify-content-between align-items-center">
+								    	<div class="text-center w-50">
+								        	<a type="button" href="/admin/agregarCliente" th:href="@{/admin/agregarCliente}" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-journal-plus m-0"></h1></a>
+								        </div>
+								        <div class="text-center w-50">
+								            <a type="button" href="" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-3 text-white ms-1 bg-dark"><i class="bi bi-tag-fill m-0"></i><i class="bi bi-bookmark-star-fill m-0"></i> Tipos y Categorías</a>
+								        </div>
+								    </div>
+								 </div>
 			
 			                    <!--Tabla de clientes-->
 			                    <div class="table-responsive">
@@ -51,6 +58,7 @@
 			                                <tr class="text-center table-info align-middle">
 			                                    <th class="text-white rounded-start-3 border border-0 px-3" style="background-color: #369;"><h5 class="m-0">ID</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Título</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Imagen</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Serie</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Editorial</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Tipo</h5></th>
@@ -69,13 +77,20 @@
 			
 			                            <tbody class="text-center align-center align-middle">
 			                                <tr th:each="libro : ${listaLibros}">
-			                                    <td th:text="@{${usuario.idUsuario}}"></td>
-			                                    <td><img th:src="${usuario.imagen}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
-			                                    <td th:text="${usuario.nombre}"></td>
-			                                    <td th:text="${usuario.apellidos}"></td>
-			                                    <td th:text="${usuario.correo}"></td>
-			                                    <td th:text="${usuario.nombreUsuario}"></td>
-			                                    <td th:text="${usuario.numPuntosHon}"></td>
+			                                    <td th:text="@{${libro.idLibro}}" class="fw-bold"></td>
+												<td th:text="@{${libro.titulo}}"></td>
+			                                    <td><img th:src="${libro.imagenPortada}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
+			                                    <td th:text="${libro.serie}"></td>
+			                                    <td th:text="${libro.editorial}"></td>
+			                                    <td th:text="${libro.tipo}"></td>
+			                                    <td th:text="${libro.listadoCategorias}"></td>
+			                                    <td th:text="${libro.cubierta}"></td>
+												<td th:text="${libro.publico}"></td>
+												<td th:text="${libro.descripcion}"></td>
+												<td th:text="${libro.numPaginas}"></td>
+												<td th:text="${libro.fechaPublicacion}"></td>
+												<td th:text="${libro.precio}"></td>
+												<td th:text="${libro.stock}"></td>
 			                                    <td class="pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
 			                                    <td class="ps-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>
 			                                    <td class="pe-1"><a type="button" th:href="@{/admin/editarCliente/{id}(id=${usuario.idUsuario})}" id="botonEditarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>

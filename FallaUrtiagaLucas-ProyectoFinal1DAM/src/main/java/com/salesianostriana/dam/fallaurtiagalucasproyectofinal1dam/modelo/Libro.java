@@ -31,7 +31,9 @@ public class Libro {
 	
 	private String titulo;
 	
-	private String urlImagen;
+	private String imagenPortada;
+	
+	private String textoAltPortada;
 	
 	private String serie;
 	

@@ -63,7 +63,7 @@
 			
 			                            <tbody class="text-center align-center align-middle">
 			                                <tr th:each="usuario : ${listaClientes}">
-			                                    <td th:text="@{${usuario.idUsuario}}"></td>
+			                                    <td th:text="@{${usuario.idUsuario}}" class="fw-bold"></td>
 			                                    <td><img th:src="${usuario.imagen}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
 			                                    <td th:text="${usuario.nombre}"></td>
 			                                    <td th:text="${usuario.apellidos}"></td>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MANGAZO VERSE [Admin] | Agregar producto</title>
+
+		<!--CSS-->
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<header th:replace="~{fragmentos/header::header}"></header>
+
+<!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+
+<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <main class="d-flex flex-wrap">
+            <div class="container-fluid py-2 px-5 mb-4 mt-2">
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">O</span>perar producto</h1>
+            </div>
+
+            <!--Columna izquierda-->
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            </div>
+
+            <!--Formulario-->
+            <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
+                <form th:action="${libro.idLibro!=0} ? @{/admin/editarLibro/submit} : @{/admin/agregarLibro/submit}" th:object="${libro}" method="post" name="formularioReg" id="formularioReg">
+
+                    <!--Título y Serie-->
+                    <fieldset class="pb-2 pt-3">
+                        <div class="row mb-3">
+                            <div class="col mb-3 mx-4">
+								<input th:if="${libro.idLibro!= 0}" type="hidden" name="idLibroReg" th:field="*{idLibro}"/>
+								
+                                <label for="tituloReg"><h5>Título <span class="text-danger">*</h5></span></label>
+                                <input type="text" th:field="*{titulo}" class="form-control bg-secondary bg-opacity-25" id="tituloReg" placeholder="Introduzca el título del libro va a ser agregado" name="tituloReg" required>
+                            </div>
+                            <div class="col mb-3 mx-4">
+                                <label for="serieReg"><h5>Serie <span class="text-danger">*</h5></span></label>
+                                <input type="text" th:field="*{serie}" class="form-control bg-secondary bg-opacity-25" id="serieReg" placeholder="Introduzca el nombre de la serie a la que pertenece el libro" name="serieReg" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!--Editorial y Fecha de pubicación-->
+                    <fieldset class="py-2">
+                        <div class="row mb-3">
+                            <div class="col mb-3 mx-4">
+                              <label for="editorialReg" class="form-label p-0 m-0"><h5>Editorial <span class="text-danger">*</h5></span></label>
+                              <input type="text" th:field="*{editorial}" class="form-control bg-secondary bg-opacity-25" id="editorialReg" placeholder="Introduzca la editorial del libro" name="editorialReg" required>
+                            </div>
+                            <div class="col mb-3 mx-4">
+                              <label for="fechaPubReg" class="form-label p-0 m-0"><h5>Fecha de publicación <span class="text-danger">*</h5></span></label>
+                              <input type="datetime-local" th:field="*{fechaPublicacion}" class="form-control bg-secondary bg-opacity-25" id="fechaPubReg" placeholder="Introduzca la fecha a la que se va a publicar el libro" name="fechaPubReg" required>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!--Stock, Precio y Número de páginas-->
+                    <fieldset class="py-2">
+                        <div class="row mb-3">
+                            <div class="mb-3 mx-4" style="width: 21%;">
+                                <label for="stockReg"><h5>Stock <span class="text-danger">*</h5></span></label>
+                                <input type="number" th:field="*{stock}" class="form-control bg-secondary bg-opacity-25" name="stockReg" id="stockReg" min="0" max="1000" step="1" value="0" 
+                                    placeholder="Cantidad de unidades" required>
+                            </div>
+                            <div class="mb-3 mx-4 input-group d-flex flex-column" style="width: 21%;">
+                                <label for="precioReg"><h5>Precio <span class="text-danger">*</h5></span></label>
+                                <div class="d-flex">
+                                  <input type="number" th:field="*{precio}" class="form-control bg-secondary bg-opacity-25 rounded-end-0" name="precioReg" id="precioReg" min="0" step="1" value="0" 
+                                    placeholder="Precio del libro" required>
+                                  <span class="input-group-text rounded-start-0">€</span>
+                                </div>
+                            </div>
+                            <div class="col mb-3 mx-4 w-50">
+                                <label for="numPagReg"><h5>Número de páginas <span class="text-danger">*</h5></span></label>
+                                <input type="range" th:field="*{numPaginas}" class="form-range pe-2" style="width: 90%;" id="numPagReg" nam="numPagReg" min="0" max="3000" oninput="this.nextElementSibling.value = this.value" required>
+                                <output>0</output>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!--Imagen de la portada y Texto alternativo de la imagen-->
+                    <fieldset class="py-2">
+                      <div class="row mb-3">
+                        <div class="col mb-3 mx-4">
+                          <label for="imagenPortadaReg" class="form-label p-0 m-0"><h5>Imagen de la portada <span class="text-danger">*</h5></span></label>
+                          <input type="text" th:field="*{imagenPortada}" class="form-control bg-secondary bg-opacity-25" id="imagenPortadaReg" placeholder="Introduzca la URL de la imagen con la portada del libro" name="imagenPortadaReg" required>
+                        </div>
+                        <div class="col mb-3 mx-4">
+                          <label for="txtAltImgLibroReg" class="form-label p-0 m-0"><h5>Texto alternativo de la imagen de la portada <span class="text-danger">*</h5></span></label>
+                          <input type="text" th:field="*{textoAltPortada}" class="form-control bg-secondary bg-opacity-25" id="txtAltImgLibroReg" placeholder="Describa la portada del libro" name="txtAltImgLibroReg" required>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!--Descripción-->
+                    <fieldset class="py-2">
+                      <div class="row mb-3">
+                          <div class="col mb-3 mx-4">
+                            <label for="descripcionReg" class="form-label p-0 m-0"><h5>Descripción <span class="text-danger">*</h5></span></label>
+                            <textarea th:field="*{descripcion}" class="form-control bg-secondary bg-opacity-25" rows="5" id="descripcionReg" name="descripcionReg" placeholder="Introduzca una descripción para el libro" required></textarea>
+                          </div>
+                      </div>
+                    </fieldset>
+
+                    <!--Tipo-->
+                    <fieldset class="py-2">
+                      <div class="row mb-3">
+                        <div class="col mb-3 mx-4">
+                          <label for="editorialReg" class="form-label p-0 m-0"><h5>Tipo <span class="text-danger">*</h5></span></label>
+                          <div class="d-flex flex-wrap">
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="radio" class="form-check-input border border-1 border-dark" id="radio1Reg" name="optradio" value="option1">
+                              <label class="form-check-label" for="radio1Reg">Manga</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="radio" class="form-check-input border border-1 border-dark" id="radio2Reg" name="optradio" value="option2">
+                              <label class="form-check-label" for="radio2Reg">Cómic</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="radio" class="form-check-input border border-1 border-dark" id="radio3Reg" name="optradio" value="option3">
+                              <label class="form-check-label" for="radio3Reg">Libro Europeo</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="radio" class="form-check-input border border-1 border-dark" id="radio4Reg" name="optradio" value="option4">
+                              <label class="form-check-label" for="radio4Reg">Manhwa</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!--Categorias-->
+                    <fieldset class="py-2">
+                      <div class="row mb-3">
+                        <div class="col mb-3 mx-4">
+                          <label for="editorialReg" class="form-label p-0 m-0"><h5>Categorías <span class="text-danger">*</h5></span></label>
+                          <div class="d-flex flex-wrap">
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check1Reg" name="option1" value="">
+                              <label class="form-check-label" for="check1Reg">Aventuras</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check2Reg" name="option2" value="">
+                              <label class="form-check-label" for="check2Reg">Ciencia ficción</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check3Reg" name="option3" value="">
+                              <label class="form-check-label" for="check3Reg">Romance</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check4Reg" name="option4" value="">
+                              <label class="form-check-label" for="check4Reg">Misterio</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check5Reg" name="option5" value="">
+                              <label class="form-check-label" for="check5Reg">Terror</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check6Reg" name="option6" value="">
+                              <label class="form-check-label" for="check6Reg">Comedia</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check7Reg" name="option7" value="">
+                              <label class="form-check-label" for="check7Reg">Acción</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check8Reg" name="option8" value="">
+                              <label class="form-check-label" for="check8Reg">Policíaco</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check9Reg" name="option9" value="">
+                              <label class="form-check-label" for="check9Reg">Fantasía</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check10Reg" name="option10" value="">
+                              <label class="form-check-label" for="check10Reg">Gore</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check11Reg" name="option11" value="">
+                              <label class="form-check-label" for="check11Reg">Historia</label>
+                            </div>
+                            <div class="col-3 form-check pe-5 py-1">
+                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check12Reg" name="option12" value="">
+                              <label class="form-check-label" for="check12Reg">Lírica</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!--Tapa y Público-->
+                    <fieldset class="py-2">
+                    <div class="row mb-3">
+                      <div class="col mb-3 mx-4">
+                        <label for="cubiertaReg" class="form-label p-0 m-0"><h5>Cubierta <span class="text-danger">*</h5></span></label>
+                        <select class="form-select" id="cubiertaReg" name="cubiertaReg">
+                          <option value="">Tapa blanda</option>
+                          <option value="">Tapa dura</option>
+                          <option value="">Sobrecubierta</option>
+                        </select>
+                      </div>
+                      <div class="col mb-3 mx-4">
+                        <label for="publicoReg" class="form-label p-0 m-0"><h5>Público <span class="text-danger">*</h5></span></label>
+                        <select class="form-select" id="publicoReg" name="publicoReg">
+                          <option value="">Infantil (entre 3 y 10 años)</option>
+                          <option value="">Juvenil (entre 11 y 17 años)</option>
+                          <option value="">Adulto (para mayores de 18 años)</option>
+                        </select>
+                      </div>
+                    </div>
+                  </fieldset>
+
+                    <!--Botón de registro-->
+                    <div class="row w-100 d-flex justify-content-center mt-4">
+                      <button type="submit" id="submitProdReg" class="w-25 btn btn-lg btn-info" data-bs-dismiss="modal"><h4>Guardar</h4></button>
+                    </div>
+                </form>
+            </div>
+
+            <!--Columna derecha-->
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+            </div>
+        </main>
+
+<!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>         
+
+    </body>
+</html>
