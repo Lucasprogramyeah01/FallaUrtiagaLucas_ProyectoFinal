@@ -26,11 +26,11 @@
 
 		<nav th:replace="~{fragmentos/nav::nav}"></nav>
 
-<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+<!--CONTENIDO------------------------------------------------------------------------------------------------------------------------------------------------>
 
         <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
-                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">L</span>ibros</h1>
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">C</span>lientes</h1>
             </div>
 
             <!--Columna izquierda-->
@@ -75,7 +75,7 @@
                     <!--Contraseña y cantidad puntos "Hon"-->
                     <fieldset class="py-2">
                       <div class="row">
-                          <div class="col mb-3 mx-4">
+                          <div class="col mb-3 mx-4" th:if="${usuario.idUsuario==null}">
                               <label for="contrasenha1Reg"><h5>Contraseña <span class="text-danger">*</h5></span></label>
                               <input type="password" th:field="*{contrasenha}" class="form-control bg-secondary bg-opacity-25" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
                               <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
@@ -85,6 +85,10 @@
                             <input type="number" th:field="*{numPuntosHon}" class="form-control bg-secondary bg-opacity-25 w-50" name="puntosReg" id="puntosReg" min="0" step="50" value="0" 
                                 placeholder="Puntos 'Hon' que van a ser asignados" required>
                           </div>
+						  
+						  <!--Bloque vacío que ocupa el lugar de la contraseña cuando se edita un usuario-->
+						  <div class="col mb-3 mx-4" th:if="${usuario.idUsuario!=null}">
+						   </div>
                       </div>
                     </fieldset>
 					

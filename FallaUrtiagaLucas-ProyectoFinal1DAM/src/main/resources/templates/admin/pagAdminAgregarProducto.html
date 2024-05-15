@@ -150,58 +150,10 @@
                           <div class="d-flex flex-wrap">
 							
 							<div class="col-3 form-check pe-5 py-1" th:each="categoria : ${listaCategorias}">
-								<input type="checkbox" th:field="*{listadoCategorias}" th:value="${categoria.id}" class="form-check-input border border-1 border-dark" id="check2Reg" name="option2" value="">
-							    <label class="form-check-label" for="check2Reg"></label>
+								<input type="checkbox" th:field="*{listadoCategorias}" th:value="${categoria.idCategoria}" th:text="${categoria.nombre}" class="form-check-input border border-1 border-dark">
+							    <label class="form-check-label"></label>
 							</div>
 							
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check1Reg" name="option1" value="">
-                              <label class="form-check-label" for="check1Reg">Aventuras</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check2Reg" name="option2" value="">
-                              <label class="form-check-label" for="check2Reg">Ciencia ficción</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check3Reg" name="option3" value="">
-                              <label class="form-check-label" for="check3Reg">Romance</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check4Reg" name="option4" value="">
-                              <label class="form-check-label" for="check4Reg">Misterio</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check5Reg" name="option5" value="">
-                              <label class="form-check-label" for="check5Reg">Terror</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check6Reg" name="option6" value="">
-                              <label class="form-check-label" for="check6Reg">Comedia</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check7Reg" name="option7" value="">
-                              <label class="form-check-label" for="check7Reg">Acción</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check8Reg" name="option8" value="">
-                              <label class="form-check-label" for="check8Reg">Policíaco</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check9Reg" name="option9" value="">
-                              <label class="form-check-label" for="check9Reg">Fantasía</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check10Reg" name="option10" value="">
-                              <label class="form-check-label" for="check10Reg">Gore</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check11Reg" name="option11" value="">
-                              <label class="form-check-label" for="check11Reg">Historia</label>
-                            </div>
-                            <div class="col-3 form-check pe-5 py-1">
-                              <input type="checkbox" class="form-check-input border border-1 border-dark" id="check12Reg" name="option12" value="">
-                              <label class="form-check-label" for="check12Reg">Lírica</label>
-                            </div>
                           </div>
                         </div>
                       </div>
