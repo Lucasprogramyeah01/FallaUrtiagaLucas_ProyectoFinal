@@ -6008,3 +6008,11 @@ INSERT INTO Categoria(idCategoria, libroIdLibro, nombre) VALUES (12, null, 'Lír
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
 	at com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.FallaUrtiagaLucasProyectoFinal1DamApplication.main(FallaUrtiagaLucasProyectoFinal1DamApplication.java:10)
+2024-05-15 22:33:26.702236+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "NOMBRE" no encontrada
+Table "NOMBRE" not found; SQL statement:
+SELECT * FROM NOMBRE [42102-224]
+2024-05-15 22:58:10.249840+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "DESCRIPCION CHARACTER VARYING(255)": "U&'La quinta pelea del Ragnarok, la guerra entre dioses y humanos para decidir e... (313)"
+Value too long for column "DESCRIPCION CHARACTER VARYING(255)": "U&'La quinta pelea del Ragnarok, la guerra entre dioses y humanos para decidir e... (313)"; SQL statement:
+insert into libro (autor,cubierta,descripcion,editorial,fecha_publicacion,imagen_portada,num_paginas,precio,publico,serie,stock,texto_alt_portada,tipo,titulo,id_libro) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) [22001-224]

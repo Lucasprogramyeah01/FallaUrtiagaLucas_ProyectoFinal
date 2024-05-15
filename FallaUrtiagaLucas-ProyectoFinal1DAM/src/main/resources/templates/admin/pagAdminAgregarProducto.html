@@ -78,8 +78,8 @@
                             <div class="mb-3 mx-4 input-group d-flex flex-column" style="width: 21%;">
                                 <label for="precioReg"><h5>Precio <span class="text-danger">*</h5></span></label>
                                 <div class="d-flex">
-                                  <input type="number" th:field="*{precio}" class="form-control bg-secondary bg-opacity-25 rounded-end-0" name="precioReg" id="precioReg" min="0" step="1" value="0" 
-                                    placeholder="Precio del libro" required>
+                                  <input type="number" th:field="*{precio}" class="form-control bg-secondary bg-opacity-25 rounded-end-0" name="precioReg" id="precioReg" min="0" step="0.01" value="0" 
+                                    placeholder="0.00" required>
                                   <span class="input-group-text rounded-start-0">€</span>
                                 </div>
                             </div>
@@ -165,6 +165,7 @@
                       <div class="col mb-3 mx-4">
                         <label for="cubiertaReg" class="form-label p-0 m-0"><h5>Cubierta <span class="text-danger">*</h5></span></label>
                         <select class="form-select" id="cubiertaReg" name="cubiertaReg">
+						  <option th:each="cubierta : ${T(com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Cubierta).values()}" th:value="${cubierta}" th:text="${cubierta.displayValue}"></option>
                           <option value="">Tapa blanda</option>
                           <option value="">Tapa dura</option>
                           <option value="">Sobrecubierta</option>
