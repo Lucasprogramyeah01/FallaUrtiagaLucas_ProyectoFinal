@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Cubierta;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Publico;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 
@@ -44,6 +46,8 @@ public class LibroControlador {
 		model.addAttribute("libro", l);
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaIdsCat", listaIdsCat);//CUIDAO
+		model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
+		model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
 				
 		return "/admin/pagAdminAgregarProducto";
 	}
@@ -65,10 +69,10 @@ public class LibroControlador {
 	
 	//MOSTRAR FORMULARIO PARA EDITAR LIBRO.
 	@GetMapping("/editarLibro/{id}")
-	public String mostrarFormularioEditarLibro(@PathVariable("id") long id, Model model) {
+	public String mostrarFormularioEditarLibro(@PathVariable("id") long idLibro, Model model) {
 		model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
 			
-		Optional<Libro> libro = servicio.findById(id);
+		Optional<Libro> libro = servicio.findById(idLibro);
 			
 		if (libro.isPresent()) {
 			model.addAttribute("libro", libro.get());

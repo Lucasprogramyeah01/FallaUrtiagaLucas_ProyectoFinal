@@ -61,6 +61,7 @@
 												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Imagen</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Serie</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Editorial</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Autor</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Tipo</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Categorías</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Cubierta</h5></th>
@@ -82,12 +83,14 @@
 			                                    <td><img th:src="${libro.imagenPortada}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
 			                                    <td th:text="${libro.serie}"></td>
 			                                    <td th:text="${libro.editorial}"></td>
+												<td th:text="${libro.autor}"></td>
 			                                    <td th:text="${libro.tipo}"></td>
-												<!--td th:text="${libro.listadoCategorias}"></td-->
-			                                    <td th:each="categoria : ${libro.listadoCategorias}">
+			                                    <td>
+													<div th:each="categoria : ${libro.listadoCategorias}">
 													<p th:text="${categoria.nombre}"></p>
+													</div>
 												</td>
-			                                    <td th:text="${libro.cubierta}"></td>
+			                                    <td th:text="${libro.cubierta.nombreCubierta}"></td>
 												<td th:text="${libro.publico}"></td>
 												<td th:text="${libro.descripcion}"></td>
 												<td th:text="${libro.numPaginas}"></td>

@@ -83,13 +83,23 @@
                                   <span class="input-group-text rounded-start-0">€</span>
                                 </div>
                             </div>
-                            <div class="col mb-3 mx-4 w-50">
-                                <label for="numPagReg"><h5>Número de páginas <span class="text-danger">*</h5></span></label>
-                                <input type="range" th:field="*{numPaginas}" class="form-range pe-2" style="width: 90%;" id="numPagReg" nam="numPagReg" min="0" max="3000" oninput="this.nextElementSibling.value = this.value" required>
-                                <output>0</output>
-                            </div>
+							<div class="col mb-3 mx-4">
+								<label for="autorReg" class="form-label p-0 m-0"><h5>Autor/a <span class="text-danger">*</h5></span></label>
+								<input type="text" th:field="*{autor}" class="form-control bg-secondary bg-opacity-25" id="autorReg" placeholder="Introduzca el nombre del autor o la autora del libro" name="autorReg" required>
+							</div>
                         </div>
                     </fieldset>
+					
+					<!--Número de páginas-->
+					<fieldset class="py-2">
+						<div class="row mb-3">
+					    	<div class="col mb-3 mx-4">
+								<label for="numPagReg"><h5>Número de páginas <span class="text-danger">*</h5></span></label>
+								<input type="range" th:field="*{numPaginas}" class="form-range pe-2" style="width: 95%;" id="numPagReg" nam="numPagReg" min="1" max="3000" oninput="this.nextElementSibling.value = this.value" required>
+								<output>1</output>
+					    	</div>
+						</div>
+					</fieldset>
 
                     <!--Imagen de la portada y Texto alternativo de la imagen-->
                     <fieldset class="py-2">
@@ -164,19 +174,14 @@
                     <div class="row mb-3">
                       <div class="col mb-3 mx-4">
                         <label for="cubiertaReg" class="form-label p-0 m-0"><h5>Cubierta <span class="text-danger">*</h5></span></label>
-                        <select class="form-select" id="cubiertaReg" name="cubiertaReg">
-						  <option th:each="cubierta : ${T(com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Cubierta).values()}" th:value="${cubierta}" th:field="*{cubierta}" th:text="${cubierta.displayValue}"></option>
-                          <option value="">Tapa blanda</option>
-                          <option value="">Tapa dura</option>
-                          <option value="">Sobrecubierta</option>
+                        <select th:field="*{cubierta}" class="form-select" id="cubiertaReg" name="cubiertaReg">
+						  <option th:each="cubierta : ${listaCubiertas}" th:field="*{cubierta}" th:value="${cubierta}" th:text="${cubierta.nombreCubierta}"></option>
                         </select>
                       </div>
                       <div class="col mb-3 mx-4">
                         <label for="publicoReg" class="form-label p-0 m-0"><h5>Público <span class="text-danger">*</h5></span></label>
-                        <select class="form-select" id="publicoReg" name="publicoReg">
-                          <option value="">Infantil (entre 3 y 10 años)</option>
-                          <option value="">Juvenil (entre 11 y 17 años)</option>
-                          <option value="">Adulto (para mayores de 18 años)</option>
+                        <select th:field="*{publico}" class="form-select" id="publicoReg" name="publicoReg">
+						  <option th:each="publico : ${listaPublicos}" th:field="*{publico}" th:value="${publico}" th:text="${publico.nombrePublico}"></option>
                         </select>
                       </div>
                     </div>

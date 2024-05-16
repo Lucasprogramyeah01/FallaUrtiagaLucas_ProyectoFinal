@@ -5,13 +5,13 @@ public enum Cubierta {
 	TapaDura("Tapa dura"),
 	Sobrecubierta("Sobrecubierta");
 	
-	private final String displayValue;
+	private final String nombreCubierta;
 	
-	private Cubierta (String displayValue) {
-		this.displayValue = displayValue;
+	private Cubierta (String nombreCubierta) {
+		this.nombreCubierta = nombreCubierta;
 	}
 	
-	public String getDisplayValue() {
-		return displayValue;
+	public String getNombreCubierta() {
+		return nombreCubierta;
 	}
 }
