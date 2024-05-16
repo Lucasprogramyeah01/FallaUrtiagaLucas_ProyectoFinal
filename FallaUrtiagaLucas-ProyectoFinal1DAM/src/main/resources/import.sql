@@ -1,27 +1,15 @@
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (1, null,'Aventuras');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (2, null,'Ciencia ficción');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (3, null,'Romance');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (4, null,'Misterio');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (5, null,'Terror');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (6, null,'Comedia');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (7, null,'Acción');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (8, null,'Policíaco');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (9, null,'Fantasía');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (10, null, 'Gore');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (11, null, 'Historia');
-INSERT INTO Categoria(id_categoria, libro_id_libro, nombre) VALUES (12, null, 'Lírica');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (1, 'Aventuras');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (2, 'Ciencia ficción');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (3, 'Romance');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (4, 'Misterio');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (5, 'Terror');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (6, 'Comedia');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (7, 'Acción');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (8, 'Policíaco');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (9, 'Fantasía');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (10, 'Gore');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (11, 'Historia');
+INSERT INTO Categoria(id_categoria, nombre) VALUES (12, 'Lírica');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ALTER SEQUENCE categoria_seq RESTART WITH 62;
 

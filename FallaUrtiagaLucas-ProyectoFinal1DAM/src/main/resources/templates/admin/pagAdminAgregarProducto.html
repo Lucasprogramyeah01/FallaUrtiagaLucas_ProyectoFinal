@@ -110,7 +110,7 @@
                       <div class="row mb-3">
                           <div class="col mb-3 mx-4">
                             <label for="descripcionReg" class="form-label p-0 m-0"><h5>Descripción <span class="text-danger">*</h5></span></label>
-                            <textarea th:field="*{descripcion}" class="form-control bg-secondary bg-opacity-25" rows="5" id="descripcionReg" name="descripcionReg" placeholder="Introduzca una descripción para el libro" required></textarea>
+                            <textarea th:field="*{descripcion}" class="form-control bg-secondary bg-opacity-25" maxlength="255" rows="2" id="descripcionReg" name="descripcionReg" placeholder="Introduzca una descripción para el libro" required></textarea>
                           </div>
                       </div>
                     </fieldset>
@@ -165,7 +165,7 @@
                       <div class="col mb-3 mx-4">
                         <label for="cubiertaReg" class="form-label p-0 m-0"><h5>Cubierta <span class="text-danger">*</h5></span></label>
                         <select class="form-select" id="cubiertaReg" name="cubiertaReg">
-						  <option th:each="cubierta : ${T(com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Cubierta).values()}" th:value="${cubierta}" th:text="${cubierta.displayValue}"></option>
+						  <option th:each="cubierta : ${T(com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Cubierta).values()}" th:value="${cubierta}" th:field="*{cubierta}" th:text="${cubierta.displayValue}"></option>
                           <option value="">Tapa blanda</option>
                           <option value="">Tapa dura</option>
                           <option value="">Sobrecubierta</option>

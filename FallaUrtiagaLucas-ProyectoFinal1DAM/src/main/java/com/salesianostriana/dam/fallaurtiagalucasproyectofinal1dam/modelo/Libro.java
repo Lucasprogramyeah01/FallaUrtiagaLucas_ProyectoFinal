@@ -12,6 +12,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,13 +65,27 @@ public class Libro {
 	private Publico publico;
 
 	 
-	//ASOCIACIÓN CON CATEGORÍA [1L - MC]
-	
-		@ToString.Exclude
-		@EqualsAndHashCode.Exclude
-		@OneToMany(mappedBy="libro", fetch = FetchType.EAGER)
-		@Builder.Default
+	//ASOCIACIÓN CON CATEGORÍA [ML - MC]
+	 
+	 	@ManyToMany(fetch = FetchType.EAGER)
+		@JoinTable(name = "tiene",
+			joinColumns = @JoinColumn(name="libro_id"),
+			inverseJoinColumns = @JoinColumn(name="categoria_id"))
+	 	
+	 	@Builder.Default
 		private List<Categoria> listadoCategorias = new ArrayList<>();
+	 	
+	 	//Métodos "Helper".
+	 	
+	 	public void agregarCategoria(Categoria c) {
+	 		this.listadoCategorias.add(c);
+			c.getListadoLibros().add(this);
+		}
+	 	
+	 	public void borrarCategoria(Categoria c) {
+			c.getListadoLibros().remove(this);
+			this.listadoCategorias.remove(c);
+		}
 	
 	
 	//ASOCIACIÓN CON LÍNEA VENTA [1L - MLV]

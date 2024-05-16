@@ -1,15 +1,19 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -23,22 +27,12 @@ public class Categoria {
 	private String nombre;
 	
 	
-	//ASOCIACIÓN CON LIBRO [1L - MC]
-	
-		@ManyToOne
-		@JoinColumn(foreignKey = @ForeignKey(name="fk_categoria_libro"))
-		private Libro libro;
-		
-		//Métodos "helper".
-		
-		public void agregarALibro(Libro libro) {
-			this.libro = libro;
-			libro.getListadoCategorias().add(this);
-		}
-			
-		public void borrarDeLibro(Libro libro) {
-			libro.getListadoCategorias().remove(this);
-			this.libro = null;
-		}
+	//ASOCIACIÓN CON LIBRO [ML - MC]
 
+		@ManyToMany(mappedBy="listadoCategorias", fetch = FetchType.EAGER)
+		@Builder.Default
+		@ToString.Exclude
+		@EqualsAndHashCode.Exclude
+		private List<Libro> listadoLibros = new ArrayList<>();
+	
 }

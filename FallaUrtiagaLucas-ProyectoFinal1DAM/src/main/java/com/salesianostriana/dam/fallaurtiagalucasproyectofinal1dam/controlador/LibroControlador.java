@@ -1,5 +1,8 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
+import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Categoria;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
-import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 
@@ -37,18 +38,25 @@ public class LibroControlador {
 	
 	//MOSTRAR FORMULARIO PARA AGREGAR LIBRO.
 	@GetMapping("/agregarLibro")
-	public String mostrarFormularioLibro(Model model) {
+	public String mostrarFormularioLibro(Model model, ArrayList<Long> listaIdsCat) {
 			
-		Libro l = new Libro();
+ 		Libro l = new Libro();
 		model.addAttribute("libro", l);
-		model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
+		model.addAttribute("listaCategorias", servicioCat.findAll());
+		model.addAttribute("listaIdsCat", listaIdsCat);//CUIDAO
 				
 		return "/admin/pagAdminAgregarProducto";
 	}
 	
 	//AGREGAR LIBRO.
 	@PostMapping("/agregarLibro/submit")
-	public String procesarFormularioLibro(@ModelAttribute("libro") Libro l, Model model) {
+	public String procesarFormularioLibro(@ModelAttribute("libro") Libro l, Model model, @ModelAttribute("listaIdsCat") ArrayList<Long> listaIdsCat) {
+		
+		for (Long idCat : listaIdsCat) {
+			
+			l.getListadoCategorias().add(servicioCat.findById(idCat).get());
+		}
+		
 		servicio.save(l);
 		model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
 		

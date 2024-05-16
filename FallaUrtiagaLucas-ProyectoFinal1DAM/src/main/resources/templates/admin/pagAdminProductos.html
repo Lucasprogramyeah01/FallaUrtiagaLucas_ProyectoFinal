@@ -83,7 +83,10 @@
 			                                    <td th:text="${libro.serie}"></td>
 			                                    <td th:text="${libro.editorial}"></td>
 			                                    <td th:text="${libro.tipo}"></td>
-			                                    <td th:text="${libro.listadoCategorias}"></td>
+												<!--td th:text="${libro.listadoCategorias}"></td-->
+			                                    <td th:each="categoria : ${libro.listadoCategorias}">
+													<p th:text="${categoria.nombre}"></p>
+												</td>
 			                                    <td th:text="${libro.cubierta}"></td>
 												<td th:text="${libro.publico}"></td>
 												<td th:text="${libro.descripcion}"></td>
