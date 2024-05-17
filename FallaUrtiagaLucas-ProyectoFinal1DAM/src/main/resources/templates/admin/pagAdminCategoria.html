@@ -63,15 +63,16 @@
 			                                </tr>
 			                            </thead>
 			
-			                            <tbody class="text-center align-center align-middle">
-			                                <tr>
-			                                    <td class="fw-bold">1</td>
-			                                    <td>Álvaro</td>
-			                                    <td class="pe-1"><a type="button" href="" id="botonEditarTipo" class="btn btn-lg btn-secondary me-3"><i class="bi bi-gear-fill"></i></a>
-			                                        <a type="button" href="" id="botonBorrarTipo" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a>
-			                                    </td>
-			                                </tr>
-			                            </tbody>
+										<tbody class="text-center align-center align-middle">
+											<tr th:each="tipo : ${listaTipos}">
+												<td th:text="@{${tipo.idTipo}}" class="fw-bold"></td>
+												<td th:text="${tipo.nombre}"></td>
+												<td class="pe-1">
+													<a type="button" th:href="@{/admin/editarTipo/{id}(id=${tipo.idTipo})}" id="botonEditarTipo" class="btn btn-lg btn-secondary me-3"><i class="bi bi-gear-fill"></i></a>
+													<a type="button" th:href="@{/admin/borrarTipo/{id}(id=${tipo.idTipo})}" id="botonBorrarTipo" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a>
+												</td>
+											</tr>
+										</tbody>
 			
 			                            <tfoot>
 			                            </tfoot>

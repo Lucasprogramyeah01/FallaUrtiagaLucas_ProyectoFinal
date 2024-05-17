@@ -11,5 +11,10 @@ INSERT INTO Categoria(id_categoria, nombre) VALUES (10, 'Gore');
 INSERT INTO Categoria(id_categoria, nombre) VALUES (11, 'Historia');
 INSERT INTO Categoria(id_categoria, nombre) VALUES (12, 'Lírica');
 
-ALTER SEQUENCE categoria_seq RESTART WITH 62;
+INSERT INTO Tipo(id_tipo, nombre) VALUES (1, 'Manga');
+INSERT INTO Tipo(id_tipo, nombre) VALUES (2, 'Cómic');
+INSERT INTO Tipo(id_tipo, nombre) VALUES (3, 'Libro Europeo');
+INSERT INTO Tipo(id_tipo, nombre) VALUES (4, 'Manhwa');
 
+ALTER SEQUENCE categoria_seq RESTART WITH 62;
+ALTER SEQUENCE tipo_seq RESTART WITH 54;

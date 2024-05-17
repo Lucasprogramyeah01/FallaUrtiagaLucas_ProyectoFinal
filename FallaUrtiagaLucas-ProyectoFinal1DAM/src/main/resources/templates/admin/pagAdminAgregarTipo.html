@@ -35,23 +35,23 @@
 
 			<!--Formulario-->
 			            <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-			                <form th:action="${categoria.idCategoria!=0} ? @{/admin/editarCategoria/submit} : @{/admin/agregarCategoria/submit}" th:object="${categoria}" method="post" name="formularioCategoriaReg" id="formularioCategoriaReg">
+			                <form th:action="${tipo.idTipo!=0} ? @{/admin/editarTipo/submit} : @{/admin/agregarTipo/submit}" th:object="${tipo}" method="post" name="formularioTipoReg" id="formularioTipoReg">
 			
 			                    <!--Nombre-->
 			                    <fieldset class="pb-2 pt-3">
 			                        <div class="row mb-3">
-										<input th:if="${categoria.idCategoria!=0}" type="hidden" name="idRegCategoria" th:field="*{idCategoria}"/>
+										<input th:if="${tipo.idTipo!=0}" type="hidden" name="idRegTipo" th:field="*{idTipo}"/>
 										
 			                            <div class="col mb-3 mx-4 d-flex justify-content-center flex-column">
-			                                <label for="nombreCategoriaReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
-			                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25 w-100" id="nombreCategoriaReg" placeholder="Introduzca el nombre de la nueva categoría" name="nombreCategoriaReg" required>
+			                                <label for="nombreTipoReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
+			                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25 w-100" id="nombreTipoReg" placeholder="Introduzca el nombre del nuevo tipo de libro" name="nombreTipoReg" required>
 			                            </div>
 			                        </div>
 			                    </fieldset>
 			
 			                    <!--Botón de registro-->
 			                    <div class="row w-100 d-flex justify-content-center mt-4">
-			                      <button type="submit" id="submitCategoriaReg" class="w-25 btn btn-lg btn-info" data-bs-dismiss="modal"><h4>Guardar</h4></button>
+			                      <button type="submit" id="submitTipoReg" class="w-25 btn btn-lg btn-info" data-bs-dismiss="modal"><h4>Guardar</h4></button>
 			                    </div>
 			                </form>
 			            </div>

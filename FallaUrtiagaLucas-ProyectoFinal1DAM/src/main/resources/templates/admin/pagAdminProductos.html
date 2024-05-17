@@ -87,7 +87,7 @@
 			                                    <td th:text="${libro.tipo}"></td>
 			                                    <td>
 													<div th:each="categoria : ${libro.listadoCategorias}">
-													<p th:text="${categoria.nombre}"></p>
+													<p th:text="${categoria.nombre}" class="mb-2"></p>
 													</div>
 												</td>
 			                                    <td th:text="${libro.cubierta.nombreCubierta}"></td>

@@ -19,6 +19,7 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Publico;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.TipoServicio;
 
 @Controller
 @RequestMapping("/admin")
@@ -44,8 +45,12 @@ public class LibroControlador {
 			
  		Libro l = new Libro();
 		model.addAttribute("libro", l);
+		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaIdsCat", listaIdsCat);//CUIDAO
+		
+		/*model.addAttribute("listaTipos", servicioTip.findAll());*/
+		
 		model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
 		model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
 				

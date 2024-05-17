@@ -35,7 +35,7 @@
 
             <!--Formulario-->
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-                <form th:action="${libro.idLibro!=0} ? @{/admin/editarLibro/submit} : @{/admin/agregarLibro/submit}" th:object="${libro}" method="post" name="formularioReg" id="formularioReg">
+                <form th:action="${libro.idLibro!=0} ? @{/admin/editarLibro/submit} : @{/admin/agregarLibro/submit}" th:object="${libro}" method="post" name="formularioLibroReg" id="formularioLibroReg">
 
                     <!--Título y Serie-->
                     <fieldset class="pb-2 pt-3">
@@ -129,9 +129,16 @@
                     <fieldset class="py-2">
                       <div class="row mb-3">
                         <div class="col mb-3 mx-4">
-                          <label for="editorialReg" class="form-label p-0 m-0"><h5>Tipo <span class="text-danger">*</h5></span></label>
+                          <label for="TipoReg" class="form-label p-0 m-0"><h5>Tipo <span class="text-danger">*</h5></span></label>
                           <div class="d-flex flex-wrap">
-                            <div class="col-3 form-check pe-5 py-1">
+							
+							<div th:each="tipo : ${listaTipos}" class="col-3 form-check pe-5 py-1">
+								<input  th:field="*{tipo}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}" name="optradio" class="form-check-input border border-1 border-dark">
+							    <label class="form-check-label"></label>
+							</div>
+							
+							
+                            <!--div class="col-3 form-check pe-5 py-1">
                               <input type="radio" class="form-check-input border border-1 border-dark" id="radio1Reg" name="optradio" value="option1">
                               <label class="form-check-label" for="radio1Reg">Manga</label>
                             </div>
@@ -146,7 +153,7 @@
                             <div class="col-3 form-check pe-5 py-1">
                               <input type="radio" class="form-check-input border border-1 border-dark" id="radio4Reg" name="optradio" value="option4">
                               <label class="form-check-label" for="radio4Reg">Manhwa</label>
-                            </div>
+                            </div-->
                           </div>
                         </div>
                       </div>

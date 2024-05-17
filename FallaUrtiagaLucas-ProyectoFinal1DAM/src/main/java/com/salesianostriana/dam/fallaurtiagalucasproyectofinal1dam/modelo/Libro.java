@@ -10,11 +10,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,9 +41,6 @@ public class Libro {
 	private String textoAltPortada;
 	
 	private String serie;
-	
-	@Enumerated(value = EnumType.STRING)
-	private Tipo tipo;
 	
 	private double precio;
 	
@@ -86,8 +85,27 @@ public class Libro {
 			c.getListadoLibros().remove(this);
 			this.listadoCategorias.remove(c);
 		}
+	 	
+	 	
+	 //ASOCIACIÓN CON TIPO [ML - 1T]
 	
+	 	@ManyToOne
+	    @JoinColumn(foreignKey = @ForeignKey(name="fk_libro_tipo"))
+	    private Tipo tipo;
+	 	
+	 	//Métodos "helper".
+	 	
+	 	public void agregarATipo(Tipo tipo) {
+			this.tipo = tipo;
+			tipo.getListaDeLibros().add(this);
+		}
+		
+		public void borrarDeTipo(Tipo tipo) {
+			tipo.getListaDeLibros().remove(this);
+			this.tipo = null;		
+		}
 	
+		
 	//ASOCIACIÓN CON LÍNEA VENTA [1L - MLV]
 	 
 		@ToString.Exclude

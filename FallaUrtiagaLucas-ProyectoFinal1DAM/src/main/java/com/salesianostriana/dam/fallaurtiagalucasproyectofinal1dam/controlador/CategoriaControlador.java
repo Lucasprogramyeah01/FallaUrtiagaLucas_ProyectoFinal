@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Categoria;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.TipoServicio;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,10 +22,22 @@ public class CategoriaControlador {
 	@Autowired
 	private CategoriaServicio servicio;
 	
-	//MOSTRAR LISTA DE CATEGORÍAS.
+	@Autowired
+	private TipoServicio tipoServicio;
+	
+	//MOSTRAR LISTA DE CATEGORÍAS (Y TIPOS).
 	@GetMapping("/listaCategorias")
 	public String mostrarListaCategorias(Model model) {
 		model.addAttribute("listaCategorias", servicio.findAll());
+		
+		model.addAttribute("listaTipos", tipoServicio.findAll());
+		
+		/*He añadido el servicio "TipoServicio" al controlador de Categoría porque me hace falta tener una lista
+		 *(o sea, tabla) de Tipos en la misma página en la que tengo una lista (o sea, tabla) de Categorías. La 
+		 *razón de porqué meto el model "listaTipos" en un controlador que nada tiene que ver con el Tipo de libro
+		 *es por el hecho de que si creo un método para mostrar la lista de tipos en el TipoControlador, tendría 
+		 *que escribirle la misma ruta de acceso que la de este otro método, lo cual no es posible. Así que para 
+		 *remediarlo, he aquí mi gran apaño.*/
 			
 		return "/admin/pagAdminCategoria";
 	}
@@ -78,6 +91,5 @@ public class CategoriaControlador {
 			
 		return "redirect:/admin/listaCategorias";
 	}
-	
 	
 }
