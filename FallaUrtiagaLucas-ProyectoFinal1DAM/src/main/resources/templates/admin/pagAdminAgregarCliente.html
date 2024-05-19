@@ -46,14 +46,13 @@
                         <div class="row mb-3">
                             <div class="col mb-3 mx-4">
 								<input th:if="${usuario.idUsuario!= 0}" type="hidden" name="idReg" th:field="*{idUsuario}"/>
-								<!--input type="hidden" name="NoEsAdminReg" th:field="*{admin}==false"/-->
 								
                                 <label for="nombreReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
-                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25" id="nombreReg" placeholder="Introduzca su nombre" name="nombreReg" required>
+                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreReg" placeholder="Introduzca su nombre" name="nombreReg" required>
                             </div>
                             <div class="col mb-3 mx-4">
                                 <label for="apellidosReg"><h5>Apellidos <span class="text-danger">*</h5></span></label>
-                                <input type="text" th:field="*{apellidos}" class="form-control bg-secondary bg-opacity-25" id="apellidosReg" placeholder="Introduzca sus apellidos" name="apellidosReg" required>
+                                <input type="text" th:field="*{apellidos}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="apellidosReg" placeholder="Introduzca sus apellidos" name="apellidosReg" required>
                             </div>
                         </div>
                     </fieldset>
@@ -63,7 +62,7 @@
                       <div class="row mb-3">
                         <div class="col mb-3 mx-4">
                           <label for="nombreUsuarioReg" class="form-label p-0 m-0"><h5>Nombre de usuario <span class="text-danger">*</h5></span></label>
-                          <input type="text" th:field="*{nombreUsuario}" class="form-control bg-secondary bg-opacity-25" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
+                          <input type="text" th:field="*{nombreUsuario}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
                         </div>
                         <div class="col mb-3 mx-4">
                           <label for="emailReg" class="form-label p-0 m-0"><h5>Email <span class="text-danger">*</h5></span></label>
@@ -77,7 +76,7 @@
                       <div class="row">
                           <div class="col mb-3 mx-4" th:if="${usuario.idUsuario==null}">
                               <label for="contrasenha1Reg"><h5>Contraseña <span class="text-danger">*</h5></span></label>
-                              <input type="password" th:field="*{contrasenha}" class="form-control bg-secondary bg-opacity-25" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
+                              <input type="password" th:field="*{contrasenha}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
                               <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
                           </div>
                           <div class="col mb-3 mx-4">
@@ -97,11 +96,11 @@
 						<div class="row mb-3">
 					    	<div class="col mb-3 mx-4">
 					        	<label for="imagenClienteReg" class="form-label p-0 m-0"><h5>Imagen de perfil <span class="text-danger">*</h5></span></label>
-					            <input type="text" th:field="*{imagen}" class="form-control bg-secondary bg-opacity-25" id="imagenClienteReg" placeholder="Introduzca la URL de tu imagen de perfil" name="imagenClienteReg" required>
+					            <input type="text" th:field="*{imagen}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="imagenClienteReg" placeholder="Introduzca la URL de tu imagen de perfil" name="imagenClienteReg" required>
 					        </div>
 					        <div class="col mb-3 mx-4">
 					            <label for="txtAltImgReg" class="form-label p-0 m-0"><h5>Texto alternativo de la imagen de perfil <span class="text-danger">*</h5></span></label>
-					            <input type="text" th:field="*{textoAltImagen}" class="form-control bg-secondary bg-opacity-25" id="txtAltImgReg" placeholder="Describa que aparece en su imagen de perfil" name="txtAltImgReg" required>
+					            <input type="text" th:field="*{textoAltImagen}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="txtAltImgReg" placeholder="Describa que aparece en su imagen de perfil" name="txtAltImgReg" required>
 					    	</div>
 					 	</div>
 					 </fieldset>

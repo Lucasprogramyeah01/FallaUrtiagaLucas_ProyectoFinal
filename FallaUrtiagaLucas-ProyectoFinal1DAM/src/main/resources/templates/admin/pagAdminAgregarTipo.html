@@ -44,7 +44,7 @@
 										
 			                            <div class="col mb-3 mx-4 d-flex justify-content-center flex-column">
 			                                <label for="nombreTipoReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
-			                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25 w-100" id="nombreTipoReg" placeholder="Introduzca el nombre del nuevo tipo de libro" name="nombreTipoReg" required>
+			                                <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25 w-100" maxlength="255" id="nombreTipoReg" placeholder="Introduzca el nombre del nuevo tipo de libro" name="nombreTipoReg" required>
 			                            </div>
 			                        </div>
 			                    </fieldset>

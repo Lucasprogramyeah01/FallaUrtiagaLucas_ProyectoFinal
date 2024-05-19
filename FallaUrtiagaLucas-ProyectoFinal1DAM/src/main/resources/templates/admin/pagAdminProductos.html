@@ -67,7 +67,7 @@
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Cubierta</h5></th>
 												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Público</h5></th>
 												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Descripción</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Número de páginas</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nº de páginas</h5></th>
 												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Fecha de publicación</h5></th>
 												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Precio</h5></th>
 												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Stock</h5></th>
@@ -80,11 +80,11 @@
 			                                <tr th:each="libro : ${listaLibros}">
 			                                    <td th:text="@{${libro.idLibro}}" class="fw-bold"></td>
 												<td th:text="${libro.titulo}"></td>
-			                                    <td><img th:src="${libro.imagenPortada}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
+			                                    <td><img th:src="${libro.imagenPortada}" class="rounded-1" style="max-width:95.24px; max-height: 136.4px;"></td>
 			                                    <td th:text="${libro.serie}"></td>
 			                                    <td th:text="${libro.editorial}"></td>
 												<td th:text="${libro.autor}"></td>
-			                                    <td th:text="${libro.tipo}"></td>
+			                                    <td th:text="${libro.tipo.nombre}"></td>
 			                                    <td>
 													<div th:each="categoria : ${libro.listadoCategorias}">
 													<p th:text="${categoria.nombre}" class="mb-2"></p>
@@ -92,10 +92,10 @@
 												</td>
 			                                    <td th:text="${libro.cubierta.nombreCubierta}"></td>
 												<td th:text="${libro.publico}"></td>
-												<td th:text="${libro.descripcion}"></td>
+												<td th:text="${#strings.abbreviate(libro.descripcion,80)}"></td>
 												<td th:text="${libro.numPaginas}"></td>
-												<td th:text="${libro.fechaPublicacion}"></td>
-												<td th:text="${libro.precio+' €'}"></td>
+												<td th:text="${#temporals.format(libro.fechaPublicacion, 'dd/MMM/yyyy HH:mm')}"></td>
+												<td th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></td>
 												<td th:text="${libro.stock}"></td>
 			                                    <td class="pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
 			                                    <td class="ps-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>

@@ -31,6 +31,9 @@ public class LibroControlador {
 	@Autowired
 	private CategoriaServicio servicioCat;
 	
+	@Autowired
+	private TipoServicio servicioTipo;
+	
 	//MOSTRAR LISTA DE LIBROS.
 	@GetMapping("/listaLibros")
 	public String mostrarListaLibros(Model model) {
@@ -47,9 +50,9 @@ public class LibroControlador {
 		model.addAttribute("libro", l);
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
-		model.addAttribute("listaIdsCat", listaIdsCat);//CUIDAO
+		model.addAttribute("listaIdsCat", listaIdsCat);		//CUIDAO
 		
-		/*model.addAttribute("listaTipos", servicioTip.findAll());*/
+		model.addAttribute("listaTipos", servicioTipo.findAll());
 		
 		model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
 		model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
@@ -59,7 +62,8 @@ public class LibroControlador {
 	
 	//AGREGAR LIBRO.
 	@PostMapping("/agregarLibro/submit")
-	public String procesarFormularioLibro(@ModelAttribute("libro") Libro l, Model model, @ModelAttribute("listaIdsCat") ArrayList<Long> listaIdsCat) {
+	public String procesarFormularioLibro(@ModelAttribute("libro") Libro l, Model model, 
+			@ModelAttribute("listaIdsCat") ArrayList<Long> listaIdsCat) {
 		
 		for (Long idCat : listaIdsCat) {
 			
@@ -75,15 +79,19 @@ public class LibroControlador {
 	//MOSTRAR FORMULARIO PARA EDITAR LIBRO.
 	@GetMapping("/editarLibro/{id}")
 	public String mostrarFormularioEditarLibro(@PathVariable("id") long idLibro, Model model) {
-		model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
+		//model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
 			
 		Optional<Libro> libro = servicio.findById(idLibro);
 			
 		if (libro.isPresent()) {
 			model.addAttribute("libro", libro.get());
 			model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
-			model.addAttribute("libro", libro);		//CUIDAO
-				
+			model.addAttribute("listaTipos", servicioTipo.findAll());
+			model.addAttribute("listaCubiertas", Cubierta.values());
+			model.addAttribute("listaPublicos", Publico.values());
+			
+			/*model.addAttribute("libro", libro);*/		//CUIDAO
+			
 			return "/admin/pagAdminAgregarProducto";
 		}else {
 				
