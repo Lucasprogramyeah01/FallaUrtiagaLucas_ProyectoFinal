@@ -52,7 +52,7 @@ public class Libro {
 	
 	private String descripcion;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime fechaPublicacion;
 	
 	private int numPaginas;
