@@ -1,11 +1,12 @@
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MANGAZO VERSE [Admin] | Clientes</title>
 
         <!--CSS-->
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 
         <!--BOOTSTRAP-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -32,82 +33,59 @@
             <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
 
-            <!--Contenido central-->
-            <div class="container w-75 mb-2 mt-4 pb-5 pt-3 px-4">
-
-              <div class="container-fluid">
-                <div class="row pb-4 px-5 d-flex flex-row">
-
-                  <!--Botón de agregar clientes-->
-                  <div class="text-center">
-                    <a type="button" href="" id="botonAgregarUsuario" class="btn btn-lg btn-success mb-4 px-4"><h1 class="bi bi-person-fill-add m-0"></h1></a>
-                  </div>
-
-                    <!--Tabla de clientes-->
-                    <div class="table-responsive">
-                        <table class="table table-condensed table-hover">
-                            <thead>
-                                <tr class="text-center table-info align-middle">
-                                    <th class="text-white rounded-start-3 border border-0 px-3" style="background-color: #369;"><h5 class="m-0">ID</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Foto de perfil</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Apellidos</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Correo</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre de usuario</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Favoritos / Ventas</h5></th>
-                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Puntos actuales</h5></th>
-                                    <th colspan="2" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
-                                </tr>
-                            </thead>
-
-                            <tbody class="text-center align-center align-middle">
-                                <tr>
-                                    <td>1</td>
-                                    <td><img src="../static/img/fondoPagina2.jpg" class="rounded-4" style="width:50px"></td>
-                                    <td>Álvaro</td>
-                                    <td>Castilla Cano</td>
-                                    <td>alvaroCastilla@gmail.com</td>
-                                    <td>MiCastillito94</td>
-                                    <td>CasCanBolas</td>
-                                    <td>1200</td>
-                                    <td class="pe-1"><a type="button" href="" id="botonEditarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
-                                    <td class="ps-1"><a type="button" href="" id="botonBorrarUsuario" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
-                                </tr>
-                                <tr>
-                                  <td>1</td>
-                                  <td><img src="../static/img/fondoPagina2.jpg" class="rounded-4" style="width:50px"></td>
-                                  <td>Álvaro</td>
-                                  <td>Castilla Cano</td>
-                                  <td>alvaroCastilla@gmail.com</td>
-                                  <td>MiCastillito94</td>
-                                  <td>CasCanBolas</td>
-                                  <td>1200</td>
-                                  <td class="pe-1"><a type="button" href="" id="botonBorrarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
-                                  <td class="ps-1"><a type="button" href="" id="botonBorrarUsuario" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
-                              </tr>
-                              <tr>
-                                <td>1</td>
-                                <td><img src="../static/img/fondoPagina2.jpg" class="rounded-4" style="width:50px"></td>
-                                <td>Álvaro</td>
-                                <td>Castilla Cano</td>
-                                <td>alvaroCastilla@gmail.com</td>
-                                <td>MiCastillito94</td>
-                                <td>CasCanBolas</td>
-                                <td>1200</td>
-                                <td class="pe-1"><a type="button" href="" id="botonBorrarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
-                                <td class="ps-1"><a type="button" href="" id="botonBorrarUsuario" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
-                              </tr> 
-                            </tbody>
-
-                            <tfoot>
-                            </tfoot>
-                        </table>
-                      </div>
-
-                </div>
-              </div>
-
-            </div>
+			<!--Contenido central-->
+			            <div class="container w-75 mb-2 mt-4 pb-5 pt-3 px-4">
+			
+			              <div class="container-fluid">
+			                <div class="row pb-4 px-5 d-flex flex-row">
+			
+			                  <!--Botón de agregar clientes-->
+			                  <div class="text-center">
+			                    <a type="button" href="/admin/agregarCliente" th:href="@{/admin/agregarCliente}" id="botonAgregarUsuario" class="btn btn-lg mb-4 px-4 text-white" style="background-color: rgb(29, 29, 165);"><h1 class="bi bi-person-fill-add m-0"></h1></a>
+			                  </div>
+			
+			                    <!--Tabla de clientes-->
+			                    <div class="table-responsive">
+			                        <table class="table table-condensed table-hover">
+			                            <thead>
+			                                <tr class="text-center table-info align-middle">
+			                                    <th class="text-white rounded-start-3 border border-0 px-3" style="background-color: #369;"><h5 class="m-0">ID</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Foto de perfil</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Apellidos</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Correo</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre de usuario</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Puntos Hon</h5></th>
+			                                    <th colspan="2" class="border border-0" style="background-color: #369;"></th>
+			                                    <th colspan="2" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
+			                                </tr>
+			                            </thead>
+			
+			                            <tbody class="text-center align-center align-middle">
+			                                <tr th:each="usuario : ${listaClientes}">
+			                                    <td th:text="@{${usuario.idUsuario}}" class="fw-bold"></td>
+			                                    <td><img th:src="${usuario.imagen}" class="rounded-circle" style="width:75px; max-height: 50px;"></td>
+			                                    <td th:text="${usuario.nombre}"></td>
+			                                    <td th:text="${usuario.apellidos}"></td>
+			                                    <td th:text="${usuario.correo}"></td>
+			                                    <td th:text="${usuario.nombreUsuario}"></td>
+			                                    <td th:text="${usuario.numPuntosHon}"></td>
+			                                    <td class="pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
+			                                    <td class="ps-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>
+			                                    <td class="pe-1"><a type="button" th:href="@{/admin/editarCliente/{id}(id=${usuario.idUsuario})}" id="botonEditarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
+			                                    <td class="ps-1"><a type="button" th:href="@{/admin/borrarCliente/{id}(id=${usuario.idUsuario})}" id="botonBorrarUsuario" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
+			                                </tr> 
+			                            </tbody>
+			
+			                            <tfoot>
+			                            </tfoot>
+			                        </table>
+			                      </div>
+			
+			                </div>
+			              </div>
+			
+			            </div>
 
             <!--Columna derecha-->
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">

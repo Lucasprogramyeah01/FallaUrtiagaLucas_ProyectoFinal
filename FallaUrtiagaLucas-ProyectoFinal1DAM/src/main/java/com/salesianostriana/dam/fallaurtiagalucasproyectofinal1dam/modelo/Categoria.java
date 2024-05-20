@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,20 +19,20 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
-public class Tipo {
+public class Categoria {
 
 	@Id @GeneratedValue
-	private Long idTipo;
+	private Long idCategoria;
 	
 	private String nombre;
 	
 	
-	//ASOCIACIÓN CON LIBRO [ML - 1T]
-	
+	//ASOCIACIÓN CON LIBRO [ML - MC]
+
+		@ManyToMany(mappedBy="listadoCategorias", fetch = FetchType.EAGER)
+		@Builder.Default
 		@ToString.Exclude
 		@EqualsAndHashCode.Exclude
-		@OneToMany(mappedBy="tipo", fetch = FetchType.EAGER)
-		@Builder.Default
-		private List<Libro> listaDeLibros = new ArrayList<>();
-
+		private List<Libro> listadoLibros = new ArrayList<>();
+	
 }

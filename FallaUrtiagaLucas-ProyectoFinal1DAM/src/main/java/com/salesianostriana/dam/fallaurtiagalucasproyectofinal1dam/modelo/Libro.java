@@ -1,18 +1,29 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -21,19 +32,15 @@ import lombok.NoArgsConstructor;
 public class Libro {
 	
 	@Id @GeneratedValue
-	private Long isbn;
+	private Long idLibro;
 	
 	private String titulo;
 	
-	private String urlImagen;
+	private String imagenPortada;
+	
+	private String textoAltPortada;
 	
 	private String serie;
-	
-	@Enumerated(value = EnumType.STRING)
-	private Tipo tipo;
-	
-	@Enumerated(value = EnumType.STRING)
-	private Genero genero;
 	
 	private double precio;
 	
@@ -45,8 +52,8 @@ public class Libro {
 	
 	private String descripcion;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate fechaPublicacion;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime fechaPublicacion;
 	
 	private int numPaginas;
 	
@@ -56,4 +63,55 @@ public class Libro {
 	 @Enumerated(value = EnumType.STRING)
 	private Publico publico;
 
+	 
+	//ASOCIACIÓN CON CATEGORÍA [ML - MC]
+	 
+	 	@ManyToMany(fetch = FetchType.EAGER)
+		@JoinTable(name = "tiene",
+			joinColumns = @JoinColumn(name="libro_id"),
+			inverseJoinColumns = @JoinColumn(name="categoria_id"))
+	 	
+	 	@Builder.Default
+		private List<Categoria> listadoCategorias = new ArrayList<>();
+	 	
+	 	//Métodos "Helper".
+	 	
+	 	public void agregarCategoria(Categoria c) {
+	 		this.listadoCategorias.add(c);
+			c.getListadoLibros().add(this);
+		}
+	 	
+	 	public void borrarCategoria(Categoria c) {
+			c.getListadoLibros().remove(this);
+			this.listadoCategorias.remove(c);
+		}
+	 	
+	 	
+	 //ASOCIACIÓN CON TIPO [ML - 1T]
+	
+	 	@ManyToOne
+	    @JoinColumn(foreignKey = @ForeignKey(name="fk_libro_tipo"))
+	    private Tipo tipo;
+	 	
+	 	//Métodos "helper".
+	 	
+	 	public void agregarATipo(Tipo tipo) {
+			this.tipo = tipo;
+			tipo.getListaDeLibros().add(this);
+		}
+		
+		public void borrarDeTipo(Tipo tipo) {
+			tipo.getListaDeLibros().remove(this);
+			this.tipo = null;		
+		}
+	
+		
+	//ASOCIACIÓN CON LÍNEA VENTA [1L - MLV]
+	 
+		@ToString.Exclude
+		@EqualsAndHashCode.Exclude
+		@OneToMany(mappedBy="libro", fetch = FetchType.EAGER)
+		@Builder.Default
+		private List<LineaVenta> listaLineaVenta = new ArrayList<>();		
+		
 }

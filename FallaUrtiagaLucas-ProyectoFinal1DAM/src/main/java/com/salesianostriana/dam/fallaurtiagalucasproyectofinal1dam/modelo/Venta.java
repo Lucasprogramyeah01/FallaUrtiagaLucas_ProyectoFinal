@@ -1,21 +1,28 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -43,20 +50,45 @@ public class Venta {
 	
 	//ASOCIACIÓN CON USUARIO [1U - MV]
 	
-	@ManyToOne
-	@JoinColumn(foreignKey = @ForeignKey(name="fk_venta_usuario"))
-	private Usuario usuario;
+		@ManyToOne
+		@JoinColumn(foreignKey = @ForeignKey(name="fk_venta_usuario"))
+		private Usuario usuario;
+		
+		//Métodos "helper".
+		
+		public void agregarAUsuario(Usuario usuario) {
+			this.usuario = usuario;
+			usuario.getVenta().add(this);
+		}
+		
+		public void borrarDeUsuario(Usuario usuario) {
+			usuario.getVenta().remove(this);
+			this.usuario = null;
+		}
 	
-	//Métodos "helper".
 	
-	public void agregarAUsuario(Usuario usuario) {
-		this.usuario = usuario;
-		usuario.getVenta().add(this);
-	}
+	//COMPOSICIÓN CON VENTA [MLV - 1V]
 	
-	public void borrarDeUsuario(Usuario usuario) {
-		usuario.getVenta().remove(this);
-		this.usuario = null;
-	}
+		@ToString.Exclude
+		@EqualsAndHashCode.Exclude
+		@Builder.Default
+		@OneToMany(
+				mappedBy="venta", 
+				fetch = FetchType.EAGER,
+				cascade = CascadeType.ALL,
+				orphanRemoval = true)
+		private List<LineaVenta> listadoLineaVenta = new ArrayList<>();
+		
+		//Métodos "helper".
+		
+		public void agregarLineaVenta(LineaVenta lineaVenta) {
+			lineaVenta.setVenta(this);
+			this.listadoLineaVenta.add(lineaVenta);
+		}
+				
+		public void borrarLineaVenta(LineaVenta lineaVenta) {
+			this.listadoLineaVenta.remove(lineaVenta);
+			lineaVenta.setVenta(null);
+		}
 	
 }
