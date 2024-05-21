@@ -39,12 +39,12 @@
 		                            <div class="p-0">
 		                              <form action="">
 		                                <div class="m-4">
-		                                  <label for="email" class="form-label mb-1">Nombre de usuario</label>
-		                                  <input type="email" class="form-control bg-secondary bg-opacity-25" id="emailIni" placeholder="Introduzca su nombre de usuario" name="email">
+		                                  <label for="nombreUsuarioIni" class="form-label mb-1">Nombre de usuario</label>
+		                                  <input type="text" class="form-control bg-secondary bg-opacity-25" id="emailIni" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioIni">
 		                                </div>
 		                                <div class="mb-4 mx-4">
-		                                  <label for="pwd" class="form-label mb-1">Contraseña</label>
-		                                  <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni" placeholder="Introduzca su contraseña" name="pwd">
+		                                  <label for="contrasenhaIni" class="form-label mb-1">Contraseña</label>
+		                                  <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni" placeholder="Introduzca su contraseña" name="contrasenhaIni">
 		                                </div>
 		                                <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
 		                                  <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary">Iniciar sesión</button>
@@ -55,7 +55,7 @@
 		                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
 		                              <div class="row justify-content-center">
 		                                <h6 class="text-light text-center mt-3">¿No tienes una cuenta?</h6>
-		                                <a type="button" href="/registro" th:href="@{/registro}" id="botonReg" class="btn btn-lg btn-dark w-75">Regístrate</a>
+		                                <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-dark w-75">Regístrate</a>
 		                              </div>
 		                            </div>
 		                        </div>
@@ -64,7 +64,7 @@
 		                  </li>
 		  
 		                  <li class="nav-item mx-3">
-		                    <a class="nav-link" href="/cesta" th:href="@{/cesta}"><i class="bi bi-cart-fill" style="font-size: 25px; color: rgb(0, 183, 255);"></i> Cesta</a>
+		                    <a class="nav-link" href="/" th:href="@{/}"><i class="bi bi-cart-fill" style="font-size: 25px; color: rgb(0, 183, 255);"></i> Cesta</a>
 		                  </li>
 		                  <li class="nav-item mx-3"> 
 		                    <a class="nav-link" href="/favoritos" th:href="@{/favoritos}"><i class="bi bi-suit-heart-fill" style="font-size: 25px; color: rgb(246, 55, 12);"></i> Favoritos</a>
@@ -76,10 +76,10 @@
 						     <a class="nav-link" href="/admin/listaLibros" th:href="@{/admin/listaLibros}"><i class="bi bi-journal-text text-warning" style="font-size: 25px;"></i> Libros</a>
 						  </li>
 						  <li class="nav-item mx-3"> 
-						     <a class="nav-link" href=""><i class="bi bi-graph-up-arrow text-success" style="font-size: 25px;"></i> Ventas</a>
+						     <a class="nav-link" href="/" th:href="@{/}"><i class="bi bi-graph-up-arrow text-success" style="font-size: 25px;"></i> Ventas</a>
 						  </li>
 						  <li class="nav-item mx-3">
-						    <a type="button" href="pagInicio.html" id="botonCerrarSesion" class="btn btn-lg btn-danger">Cerrar Sesión</a>
+						    <a type="button" href="/" th:href="@{/}" id="botonCerrarSesion" class="btn btn-lg btn-danger">Cerrar Sesión</a>
 						  </li>
 		                </ul>
 		  
@@ -90,7 +90,7 @@
 		                  </form>
 						  
 						  <div class="nav-item mx-3">
-						  	<a type="button" href="" id="botonFiltrarPorTipo" class="btn btn-lg btn-primary"><i class="bi bi-funnel-fill"></i> Filtrar por tipo</a>
+						  	<a type="button" href="" id="botonFiltrarPorTipo" class="btn btn-lg btn-primary"><i class="bi bi-funnel-fill"></i> Filtrar libros</a>
 						  </div>
 		          
 		              </div>

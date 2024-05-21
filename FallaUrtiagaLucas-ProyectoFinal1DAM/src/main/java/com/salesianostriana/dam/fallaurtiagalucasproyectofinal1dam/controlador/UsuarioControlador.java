@@ -79,6 +79,4 @@ public class UsuarioControlador {
 		return "redirect:/admin/listaClientes";
 	}
 	
-	
-	
 }
