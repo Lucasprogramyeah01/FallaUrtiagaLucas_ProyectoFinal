@@ -1,3 +1,5 @@
+-- CATEGORÍAS Y TIPOS
+
 INSERT INTO Categoria(id_categoria, nombre) VALUES (1, 'Aventuras');
 INSERT INTO Categoria(id_categoria, nombre) VALUES (2, 'Ciencia ficción');
 INSERT INTO Categoria(id_categoria, nombre) VALUES (3, 'Romance');
@@ -18,3 +20,6 @@ INSERT INTO Tipo(id_tipo, nombre) VALUES (4, 'Manhwa');
 
 ALTER SEQUENCE categoria_seq RESTART WITH 62;
 ALTER SEQUENCE tipo_seq RESTART WITH 54;
+
+-- LIBROS
+
