@@ -57,20 +57,20 @@
 			                            <thead>
 			                                <tr class="text-center table-info align-middle">
 			                                    <th class="text-white rounded-start-3 border border-0 px-3" style="background-color: #369;"><h5 class="m-0">ID</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Título</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Imagen</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Serie</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Editorial</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Autor</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Tipo</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Categorías</h5></th>
-			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Cubierta</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Público</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Descripción</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nº de páginas</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Fecha de publicación</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Precio</h5></th>
-												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Stock</h5></th>
+			                                    <th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Título</h5></th>
+												<th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Imagen</h5></th>
+			                                    <th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Serie</h5></th>
+			                                    <th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Editorial</h5></th>
+												<th class="text-white  border border-0 px-5" style="background-color: #369;"><h5 class="m-0">Autor</h5></th>
+			                                    <th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Tipo</h5></th>
+			                                    <th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Categorías</h5></th>
+			                                    <th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Cubierta</h5></th>
+												<th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Público</h5></th>
+												<th class="text-white  border border-0 px-5" style="background-color: #369;"><h5 class="m-0">Descripción</h5></th>
+												<th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Nº de páginas</h5></th>
+												<th class="text-white  border border-0 px-4" style="background-color: #369;"><h5 class="m-0">Fecha de publicación</h5></th>
+												<th class="text-white  border border-0 px-3" style="background-color: #369;"><h5 class="m-0">Precio</h5></th>
+												<th class="text-white  border border-0 px-1" style="background-color: #369;"><h5 class="m-0">Stock</h5></th>
 												<th colspan="2" class="border border-0" style="background-color: #369;"></th>
 			                                    <th colspan="2" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
 			                                </tr>
@@ -97,10 +97,10 @@
 												<td th:text="${#temporals.format(libro.fechaPublicacion, 'dd/MMM/yyyy HH:mm')}"></td>
 												<td th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></td>
 												<td th:text="${libro.stock}"></td>
-			                                    <td class="pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
+			                                    <td class="ps-3 pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
 			                                    <td class="ps-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>
 			                                    <td class="pe-1"><a type="button" th:href="@{/admin/editarLibro/{id}(id=${libro.idLibro})}" id="botonEditarLibro" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
-			                                    <td class="ps-1"><a type="button" th:href="@{/admin/borrarLibro/{id}(id=${libro.idLibro})}" id="botonBorrarLibro" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
+			                                    <td class="ps-1 pe-3"><a type="button" th:href="@{/admin/borrarLibro/{id}(id=${libro.idLibro})}" id="botonBorrarLibro" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
 			                                </tr> 
 			                            </tbody>
 			

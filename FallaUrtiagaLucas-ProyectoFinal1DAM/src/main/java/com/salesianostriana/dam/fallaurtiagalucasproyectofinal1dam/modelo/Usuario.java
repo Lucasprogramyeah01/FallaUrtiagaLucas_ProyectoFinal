@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,12 +54,17 @@ public class Usuario {
 		@Builder.Default
 		private List<Venta> venta = new ArrayList<>();
 		
-	//ASOCIACIÓN CON ATRIBUTOS EXTRA [Favorito]
 		
-		@OneToMany(mappedBy="usuario", fetch = FetchType.EAGER)
-		@Builder.Default
-		@EqualsAndHashCode.Exclude
-		@ToString.Exclude
-		private List<Favorito> listadoFavoritos = new ArrayList<>();
+	//ASOCIACIÓN CON LIBROS [MU - ML UNIDIRECCIONAL] (Un Usuario tiene una lista de LIBROS FAVORITOS).
+		
+		@ManyToMany(fetch = FetchType.EAGER)
+		@JoinTable(name = "favoritos",
+			joinColumns = @JoinColumn(name="usuario_id"),
+			inverseJoinColumns = @JoinColumn(name="libro_id"))
+	 	
+	 	@Builder.Default
+		private List<Libro> listadoFavoritos = new ArrayList<>(); 
+		
+		//Lo sé, también lo podría hacer con un Set.
 	
 }
