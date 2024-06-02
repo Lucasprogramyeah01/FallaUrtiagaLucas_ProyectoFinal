@@ -1,4 +1,4 @@
--- CATEGORÍAS Y TIPOS
+-- CATEGORÍAS Y TIPOS ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Categoria(id_categoria, nombre) VALUES (1, 'Aventuras');
 INSERT INTO Categoria(id_categoria, nombre) VALUES (2, 'Ciencia ficción');
@@ -21,7 +21,7 @@ INSERT INTO Tipo(id_tipo, nombre) VALUES (4, 'Manhwa');
 ALTER SEQUENCE categoria_seq RESTART WITH 62;
 ALTER SEQUENCE tipo_seq RESTART WITH 54;
 
--- LIBROS
+-- LIBROS ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (1, 'Kagurabachi vol.1', 'https://i.ebayimg.com/images/g/d4UAAOSwpVVl1Ybj/s-l1600.jpg', 'Portada Kagurabachi 1', 'Kagurabachi', 11.03, 30, 'Takeru Hokazono', 'Shueisha', 'Chihiro, un joven con aspiraciones de convertirse en un forjador, entrena todos los días bajo la tutela de su padre. En un principio, todo parecía ir bien, hasta que un día la tragedia irrumpe en sus vidas, tiñéndolas de sangre.', '2024-02-02 18:30:00', 216, 'Sobrecubierta', 'Juvenil', 1);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 1);
