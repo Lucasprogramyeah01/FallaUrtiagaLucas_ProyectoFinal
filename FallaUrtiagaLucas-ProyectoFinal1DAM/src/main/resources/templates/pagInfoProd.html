@@ -26,7 +26,7 @@
         <main class="d-flex flex-wrap">
 
             <!--Columna izquierda-->
-            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
 
             <!--Contenido central-->
@@ -37,11 +37,11 @@
 
                   <div class="container pe-3" style="width: 38%;">
                     <div class="text-center">
-                        <img src="../static/img/bleach1.jpg" class="rounded-3 img-fluid" style="max-width:900px; height: 540px;" alt="Imagen de la portada del producto">
+                        <img th:src="${libro.imagenPortada}" class="rounded-3 img-fluid" style="max-width:830px; height: 480px;" alt="Imagen de la portada del producto">
                     </div>
 
                     <div class="row py-2 pt-4 mt-1">
-                        <h5 class="text-center m-0"><span class="text-primary">Serie:&nbsp;</span> Bleach</h5>
+                        <h5 class="text-center m-0"><span class="text-primary">Serie:&nbsp;</span><span th:text="${libro.serie}"></span></h5>
                     </div>
                     <div class="row pb-2 pt-1 justify-content-center">
                         <a href="#" class="btn btn-primary m-0 border border-0 w-75">
@@ -52,28 +52,48 @@
 
                   <div class="ps-3 pt-3" style="width: 62%;">
 
-                    <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;">Bleach</h1>
-                    <h5><span class="text-primary">Disponibilidad:&nbsp;</span> En stock</h5>
+                    <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span th:text="${libro.titulo}"></span></h1>
+                    
+					<!--DISPONIBILIDAD: En stock-->
+					<th:block th:if="${libro.stock > 0}">
+						<h5><span class="text-primary">Disponibilidad:&nbsp;</span> En stock</h5>
+					</th:block>
 
+					<!--DISPONIBILIDAD: AGOTADO-->
+					<th:block th:if="${libro.stock == 0}">
+						<h5><span class="text-primary">Disponibilidad:&nbsp;</span> ¡Agotado! Este producto será repuesto próximamente.</h5>
+					</th:block>
+					
                     <div class="container-fluid">
                         <div class="row py-2">
-                            <h1 class="display-3 fw-bold px-0 py-2">18.90 €</h1>
-                            <a href="#" class="btn btn-dark me-3 border border-0" style="width: 35%; background-color: rgb(0, 183, 255);">
-                                <h5 class="m-0 py-2">Añadir a la cesta &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
-                            </a>
+                            <h1 class="display-3 fw-bold px-0 py-2"><span th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></span></h1>
+                            
+							<!--Botón cesta para comprar SI HAY STOCK-->
+							<th:block th:if="${libro.stock > 0}">
+								<a href="#" class="btn btn-dark me-3 border border-0" style="width: 35%; background-color: rgb(0, 183, 255);">
+	                                <h5 class="m-0 py-2">Añadir a la cesta &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
+	                            </a>
+							</th:block>
+							
+							<th:block th:if="${libro.stock == 0}">
+								<a href="#" class="btn btn-dark me-3 border border-0 disabled" aria-disabled="true" style="width: 35%; background-color: rgb(131, 220, 255);">
+									<h5 class="m-0 py-2">AGOTADO &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
+								</a>
+							</th:block>
+							
                             <a href="#" class="btn btn-dark me-1 border border-0 text-dark" style="width: 35%; background-color: rgb(213, 213, 213)">
                                 <h5 class="m-0 py-2">Añadir a favoritos &nbsp;<i class="bi bi-suit-heart-fill" style="color: rgb(246, 55, 12)"></i></h5>
                             </a>
                         </div>
 
                         <div class="row pb-2 pt-4 mt-1">
-                            <h5><span class="text-primary">Autor:&nbsp;</span> Tite Kubo</h5>
+                            <h5><span class="text-primary">Autor:&nbsp;</span><span th:text="${libro.autor}"></span></h5>
                         </div>
                         <div class="row py-2">
-                            <h5><span class="text-primary">Editorial:&nbsp;</span> Shueisha</h5>
+                            <h5><span class="text-primary">Editorial:&nbsp;</span><span th:text="${libro.editorial}"></span></h5>
                         </div>
                         <div class="row py-2" style="text-align: justify;">
-                            <h5>Ichigo puede ver espíritus y tiene contacto con el más allá, al que sacará provecho tras conocer a un shinigami que le proporciona la espada a juego con sus habilidades.</h5>
+                            <h5 th:text="${libro.descripcion}"></h5>
                         </div>
 
                         <!--Tabla de características-->
@@ -86,27 +106,31 @@
                               <tbody class="text-center align-center align-middle">
                                 <tr>
                                     <td class="fw-bold"><h5 class="m-0 py-1">Número de páginas</h5></td>
-                                    <td>150</td>
+                                    <td th:text="${libro.numPaginas}"></td>
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Fecha de publicación</h5></td>
-                                  <td>22-04-2024</td>
+                                  <td th:text="${#temporals.format(libro.fechaPublicacion, 'dd/MMM/yyyy HH:mm')}"></td>
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Tipo</h5></td>
-                                  <td>Manga</td>
+                                  <td th:text="${libro.tipo.nombre}"></td>
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Categorías</h5></td>
-                                  <td>Fantasía - Acción - Comedia - Aventuras</td>
+                                  <td>
+									<div th:each="categoria : ${libro.listadoCategorias}">
+								  		<p th:text="${categoria.nombre}" class="m-0"></p>
+									</div>
+								  </td>
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Cubierta</h5></td>
-                                  <td>Sobrecubierta</td>
+                                  <td th:text="${libro.cubierta.nombreCubierta}"></td>
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Público</h5></td>
-                                  <td>Juvenil</td>
+                                  <td th:text="${libro.publico}"></td>
                                 </tr>
                               </tbody>
   
@@ -124,7 +148,7 @@
             </div>
 
             <!--Columna derecha-->
-            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
         </main>
 

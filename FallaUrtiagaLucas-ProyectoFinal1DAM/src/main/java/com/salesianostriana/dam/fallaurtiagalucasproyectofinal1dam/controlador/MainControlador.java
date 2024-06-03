@@ -60,9 +60,7 @@ public class MainControlador {
 	public String mostrarCatalogo(Model model) {
 		
 		model.addAttribute("listaLibros", servicio.findAll());
-		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
-		
 		model.addAttribute("listaTipos", servicioTipo.findAll());
 		
 		return "pagBusqueda";
@@ -74,10 +72,8 @@ public class MainControlador {
 		Optional<Libro> libro = servicio.findById(idLibro);
 		
 		if(libro.isPresent()) {
-			model.addAttribute("listaLibros", servicio.findAll());
-			
+			model.addAttribute("libro", libro.get());
 			model.addAttribute("listaCategorias", servicioCat.findAll());
-			
 			model.addAttribute("listaTipos", servicioTipo.findAll());
 			
 			return "pagInfoProd";
@@ -87,5 +83,18 @@ public class MainControlador {
 			return "redirect:/catalogo";
 		}
 	}
+	
+	
+	@GetMapping("/catalogo/{id}")
+	public String mostrarCatalogoFiltradoPorIdTipo(@PathVariable("id") Long id, Model model, Long idTipo) {
+		
+		model.addAttribute("listaLibros", servicio.filtrarLibroPorTipo(idTipo));
+		
+		model.addAttribute("listaCategorias", servicioCat.findAll());
+		model.addAttribute("listaTipos", servicioTipo.findAll());
+		
+		return "pagBusqueda";
+	}
+	
 	
 }

@@ -50,7 +50,7 @@
                       <a class="dropdown-header text-white" style="text-decoration: none; background-color: rgb(211, 0, 106);"><h4 class="my-1"><i class="bi bi-bookmark-star-fill m-0"></i> Tipos</h4></a>
                     </li>
 					<li th:each="tipo : ${listaTipos}">
-						<a th:text="${tipo.nombre}" class="dropdown-item py-2"></a>
+						<a th:text="${tipo.nombre}" th:href="@{/catalogo/{id}(id=${tipo.idTipo})}" class="dropdown-item py-2"></a>
 					</li>
                     <li><a class="dropdown-item py-2 disabled" href="#"></a></li>
 					
@@ -78,8 +78,9 @@
 						<!--LIBRO DISPONIBLE-->
 						<th:block th:if="${libro.stock > 0}">
 							<div class="card mx-2 my-4 p-0 border border-3 border-primary shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
-								<img class="card-img-top" href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}" 
-									th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+									<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								</a>
 							    <div class="card-body pe-0">
 							    	<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
 							    	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
@@ -97,8 +98,9 @@
 						<!--LIBRO AGOTADO-->
 						<th:block th:if="${libro.stock == 0}">
 							<div class="card mx-2 my-4 p-0 border border-3 border-secondary shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
-								<img class="card-img-top" href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}" 
-									th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+									<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								</a>
 								<div class="card-body pe-0">
 									<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
 								 	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
