@@ -51,8 +51,10 @@ INSERT INTO Tiene(categoria_id, libro_id) VALUES (6, 5);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (7, 5);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 5);
 
-INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (6, 'El Pozo, Libro I de Arik', 'https://m.media-amazon.com/images/I/71rxw7gLOmL._AC_UF1000,1000_QL80_.jpg', 'Portada El Pozo, Libro I de Arik', 'El Libro de Arik', 19.99, 25, 'Pamela Pons Saez', 'Max Estrella Ediciones', 'Después de veinte muertes, Eva se enfrenta a su última vida; su última oportunidad para morir bien. Está ansiosa por dejar atrás 458 años de absurda y atormentada existencia. Pero si vuelve a morir sola, una vez más, se verá condenada a sufrir.', '2021-11-01 14:30:00', 459, 'TapaBlanda', 'Juvenil', 3);
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (6, 'El Pozo, Libro I de Arik', 'https://m.media-amazon.com/images/I/71rxw7gLOmL._AC_UF1000,1000_QL80_.jpg', 'Portada El Pozo, Libro I de Arik', 'El Libro de Arik', 19.99, 0, 'Pamela Pons Saez', 'Max Estrella Ediciones', 'Después de veinte muertes, Eva se enfrenta a su última vida; su última oportunidad para morir bien. Está ansiosa por dejar atrás 458 años de absurda y atormentada existencia. Pero si vuelve a morir sola, una vez más, se verá condenada a sufrir.', '2021-11-01 14:30:00', 459, 'TapaBlanda', 'Juvenil', 3);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 6);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (3, 6);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (4, 6);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 6);
+
+ALTER SEQUENCE libro_seq RESTART WITH 56;

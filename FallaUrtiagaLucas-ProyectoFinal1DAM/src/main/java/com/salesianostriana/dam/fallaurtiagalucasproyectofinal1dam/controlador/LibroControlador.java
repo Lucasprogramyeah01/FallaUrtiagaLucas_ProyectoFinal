@@ -77,7 +77,7 @@ public class LibroControlador {
 	
 	//MOSTRAR FORMULARIO PARA EDITAR LIBRO.
 	@GetMapping("/editarLibro/{id}")
-	public String mostrarFormularioEditarLibro(@PathVariable("id") long idLibro, Model model) {
+	public String mostrarFormularioEditarLibro(@PathVariable("id") Long idLibro, Model model) {
 		//model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
 			
 		Optional<Libro> libro = servicio.findById(idLibro);
@@ -93,7 +93,7 @@ public class LibroControlador {
 			
 			return "/admin/pagAdminAgregarProducto";
 		}else {
-				
+
 			return "redirect:/admin/listaLibros";
 		}
 	}
@@ -102,7 +102,7 @@ public class LibroControlador {
 	@PostMapping("/editarLibro/submit")
 	public String procesarFormularioEditarLibro(@ModelAttribute("libro") Libro l) {
 		servicio.save(l);
-			
+		
 		return "redirect:/admin/listaLibros";
 	}
 		

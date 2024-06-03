@@ -1,24 +1,7 @@
-.segContra{
-    font-weight: bold;
-    color: black;
+#tarjetaProducto{
+    transition-duration: 0.2s;
 }
 
-.contraDebil{
-    font-weight: bold;
-    color: red;
-}
-
-.contraModerada{
-    font-weight: bold;
-    color: rgb(206, 110, 0);
-}
-
-.contraFuerte{
-    font-weight: bold;
-    color: rgb(0, 163, 0)
-}
-
-.contraSegura{
-    font-weight: bold;
-    color: rgb(0, 92, 0)
+#tarjetaProducto:hover{
+    transform: scale(1.07);
 }

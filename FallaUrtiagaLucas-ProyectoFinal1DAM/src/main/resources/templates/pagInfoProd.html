@@ -1,0 +1,136 @@
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MANGAZO VERSE | Info</title>
+
+        <!--CSS-->
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<header th:replace="~{fragmentos/header::header}"></header>
+
+<!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+
+<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <main class="d-flex flex-wrap">
+
+            <!--Columna izquierda-->
+            <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            </div>
+
+            <!--Contenido central-->
+            <div class="container mb-2 mt-4 pt-4 px-4" style="width: 75%;">
+
+              <div class="container-fluid">
+                <div class="row pb-4 d-flex flex-row justify-content-around">
+
+                  <div class="container pe-3" style="width: 38%;">
+                    <div class="text-center">
+                        <img src="../static/img/bleach1.jpg" class="rounded-3 img-fluid" style="max-width:900px; height: 540px;" alt="Imagen de la portada del producto">
+                    </div>
+
+                    <div class="row py-2 pt-4 mt-1">
+                        <h5 class="text-center m-0"><span class="text-primary">Serie:&nbsp;</span> Bleach</h5>
+                    </div>
+                    <div class="row pb-2 pt-1 justify-content-center">
+                        <a href="#" class="btn btn-primary m-0 border border-0 w-75">
+                            <h5 class="m-0 py-2">Ver todos los títulos de esta serie</h5>
+                        </a>
+                    </div>
+                  </div>
+
+                  <div class="ps-3 pt-3" style="width: 62%;">
+
+                    <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;">Bleach</h1>
+                    <h5><span class="text-primary">Disponibilidad:&nbsp;</span> En stock</h5>
+
+                    <div class="container-fluid">
+                        <div class="row py-2">
+                            <h1 class="display-3 fw-bold px-0 py-2">18.90 €</h1>
+                            <a href="#" class="btn btn-dark me-3 border border-0" style="width: 35%; background-color: rgb(0, 183, 255);">
+                                <h5 class="m-0 py-2">Añadir a la cesta &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
+                            </a>
+                            <a href="#" class="btn btn-dark me-1 border border-0 text-dark" style="width: 35%; background-color: rgb(213, 213, 213)">
+                                <h5 class="m-0 py-2">Añadir a favoritos &nbsp;<i class="bi bi-suit-heart-fill" style="color: rgb(246, 55, 12)"></i></h5>
+                            </a>
+                        </div>
+
+                        <div class="row pb-2 pt-4 mt-1">
+                            <h5><span class="text-primary">Autor:&nbsp;</span> Tite Kubo</h5>
+                        </div>
+                        <div class="row py-2">
+                            <h5><span class="text-primary">Editorial:&nbsp;</span> Shueisha</h5>
+                        </div>
+                        <div class="row py-2" style="text-align: justify;">
+                            <h5>Ichigo puede ver espíritus y tiene contacto con el más allá, al que sacará provecho tras conocer a un shinigami que le proporciona la espada a juego con sus habilidades.</h5>
+                        </div>
+
+                        <!--Tabla de características-->
+                        <div class="table-responsive w-100">
+                          <table class="table table-condensed table-hover caption-top">
+                              <caption class="pt-5 pb-1 mb-1"><h2 class="text-center text-dark"><i class="bi bi-bookmarks-fill m-0 text-dark" style="color: rgb(140, 165, 29);"></i> Características</h2></caption>
+                              <thead>
+                              </thead>
+  
+                              <tbody class="text-center align-center align-middle">
+                                <tr>
+                                    <td class="fw-bold"><h5 class="m-0 py-1">Número de páginas</h5></td>
+                                    <td>150</td>
+                                </tr>
+                                <tr>
+                                  <td class="fw-bold"><h5 class="m-0 py-1">Fecha de publicación</h5></td>
+                                  <td>22-04-2024</td>
+                                </tr>
+                                <tr>
+                                  <td class="fw-bold"><h5 class="m-0 py-1">Tipo</h5></td>
+                                  <td>Manga</td>
+                                </tr>
+                                <tr>
+                                  <td class="fw-bold"><h5 class="m-0 py-1">Categorías</h5></td>
+                                  <td>Fantasía - Acción - Comedia - Aventuras</td>
+                                </tr>
+                                <tr>
+                                  <td class="fw-bold"><h5 class="m-0 py-1">Cubierta</h5></td>
+                                  <td>Sobrecubierta</td>
+                                </tr>
+                                <tr>
+                                  <td class="fw-bold"><h5 class="m-0 py-1">Público</h5></td>
+                                  <td>Juvenil</td>
+                                </tr>
+                              </tbody>
+  
+                              <tfoot>
+                              </tfoot>
+                          </table>
+                      </div>
+                    </div>
+
+                  </div>
+                  
+                </div>
+              </div>
+
+            </div>
+
+            <!--Columna derecha-->
+            <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../static/img/fondoPagina.jpg);">
+            </div>
+        </main>
+
+<!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>
+
+    </body>
+</html>
