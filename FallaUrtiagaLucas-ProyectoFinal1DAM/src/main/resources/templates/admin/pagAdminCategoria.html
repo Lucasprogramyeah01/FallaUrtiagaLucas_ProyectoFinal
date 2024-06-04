@@ -38,6 +38,14 @@
 			
 			              <div class="container-fluid">
 			                <div class="row pb-4 px-5 d-flex flex-row">
+								
+								<!--MENSAJITO DE ERROR (TIPO)-->
+								<div class="alert alert-danger alert-dismissible fw-bold text-danger mb-5" role="alert" th:if="${param.error}">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<span>&nbsp;&nbsp;¿PERO QUÉ HACES?</span>
+								</div>
 			
 			                  <!--Botón de agregar Tipos y Categorías-->
 			                  <div class="container-fluid">
@@ -116,7 +124,6 @@
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
 
-			
 			<!--MENSAJITO DE ERROR-->
 			<!--div class="toast" role="alert" aria-live="assertive" aria-atomic="true" th:if="${param.error}">
 			    <div class="toast-header">

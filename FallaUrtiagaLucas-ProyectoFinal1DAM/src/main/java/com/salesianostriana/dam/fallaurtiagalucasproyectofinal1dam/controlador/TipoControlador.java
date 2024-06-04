@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Tipo;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.TipoServicio;
 
 @Controller
@@ -20,6 +21,9 @@ public class TipoControlador {
 
 	@Autowired
 	private TipoServicio servicio;
+	
+	@Autowired
+	private LibroServicio servicioLibro;
 	
 	//"MOSTRAR LISTA DE TIPOS" se encuentra en "CategoriaControlador", allí está explicado el porqué.
 	
@@ -67,8 +71,18 @@ public class TipoControlador {
 	
 	//BORRAR CATEGORÍA.
 	@GetMapping("/borrarTipo/{id}")
-	public String borrarTipo(@PathVariable("id") long idTipo) {
-		servicio.deleteById(idTipo);
+	public String borrarTipo(@PathVariable("id") Long idTipo, Model model) {
+		
+		Optional<Tipo> tipoABorrar = servicio.findById(idTipo);
+		
+		if (tipoABorrar.isPresent()) {
+			
+			if(servicioLibro.numeroLibrosDeUnTipo(idTipo) == 0) {
+				servicio.deleteById(idTipo);
+			}else {
+				return "redirect:/admin/listaCategorias?error=true";
+			}
+		}
 				
 		return "redirect:/admin/listaCategorias";
 	}

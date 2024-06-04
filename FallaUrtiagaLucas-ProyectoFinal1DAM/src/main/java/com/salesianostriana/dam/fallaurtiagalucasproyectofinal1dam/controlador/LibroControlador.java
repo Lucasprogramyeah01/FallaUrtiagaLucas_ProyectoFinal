@@ -44,17 +44,21 @@ public class LibroControlador {
 	//MOSTRAR FORMULARIO PARA AGREGAR LIBRO.
 	@GetMapping("/agregarLibro")
 	public String mostrarFormularioLibro(Model model, ArrayList<Long> listaIdsCat) {
+		
+		if(servicio.cantidadDeTipos()==0 || servicio.cantidadDeCategorias()==0) {
+			return "redirect:/admin/listaLibros?error=true";
+		}else {
+	 		Libro l = new Libro();
+			model.addAttribute("libro", l);
 			
- 		Libro l = new Libro();
-		model.addAttribute("libro", l);
-		
-		model.addAttribute("listaCategorias", servicioCat.findAll());
-		model.addAttribute("listaIdsCat", listaIdsCat);		//CUIDAO
-		
-		model.addAttribute("listaTipos", servicioTipo.findAll());
-		
-		model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
-		model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
+			model.addAttribute("listaCategorias", servicioCat.findAll());
+			model.addAttribute("listaIdsCat", listaIdsCat);		//CUIDAO
+			
+			model.addAttribute("listaTipos", servicioTipo.findAll());
+			
+			model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
+			model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
+		}
 				
 		return "/admin/pagAdminAgregarProducto";
 	}

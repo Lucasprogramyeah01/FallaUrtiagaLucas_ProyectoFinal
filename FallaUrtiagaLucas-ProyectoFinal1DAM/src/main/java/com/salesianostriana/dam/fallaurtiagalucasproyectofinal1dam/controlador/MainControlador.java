@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
@@ -16,6 +18,8 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.Tipo
 @Controller
 public class MainControlador {
 
+	public static final int NumProductosAleatorios = 4;
+	
 	@Autowired
 	private LibroServicio servicio;
 	
@@ -57,11 +61,20 @@ public class MainControlador {
 	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ------------------------------------------------------------------
 	
 	@GetMapping("/catalogo")
-	public String mostrarCatalogo(Model model) {
+	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo, Model model) {
 		
-		model.addAttribute("listaLibros", servicio.findAll());
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
+		
+		/*List<Libro> listaLibros;
+		
+		if(idTipo == null) {
+			listaLibros = servicio.generarLibrosAleatorios(NumProductosAleatorios);
+		}else {
+			listaLibros = servicio.filtrarLibroPorTipo(idTipo);
+		}*/
+		
+		model.addAttribute("listaLibros", servicio.findAll());
 		
 		return "pagBusqueda";
 	}
@@ -85,10 +98,12 @@ public class MainControlador {
 	}
 	
 	
-	@GetMapping("/catalogo/{id}")
+	@GetMapping("/catalogo/tipo/{id}")
 	public String mostrarCatalogoFiltradoPorIdTipo(@PathVariable("id") Long id, Model model, Long idTipo) {
 		
-		model.addAttribute("listaLibros", servicio.filtrarLibroPorTipo(idTipo));
+		List<Libro> lista = servicio.filtrarLibroPorTipo(id);
+		//model.addAttribute("listaLibros", servicio.filtrarLibroPorTipo(idTipo));
+		model.addAttribute("listaLibros", lista);
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
