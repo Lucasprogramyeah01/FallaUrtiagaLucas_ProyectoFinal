@@ -54,7 +54,7 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 	@Query("""
 			SELECT l
 			FROM Libro l
-			WHERE l.tipo.idTipo = ?1
+			WHERE l.tipo.idTipo = :tipo
 			""")
 	public List<Libro> findLibroByTipoId(@Param("tipo") Long idTipo);
 	

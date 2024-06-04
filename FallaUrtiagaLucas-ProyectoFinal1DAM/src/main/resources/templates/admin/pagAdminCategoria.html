@@ -39,12 +39,10 @@
 			              <div class="container-fluid">
 			                <div class="row pb-4 px-5 d-flex flex-row">
 								
-								<!--MENSAJITO DE ERROR (TIPO)-->
-								<div class="alert alert-danger alert-dismissible fw-bold text-danger mb-5" role="alert" th:if="${param.error}">
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-									<span>&nbsp;&nbsp;¿PERO QUÉ HACES?</span>
+								<!--MENSAJITO DE ERROR-->
+								<div class="alert alert-danger alert-dismissible fade show mb-5" th:if="${param.error}">
+									<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+									<h5 class="m-0"><strong><i class="bi bi-exclamation-diamond-fill"></i></strong>&nbsp; Para borrar un tipo o una categoría estas deben estar vacías ¡No pueden tener libros asociados!</h5>
 								</div>
 			
 			                  <!--Botón de agregar Tipos y Categorías-->

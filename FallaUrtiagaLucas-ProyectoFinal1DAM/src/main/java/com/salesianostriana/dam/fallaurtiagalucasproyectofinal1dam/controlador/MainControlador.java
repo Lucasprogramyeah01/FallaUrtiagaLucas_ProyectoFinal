@@ -30,7 +30,7 @@ public class MainControlador {
 	private TipoServicio servicioTipo;
 	
 	
-	//MOSTRAR PÁGINAS DEL NAV -------------------------------------------------------------------------------------------------
+	//MOSTRAR PÁGINAS DEL NAV -----------------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarInicio() {
@@ -58,7 +58,7 @@ public class MainControlador {
 	}
 	
 	
-	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ------------------------------------------------------------------
+	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ----------------------------------------------------------------
 	
 	@GetMapping("/catalogo")
 	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo, Model model) {
@@ -97,13 +97,13 @@ public class MainControlador {
 		}
 	}
 	
-	
+	//Filtrar por tipo.
 	@GetMapping("/catalogo/tipo/{id}")
-	public String mostrarCatalogoFiltradoPorIdTipo(@PathVariable("id") Long id, Model model, Long idTipo) {
+	public String mostrarCatalogoFiltradoPorIdTipo(@PathVariable("id") Long id, Model model) {
 		
-		List<Libro> lista = servicio.filtrarLibroPorTipo(id);
-		//model.addAttribute("listaLibros", servicio.filtrarLibroPorTipo(idTipo));
-		model.addAttribute("listaLibros", lista);
+		//List<Libro> lista = servicio.filtrarLibroPorTipo(id);
+		model.addAttribute("listaLibros", servicio.filtrarLibroPorTipo(id));
+		//model.addAttribute("listaLibros", lista);
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
