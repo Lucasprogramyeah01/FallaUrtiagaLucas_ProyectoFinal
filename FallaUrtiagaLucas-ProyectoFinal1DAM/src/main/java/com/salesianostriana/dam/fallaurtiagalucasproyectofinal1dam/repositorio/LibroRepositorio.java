@@ -20,13 +20,6 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			""")
 	List<Libro> librosNuevos(@Param("fechaPublicacion") LocalDateTime fechaPublicacion);*/
 	
-	/*@Query("""
-			SELECT l
-			FROM Libro l
-			WHERE l.listadoCategoria.Categoria.idCategoria =: categoriaId
-			""")
-	public List<Libro> findByCategoriaId(@Param("categoriaId") Long categoriaId);*/
-	
 	
 	@Query("""
 			SELECT l
@@ -43,12 +36,14 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			""")
 	public int findNumTipos();
 		
+	
 	//Número de categorías que hay.
 	@Query("""
 			SELECT count(*)
 			FROM Categoria
 			""")
 	public int findNumCategorias();
+	
 	
 	//Filtrar los libros por tipo (Se emplea para el filtro del catálogo).
 	@Query("""
@@ -57,6 +52,16 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			WHERE l.tipo.idTipo = :tipo
 			""")
 	public List<Libro> findLibroByTipoId(@Param("tipo") Long idTipo);
+	
+	
+	//Filtrar los libros por categoría (Se emplea para el filtro del catálogo).
+	@Query("""
+			SELECT l
+			FROM Libro l
+				JOIN l.listadoCategorias c
+			WHERE c.idCategoria = :categoria
+			""")
+	public List<Libro> findLibroByCategoriaId(@Param("categoria") Long idCategoria);
 	
 	
 	//Número de libros que tiene un tipo (Se emplea para comprobar si se puede borrar un tipo o no).

@@ -18,7 +18,7 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.Tipo
 @Controller
 public class MainControlador {
 
-	public static final int NumProductosAleatorios = 4;
+	//public static final int NumProductosAleatorios = 4;
 	
 	@Autowired
 	private LibroServicio servicio;
@@ -61,17 +61,17 @@ public class MainControlador {
 	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ----------------------------------------------------------------
 	
 	@GetMapping("/catalogo")
-	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo, Model model) {
+	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo,Long idCategoria, Model model) {
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
 		
 		/*List<Libro> listaLibros;
 		
-		if(idTipo == null) {
-			listaLibros = servicio.generarLibrosAleatorios(NumProductosAleatorios);
-		}else {
-			listaLibros = servicio.filtrarLibroPorTipo(idTipo);
+		if(idTipo == null && idCategoria == null) {
+			//listaLibros = servicio.generarLibrosAleatorios(NumProductosAleatorios);
+		
+			model.addAttribute("listaLibros", servicio.generarLibrosAleatorios(16));
 		}*/
 		
 		model.addAttribute("listaLibros", servicio.findAll());
@@ -97,19 +97,29 @@ public class MainControlador {
 		}
 	}
 	
-	//Filtrar por tipo.
+	//FILTRAR LIBROS POR TIPO.
 	@GetMapping("/catalogo/tipo/{id}")
 	public String mostrarCatalogoFiltradoPorIdTipo(@PathVariable("id") Long id, Model model) {
 		
-		//List<Libro> lista = servicio.filtrarLibroPorTipo(id);
 		model.addAttribute("listaLibros", servicio.filtrarLibroPorTipo(id));
-		//model.addAttribute("listaLibros", lista);
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
 		
 		return "pagBusqueda";
 	}
+	
+	//FILTRAR LIBROS POR CATEGORÍA.
+		@GetMapping("/catalogo/categoria/{id}")
+		public String mostrarCatalogoFiltradoPorIdCategoria(@PathVariable("id") Long id, Model model) {
+			
+			model.addAttribute("listaLibros", servicio.filtrarLibroPorCategoria(id));
+			
+			model.addAttribute("listaCategorias", servicioCat.findAll());
+			model.addAttribute("listaTipos", servicioTipo.findAll());
+			
+			return "pagBusqueda";
+		}
 	
 	
 }

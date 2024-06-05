@@ -71,7 +71,7 @@ INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 9);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (11, 9);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (12, 9);
 
-INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (10, 'Edda Menor', 'https://www.alianzaeditorial.es/imagenes/libros/grande/9788491043423-edda-menor.jpg', 'Portada Edda Menor', 'Eddas Islandesas', 14.15, 5, 'Luis Lerate', 'Alianza Editorial', 'Concebida originalmente como una preceptiva para los escaldas escandinavos, la "Edda menor" fue escrita por Snorri hijo de Sturla (1179-1241) en 1220, durante el periodo de esplendor de las letras islandesas antiguas.', '2020-04-28 15:00:00', 248, 'TapaBlanda', 'Juvenil', 3);
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (10, 'Edda Menor', 'https://www.alianzaeditorial.es/imagenes/libros/grande/9788491043423-edda-menor.jpg', 'Portada Edda Menor', 'Eddas Islandesas', 14.15, 5, 'Luis Lerate', 'Alianza Editorial', 'Concebida originalmente como una preceptiva para los escaldos escandinavos, la "Edda menor" fue escrita por Snorri hijo de Sturla (1179-1241) en 1220, durante el periodo de esplendor de las letras islandesas antiguas.', '2020-04-28 15:00:00', 248, 'TapaBlanda', 'Juvenil', 3);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 10);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (11, 10);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (12, 10);

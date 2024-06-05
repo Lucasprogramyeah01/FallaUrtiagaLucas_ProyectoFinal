@@ -32,10 +32,18 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 	
 	
 	//Filtrar por Tipo.
-	public List<Libro>filtrarLibroPorTipo(Long idTipo){
+	public List<Libro> filtrarLibroPorTipo(Long idTipo){
 		List<Libro> librosFiltradosPorIdTipo = repoLibro.findLibroByTipoId(idTipo);
 		
 		return librosFiltradosPorIdTipo;
+	}
+	
+	
+	//Filtrar por Categoría
+	public List<Libro> filtrarLibroPorCategoria(Long idCategoria){
+		List<Libro> librosFiltradosPorIdCategoria = repoLibro.findLibroByCategoriaId(idCategoria);
+		
+		return librosFiltradosPorIdCategoria;
 	}
 	
 	

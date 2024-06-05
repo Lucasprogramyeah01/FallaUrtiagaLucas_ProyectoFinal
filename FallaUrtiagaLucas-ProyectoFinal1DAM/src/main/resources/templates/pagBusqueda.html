@@ -59,7 +59,7 @@
                       <a class="dropdown-header text-white" style="text-decoration: none; background-color: rgb(140, 165, 29);"><h4 class="my-1"><i class="bi bi-tag-fill m-0"></i> Categorías</h4></a>
                     </li>
 					<li th:each="categoria : ${listaCategorias}">
-						<a th:text="${categoria.nombre}" class="dropdown-item py-2"></a>
+						<a th:text="${categoria.nombre}" th:href="@{/catalogo/categoria/{id}(id=${categoria.idCategoria})}" class="dropdown-item py-2"></a>
 					</li>
 					
                   </ul>
