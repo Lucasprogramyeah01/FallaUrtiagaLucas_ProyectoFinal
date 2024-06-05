@@ -39,11 +39,31 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 	}
 	
 	
-	//Filtrar por Categoría
+	//Filtrar por Categoría.
 	public List<Libro> filtrarLibroPorCategoria(Long idCategoria){
 		List<Libro> librosFiltradosPorIdCategoria = repoLibro.findLibroByCategoriaId(idCategoria);
 		
 		return librosFiltradosPorIdCategoria;
+	}
+
+	
+	//Obtener el número de libros de un tipo.
+	public int numeroLibrosDeUnTipo (Long idTipo) {
+		return repoLibro.findNumLibrosByTipo(idTipo);
+	}
+	
+	
+	//Obtener el número de libros de una categoría.
+	public int numeroLibrosDeUnaCategoria (Long idCategoria) {
+		return repoLibro.findNumLibrosByCategoria(idCategoria);
+	}
+	
+	
+	//Filtrar por Serie.
+	public List<Libro> filtrarLibrosPorSerie(String nombre){
+		List<Libro> librosFiltradosPorSerie = repoLibro.findLibroBySerie(nombre);
+				
+		return librosFiltradosPorSerie;
 	}
 	
 	
@@ -61,12 +81,6 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 		 */
 		
 		return repoLibro.findAllById(listaLibrosIds);
-	}
-	
-	
-	//Obtener el número de libros de un tipo.
-	public int numeroLibrosDeUnTipo (Long idTipo) {
-		return repoLibro.findNumLibrosByTipo(idTipo);
 	}
 	
 	

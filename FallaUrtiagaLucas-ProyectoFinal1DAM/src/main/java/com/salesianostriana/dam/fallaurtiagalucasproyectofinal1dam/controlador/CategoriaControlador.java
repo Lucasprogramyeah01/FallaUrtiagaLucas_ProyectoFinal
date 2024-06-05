@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Categoria;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.TipoServicio;
 
 @Controller
@@ -24,6 +25,9 @@ public class CategoriaControlador {
 	
 	@Autowired
 	private TipoServicio tipoServicio;
+	
+	@Autowired
+	private LibroServicio libroServicio;
 	
 	//MOSTRAR LISTA DE CATEGORÍAS (Y TIPOS).
 	@GetMapping("/listaCategorias")
@@ -86,9 +90,19 @@ public class CategoriaControlador {
 		
 	//BORRAR CATEGORÍA.
 	@GetMapping("/borrarCategoria/{id}")
-	public String borrarCategoria(@PathVariable("id") long idCategoria) {
-		servicio.deleteById(idCategoria);
+	public String borrarCategoria(@PathVariable("id") Long idCategoria, Model model) {
+		
+		Optional<Categoria> categoriaABorrar = servicio.findById(idCategoria);
+		
+		if(categoriaABorrar.isPresent()) {
 			
+			if(libroServicio.numeroLibrosDeUnaCategoria(idCategoria) == 0) {
+				servicio.deleteById(idCategoria);
+			}else {
+				return "redirect:/admin/listaCategorias?error=true";
+			}
+		}
+		
 		return "redirect:/admin/listaCategorias";
 	}
 	

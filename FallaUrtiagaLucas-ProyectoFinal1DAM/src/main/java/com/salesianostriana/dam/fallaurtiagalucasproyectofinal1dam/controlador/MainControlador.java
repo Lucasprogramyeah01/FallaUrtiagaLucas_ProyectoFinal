@@ -79,6 +79,7 @@ public class MainControlador {
 		return "pagBusqueda";
 	}
 	
+	//MOSTRAR INFORMACIÓN DE LOS PRODUCTOS.
 	@GetMapping("/infoLibro/{id}")
 	public String mostrarInformacionProducto(@PathVariable("id") Long idLibro, Model model) {
 		
@@ -97,6 +98,15 @@ public class MainControlador {
 		}
 	}
 	
+	//FILTRAR LIBROS POR SERIE.
+	@GetMapping("/serie/{nombre}")
+	public String mostrarSerieDeLibro(@PathVariable("nombre") String nombre, Model model) {
+		
+		model.addAttribute("listaLibros", servicio.filtrarLibrosPorSerie(nombre));
+		
+		return "pagSerie";
+	}
+	
 	//FILTRAR LIBROS POR TIPO.
 	@GetMapping("/catalogo/tipo/{id}")
 	public String mostrarCatalogoFiltradoPorIdTipo(@PathVariable("id") Long id, Model model) {
@@ -110,16 +120,16 @@ public class MainControlador {
 	}
 	
 	//FILTRAR LIBROS POR CATEGORÍA.
-		@GetMapping("/catalogo/categoria/{id}")
-		public String mostrarCatalogoFiltradoPorIdCategoria(@PathVariable("id") Long id, Model model) {
+	@GetMapping("/catalogo/categoria/{id}")
+	public String mostrarCatalogoFiltradoPorIdCategoria(@PathVariable("id") Long id, Model model) {
 			
-			model.addAttribute("listaLibros", servicio.filtrarLibroPorCategoria(id));
+		model.addAttribute("listaLibros", servicio.filtrarLibroPorCategoria(id));
 			
-			model.addAttribute("listaCategorias", servicioCat.findAll());
-			model.addAttribute("listaTipos", servicioTipo.findAll());
+		model.addAttribute("listaCategorias", servicioCat.findAll());
+		model.addAttribute("listaTipos", servicioTipo.findAll());
 			
-			return "pagBusqueda";
-		}
+		return "pagBusqueda";
+	}
 	
 	
 }

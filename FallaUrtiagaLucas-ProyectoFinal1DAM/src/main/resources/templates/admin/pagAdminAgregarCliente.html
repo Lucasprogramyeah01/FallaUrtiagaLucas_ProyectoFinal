@@ -39,7 +39,7 @@
 
             <!--Formulario-->
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-                <form th:action="${usuario.idUsuario!=0} ? @{/admin/editarCliente/submit} : @{/admin/agregarCliente/submit}" th:object="${usuario}" method="post" name="formularioReg" id="formularioReg">
+                <form th:action="${usuario.idUsuario!=0} ? @{/admin/editarCliente/submit} : @{/admin/agregarCliente/submit}" th:object="${usuario}" method="post" class="formularioReg" name="formularioReg" id="formularioReg">
 
                     <!--Nombre y apellidos-->
                     <fieldset class="pb-2 pt-3">

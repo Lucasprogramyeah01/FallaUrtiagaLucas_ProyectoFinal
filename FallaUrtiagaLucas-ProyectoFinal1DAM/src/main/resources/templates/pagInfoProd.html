@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -44,7 +45,7 @@
                         <h5 class="text-center m-0"><span class="text-primary">Serie:&nbsp;</span><span th:text="${libro.serie}"></span></h5>
                     </div>
                     <div class="row pb-2 pt-1 justify-content-center">
-                        <a href="#" class="btn btn-primary m-0 border border-0 w-75">
+                        <a href="#" th:href="@{/serie/{nombre}(nombre=${libro.serie})}" class="btn btn-primary m-0 border border-0 w-75">
                             <h5 class="m-0 py-2">Ver todos los títulos de esta serie</h5>
                         </a>
                     </div>
