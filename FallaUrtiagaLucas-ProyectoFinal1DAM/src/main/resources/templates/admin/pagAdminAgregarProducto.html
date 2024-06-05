@@ -35,7 +35,7 @@
 
             <!--Formulario-->
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-                <form th:action="${libro.idLibro!=0} ? @{/admin/editarLibro/submit} : @{/admin/agregarLibro/submit}" th:object="${libro}" method="post" name="formularioLibroReg" id="formularioLibroReg">
+                <form th:action="${libro.idLibro!=0} ? @{/admin/editarLibro/submit} : @{/admin/agregarLibro/submit}" th:object="${libro}" method="post" name="formularioLibroReg" class="formularioLibroReg" id="formularioLibroReg">
 
                     <!--Título y Serie-->
                     <fieldset class="pb-2 pt-3">

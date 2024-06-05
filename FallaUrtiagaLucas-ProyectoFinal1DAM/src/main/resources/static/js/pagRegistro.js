@@ -100,4 +100,5 @@
   
       document.getElementById('contrasenha1Reg').addEventListener('keyup', function(e) {
         document.getElementById('segContrasenhaReg').innerText = getPasswordSecurity(e.target.value) + "% " + mostrarMensajito();
-      });
+      });     
+      
