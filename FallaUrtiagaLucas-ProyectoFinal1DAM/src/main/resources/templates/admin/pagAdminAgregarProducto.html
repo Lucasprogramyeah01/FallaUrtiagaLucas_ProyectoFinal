@@ -78,13 +78,13 @@
                             <div class="mb-3 mx-4 input-group d-flex flex-column" style="width: 21%;">
                                 <label for="precioReg"><h5>Precio <span class="text-danger">*</h5></span></label>
                                 <div class="d-flex">
-                                  <input type="number" th:field="*{precio}" class="form-control bg-secondary bg-opacity-25 rounded-end-0" name="precioReg" id="precioReg" min="0" step="0.01" value="0" 
+                                  <input type="number" th:field="*{precio}" class="form-control bg-secondary bg-opacity-25 rounded-end-0" name="precioReg" id="precioReg" min="0.01" step="0.01" value="0" 
                                     placeholder="0.00" required>
                                   <span class="input-group-text rounded-start-0">€</span>
                                 </div>
                             </div>
 							<div class="col mb-3 mx-4">
-								<label for="autorReg" class="form-label p-0 m-0"><h5>Autor/a <span class="text-danger">*</h5></span></label>
+								<label for="autorReg" class="form-label p-0 m-0"><h5>Autores <span class="text-danger">*</h5></span></label>
 								<input type="text" th:field="*{autor}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="autorReg" placeholder="Introduzca el nombre del autor o la autora del libro" name="autorReg" required>
 							</div>
                         </div>
@@ -95,7 +95,7 @@
 						<div class="row mb-3">
 					    	<div class="col mb-3 mx-4">
 								<label for="numPagReg"><h5>Número de páginas <span class="text-danger">*</h5></span></label>
-								<input type="range" th:field="*{numPaginas}" class="form-range pe-2" style="width: 95%;" id="numPagReg" nam="numPagReg" min="1" max="3000" oninput="this.nextElementSibling.value = this.value" required>
+								<input type="range" th:field="*{numPaginas}" class="form-range pe-2" style="width: 95%;" id="numPagReg" name="numPagReg" min="1" max="3000" oninput="this.nextElementSibling.value = this.value" required>
 								<output>1</output>
 					    	</div>
 						</div>

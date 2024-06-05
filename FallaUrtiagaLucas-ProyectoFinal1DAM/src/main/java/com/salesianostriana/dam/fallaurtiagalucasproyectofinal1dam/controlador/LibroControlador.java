@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
 import java.util.ArrayList;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,17 +44,21 @@ public class LibroControlador {
 	//MOSTRAR FORMULARIO PARA AGREGAR LIBRO.
 	@GetMapping("/agregarLibro")
 	public String mostrarFormularioLibro(Model model, ArrayList<Long> listaIdsCat) {
+		
+		if(servicio.cantidadDeTipos()==0 || servicio.cantidadDeCategorias()==0) {
+			return "redirect:/admin/listaLibros?error=true";
+		}else {
+	 		Libro l = new Libro();
+			model.addAttribute("libro", l);
 			
- 		Libro l = new Libro();
-		model.addAttribute("libro", l);
-		
-		model.addAttribute("listaCategorias", servicioCat.findAll());
-		model.addAttribute("listaIdsCat", listaIdsCat);		//CUIDAO
-		
-		model.addAttribute("listaTipos", servicioTipo.findAll());
-		
-		model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
-		model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
+			model.addAttribute("listaCategorias", servicioCat.findAll());
+			model.addAttribute("listaIdsCat", listaIdsCat);		//CUIDAO
+			
+			model.addAttribute("listaTipos", servicioTipo.findAll());
+			
+			model.addAttribute("listaCubiertas", Cubierta.values());	//Array de cubiertas (Para el enum).
+			model.addAttribute("listaPublicos", Publico.values());		//Array de "públicos" (Para el enum).
+		}
 				
 		return "/admin/pagAdminAgregarProducto";
 	}
@@ -78,7 +81,7 @@ public class LibroControlador {
 	
 	//MOSTRAR FORMULARIO PARA EDITAR LIBRO.
 	@GetMapping("/editarLibro/{id}")
-	public String mostrarFormularioEditarLibro(@PathVariable("id") long idLibro, Model model) {
+	public String mostrarFormularioEditarLibro(@PathVariable("id") Long idLibro, Model model) {
 		//model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
 			
 		Optional<Libro> libro = servicio.findById(idLibro);
@@ -94,7 +97,7 @@ public class LibroControlador {
 			
 			return "/admin/pagAdminAgregarProducto";
 		}else {
-				
+
 			return "redirect:/admin/listaLibros";
 		}
 	}
@@ -103,7 +106,7 @@ public class LibroControlador {
 	@PostMapping("/editarLibro/submit")
 	public String procesarFormularioEditarLibro(@ModelAttribute("libro") Libro l) {
 		servicio.save(l);
-			
+		
 		return "redirect:/admin/listaLibros";
 	}
 		
