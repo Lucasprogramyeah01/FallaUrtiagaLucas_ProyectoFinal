@@ -69,13 +69,12 @@ public class LibroControlador {
 			@ModelAttribute("listaIdsCat") ArrayList<Long> listaIdsCat) {
 		
 		for (Long idCat : listaIdsCat) {
-			
 			l.getListadoCategorias().add(servicioCat.findById(idCat).get());
 		}
 		
 		servicio.save(l);
 		model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
-		
+
 		return "redirect:/admin/listaLibros";
 	}
 	

@@ -74,12 +74,24 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 	
 	
 	//Número de libros que tiene una categoría (Se emplea para comprobar si se puede borrar una categoría o no).
-	/*@Query("""
+	@Query("""
 			SELECT count(l)
-			FROM Libro l JOIN Categoria c ON (
-			WHERE l.idTipo = :tipo
+			FROM Libro l 
+				JOIN l.listadoCategorias c
+			WHERE c.idCategoria = :categoria
 			""")
-	public int findNumLibrosByCategoria(@Param("tipo") Long idTipo);*/
+	public int findNumLibrosByCategoria(@Param("categoria") Long idCategoria);
+	
+//-----------------------------------------------------------------------------------------------------------------------------
+	
+	//Filtrar los libros por serie (Se emplea para ver todos los productos de una serie de libros).
+	@Query("""
+			SELECT l
+			FROM Libro l
+			WHERE l.serie = :serie
+			""")
+	public List<Libro> findLibroBySerie(@Param("serie") String serie);
+	
 	
 	
 }

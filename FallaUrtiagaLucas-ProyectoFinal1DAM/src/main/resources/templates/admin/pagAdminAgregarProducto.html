@@ -40,6 +40,13 @@
                     <!--Título y Serie-->
                     <fieldset class="pb-2 pt-3">
                         <div class="row mb-3">
+							
+							<!--MENSAJITO DE ERROR-->
+							<div class="alert alert-danger alert-dismissible fade show mb-5" th:if="${param.error}">
+								<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+								<h5 class="m-0"><strong><i class="bi bi-exclamation-diamond-fill"></i></strong>&nbsp; ¡El producto debe estar asociado mínimo a una categoría!</h5>
+							</div>
+							
                             <div class="col mb-3 mx-4">
 								<input th:if="${libro.idLibro!=0}" type="hidden" name="idLibroReg" th:field="*{idLibro}"/>
 								
@@ -133,7 +140,7 @@
                           <div class="d-flex flex-wrap">
 							
 							<div th:each="tipo : ${listaTipos}" class="col-3 form-check pe-5 py-1">
-								<input type="radio"  th:field="*{tipo}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}" class="form-check-input border border-1 border-dark">
+								<input type="radio"  th:field="*{tipo}" th:value="${tipo.idTipo}" th:text="${tipo.nombre}" class="form-check-input border border-1 border-dark" required>
 							    <label class="form-check-label"></label>
 							</div>
 
@@ -143,7 +150,7 @@
                     </fieldset>
 
                     <!--Categorias-->
-                    <fieldset class="py-2">
+                    <fieldset class="py-2" required>
                       <div class="row mb-3">
                         <div class="col mb-3 mx-4">
                           <label for="editorialReg" class="form-label p-0 m-0"><h5>Categorías <span class="text-danger">*</h5></span></label>
