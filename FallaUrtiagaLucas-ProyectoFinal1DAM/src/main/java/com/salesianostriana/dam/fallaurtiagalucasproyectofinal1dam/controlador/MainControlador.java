@@ -134,8 +134,7 @@ public class MainControlador {
 		return "pagBusqueda";
 	}
 	
-	
-	//FILTRAR LIBROS POR FECHA DE PUBLICACIÓN
+	//FILTRAR LIBROS POR FECHA DE PUBLICACIÓN.
 	@GetMapping("/proximamente")
 	public String mostrarLibrosPagInicioFiltradosPorFechaPublicacion(Model model) {
 			
@@ -144,7 +143,7 @@ public class MainControlador {
 		return "pagInicio";
 	}
 	
-	//FILTRAR LIBROS POR FECHA DE PUBLICACIÓN
+	//FILTRO DE NOVEDADES.
 	@GetMapping("/novedades")
 	public String mostrarLibrosPagInicioNuevos(Model model) {
 				

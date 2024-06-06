@@ -92,9 +92,9 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 	@Query("""
 			SELECT l 
 			FROM Libro l
-			WHERE l.fechaPublicacion >= ?1
+			WHERE l.fechaPublicacion BETWEEN ?1 AND ?2
 			""")
-	public List<Libro> librosPosterioresAUnaFecha(LocalDateTime fechaPublicacion);
+	public List<Libro> librosPosterioresAUnaFecha(LocalDateTime fecha, LocalDateTime hoy);
 	
 	
 	//Filtro de Próximamente (Aquellos productos cuya fecha de publicación sea superior a la fecha actual).

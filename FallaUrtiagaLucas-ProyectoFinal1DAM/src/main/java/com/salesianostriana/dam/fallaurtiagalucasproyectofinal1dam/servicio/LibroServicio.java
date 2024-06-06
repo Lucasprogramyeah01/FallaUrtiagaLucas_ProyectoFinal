@@ -71,7 +71,7 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 	/*Filtrar libros posteriores a una fecha y comparar si con respecto a la fecha de publicación 
 	 * de dichos libros hay un intervalo de 21 días.*/
 	public List<Libro> librosNuevos() {
-		return repoLibro.librosPosterioresAUnaFecha(LocalDateTime.now().minusDays(21));
+		return repoLibro.librosPosterioresAUnaFecha(LocalDateTime.now().minusDays(21), LocalDateTime.now());
 	}
 	
 	
