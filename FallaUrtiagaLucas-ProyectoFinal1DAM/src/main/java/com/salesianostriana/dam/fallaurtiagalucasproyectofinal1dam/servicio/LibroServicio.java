@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +65,21 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 		List<Libro> librosFiltradosPorSerie = repoLibro.findLibroBySerie(nombre);
 				
 		return librosFiltradosPorSerie;
+	}
+	
+	
+	/*Filtrar libros posteriores a una fecha y comparar si con respecto a la fecha de publicación 
+	 * de dichos libros hay un intervalo de 21 días.*/
+	public List<Libro> librosNuevos() {
+		return repoLibro.librosPosterioresAUnaFecha(LocalDateTime.now().minusDays(21));
+	}
+	
+	
+	//Filtrar por Fecha de publicación.
+	public List<Libro> filtrarLibrosPorFechaPublicacion(){
+		List<Libro> librosFiltradosPorFechaPub = repoLibro.findLibroByFechaPublicacion();
+					
+		return librosFiltradosPorFechaPub;
 	}
 	
 	

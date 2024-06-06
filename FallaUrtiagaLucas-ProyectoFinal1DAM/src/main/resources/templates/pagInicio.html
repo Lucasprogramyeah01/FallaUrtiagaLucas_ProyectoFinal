@@ -4,6 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MANGAZO VERSE | Tu librería on-line de confianza</title>
+		
+		<!--CSS-->
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" href="../css/estiloGeneral.css" th:href="@{/css/estiloGeneral.css}">
+		
+		<!--AOS JS-->
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
         <!--BOOTSTRAP-->
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}">
@@ -71,11 +79,59 @@
           <!--Botones (FILTRADORES PRINCIPALES)-->
           <div class="container px-md-2 w-75 mt-3">
             <div class="row m-2 my-4">
-              <button class="col-md btn btn-lg btn-primary m-1 mx-2 px-1" type="button"><h4 class="m-0 py-2">NOVEDADES</h4></button>
-              <button class="col-md btn btn-lg btn-primary m-1 mx-2 px-1" type="button"><h4 class="m-0 py-2">PRÓXIMAMENTE</h4></button>
-              <button class="col-md btn btn-lg btn-primary m-1 mx-2 px-1" type="button"><h4 class="m-0 py-2">CATÁLOGO</h4></button>
+              <a type="button" th:href="@{/novedades}" class="col-md btn btn-lg btn-primary m-1 mx-2 px-1">
+				  <h4 class="m-0 py-2">NOVEDADES</h4></a>
+              <a type="button" th:href="@{/proximamente}" class="col-md btn btn-lg btn-primary m-1 mx-2 px-1">
+			  	  <h4 class="m-0 py-2">PRÓXIMAMENTE</h4></a>
+              <!--button class="col-md btn btn-lg btn-primary m-1 mx-2 px-1" type="button"><h4 class="m-0 py-2">CATÁLOGO</h4></button-->
             </div>
 
+			<div class="container-fluid pe-0">
+			                <div class="row pb-4 px-0 d-flex flex-row justify-content-around m-0">
+			  
+								<div th:each="libro : ${listaLibros}" class="w-auto p-0 m-0">
+									<!--LIBRO DISPONIBLE-->
+									<th:block th:if="${libro.stock > 0}">
+										<div class="card mx-2 my-4 p-0 border border-3 border-primary shadow" data-aos="flip-left" id="tarjetaProducto" style="width: 216.44px;">
+											<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+												<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+											</a>
+										    <div class="card-body pe-0">
+										    	<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
+										    	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
+										    	<div class="d-flex flex-wrap align-items-center">
+										        	<a href="#" th:href="@{/admin/agregarAFavoritos}" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
+										        	<a href="#" class="btn btn-light me-3" style="background-color: rgb(0, 183, 255);"><i class="bi bi-bag-fill text-white"></i></a>
+										        <div class="align-items-center flex-grow-1">
+										        	<h6 class="text-center text-white m-0 bg-primary rounded-start-5 p-1"><i>En stock</i></h6>
+										     	</div>
+										   	 </div>
+										   </div>
+										</div>
+									</th:block>
+									
+									<!--LIBRO AGOTADO-->
+									<th:block th:if="${libro.stock == 0}">
+										<div class="card mx-2 my-4 p-0 border border-3 border-secondary shadow" data-aos="flip-left" id="tarjetaProducto" style="width: 216.44px;">
+											<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+												<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+											</a>
+											<div class="card-body pe-0">
+												<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
+											 	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
+												<div class="d-flex flex-wrap align-items-center">
+													<a href="#" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
+													<a href="#" class="btn btn-light me-3 disabled" aria-disabled="true" style="background-color: rgb(131, 220, 255);"><i class="bi bi-bag-fill text-white"></i></a>
+													<div class="align-items-center flex-grow-1">
+														<h6 class="text-center text-white m-0 bg-secondary rounded-start-5 p-1"><i>Próximamente</i></h6>
+													</div>
+												</div>
+											</div>
+										</div>
+									</th:block>
+								</div>
+							</div>
+						</div>
             
           </div>
 
@@ -86,50 +142,13 @@
         
         </main>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
 
 		<footer th:replace="~{fragmentos/footer::footer}"></footer>
           
+		<script>
+			AOS.init();
+		</script>
+		
     </body>
 </html>

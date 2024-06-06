@@ -56,13 +56,18 @@
                     <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span th:text="${libro.titulo}"></span></h1>
                     
 					<!--DISPONIBILIDAD: En stock-->
-					<th:block th:if="${libro.stock > 0}">
+					<th:block th:if="${libro.stock > 0 && libro.fechaPublicacion < #temporals.createNow()}">
 						<h5><span class="text-primary">Disponibilidad:&nbsp;</span> En stock</h5>
 					</th:block>
 
 					<!--DISPONIBILIDAD: AGOTADO-->
-					<th:block th:if="${libro.stock == 0}">
+					<th:block th:if="${libro.stock == 0 && libro.fechaPublicacion < #temporals.createNow()}">
 						<h5><span class="text-primary">Disponibilidad:&nbsp;</span> ¡Agotado! Este producto será repuesto próximamente.</h5>
+					</th:block>
+					
+					<!--DISPONIBILIDAD: Por salir-->
+					<th:block th:if="${libro.fechaPublicacion > #temporals.createNow()}">
+						<h5><span class="text-primary">Disponibilidad:&nbsp;</span> ¡Por salir! Este producto todavía no está disponible.</h5>
 					</th:block>
 					
                     <div class="container-fluid">
@@ -70,15 +75,23 @@
                             <h1 class="display-3 fw-bold px-0 py-2"><span th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></span></h1>
                             
 							<!--Botón cesta para comprar SI HAY STOCK-->
-							<th:block th:if="${libro.stock > 0}">
+							<th:block th:if="${libro.stock > 0 && libro.fechaPublicacion < #temporals.createNow()}">
 								<a href="#" class="btn btn-dark me-3 border border-0" style="width: 35%; background-color: rgb(0, 183, 255);">
 	                                <h5 class="m-0 py-2">Añadir a la cesta &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
 	                            </a>
 							</th:block>
 							
-							<th:block th:if="${libro.stock == 0}">
+							<!--Botón cesta para comprar SI NO HAY STOCK-->
+							<th:block th:if="${libro.stock == 0 && libro.fechaPublicacion < #temporals.createNow()}">
 								<a href="#" class="btn btn-dark me-3 border border-0 disabled" aria-disabled="true" style="width: 35%; background-color: rgb(131, 220, 255);">
 									<h5 class="m-0 py-2">AGOTADO &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
+								</a>
+							</th:block>
+							
+							<!--Botón cesta para comprar SI EL PRODUCTO ESTÁ POR SALIR-->
+							<th:block th:if="${libro.fechaPublicacion > #temporals.createNow()}">
+								<a type="button" class="btn btn-dark me-3 border border-0 w-auto" aria-disabled="true" style="width: 35%; background-color: rgb(146, 0, 0);">
+									<h5 class="m-0 py-2"><i class="bi bi-bell-fill text-white"></i> &nbsp;Disponible el: &nbsp;<span th:text="${#temporals.format(libro.fechaPublicacion, 'dd/MMM/yyyy HH:mm')}"></span></h5>
 								</a>
 							</th:block>
 							

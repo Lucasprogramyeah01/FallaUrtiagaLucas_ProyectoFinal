@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.repositorio;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,12 +14,6 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Tipo;
 public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 
 	/*public List<Libro> findByCategoria(Categoria categoria);*/
-	
-	/*@Query("""
-			SELECT l FROM Libro l
-			WHERE l.fechaPublicacion <= '21day'::interval
-			""")
-	List<Libro> librosNuevos(@Param("fechaPublicacion") LocalDateTime fechaPublicacion);*/
 	
 	
 	@Query("""
@@ -91,6 +86,24 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			WHERE l.serie = :serie
 			""")
 	public List<Libro> findLibroBySerie(@Param("serie") String serie);
+	
+	
+	//Filtro de Novedades (Aquellos productos que hayan pasado menos de 21 días desde su publicación son considerados nuevos).
+	@Query("""
+			SELECT l 
+			FROM Libro l
+			WHERE l.fechaPublicacion >= ?1
+			""")
+	public List<Libro> librosPosterioresAUnaFecha(LocalDateTime fechaPublicacion);
+	
+	
+	//Filtro de Próximamente (Aquellos productos cuya fecha de publicación sea superior a la fecha actual).
+	@Query("""
+			SELECT l 
+			FROM Libro l
+			WHERE l.fechaPublicacion > current_date
+			""")
+	public List<Libro> findLibroByFechaPublicacion();
 	
 	
 	

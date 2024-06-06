@@ -33,7 +33,10 @@ public class MainControlador {
 	//MOSTRAR PÁGINAS DEL NAV -----------------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
-	public String mostrarInicio() {
+	public String mostrarInicio(Model model) {
+		
+		model.addAttribute("listaLibros", servicio.findAll());
+		
 		return "pagInicio";
 	}
 	
@@ -59,7 +62,7 @@ public class MainControlador {
 	
 	
 	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ----------------------------------------------------------------
-	
+
 	@GetMapping("/catalogo")
 	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo,Long idCategoria, Model model) {
 		
@@ -131,5 +134,23 @@ public class MainControlador {
 		return "pagBusqueda";
 	}
 	
+	
+	//FILTRAR LIBROS POR FECHA DE PUBLICACIÓN
+	@GetMapping("/proximamente")
+	public String mostrarLibrosPagInicioFiltradosPorFechaPublicacion(Model model) {
+			
+		model.addAttribute("listaLibros", servicio.filtrarLibrosPorFechaPublicacion());
+
+		return "pagInicio";
+	}
+	
+	//FILTRAR LIBROS POR FECHA DE PUBLICACIÓN
+	@GetMapping("/novedades")
+	public String mostrarLibrosPagInicioNuevos(Model model) {
+				
+		model.addAttribute("listaLibros", servicio.librosNuevos());
+
+		return "pagInicio";
+	}
 	
 }
