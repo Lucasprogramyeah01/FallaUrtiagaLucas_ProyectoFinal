@@ -65,6 +65,6 @@ public class Usuario {
 	 	@Builder.Default
 		private List<Libro> listadoFavoritos = new ArrayList<>(); 
 		
-		//Lo sé, también lo podría hacer con un Set. ACUÉRDATE DE HACER LOS FAVORITOS MAÑANA.
+		//Lo sé, también lo podría hacer con un Set.
 	
 }

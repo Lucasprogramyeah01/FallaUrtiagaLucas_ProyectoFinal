@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.UsuarioServicio;
 
 @Controller
@@ -20,6 +22,9 @@ public class UsuarioControlador {
 
 	@Autowired
 	private UsuarioServicio servicio;
+	
+	@Autowired
+	private LibroServicio libroServicio;
 	
 	//MOSTRAR LISTA DE USUARIOS.
 	@GetMapping("/listaClientes")
@@ -77,6 +82,16 @@ public class UsuarioControlador {
 		servicio.deleteById(idUsuario);
 		
 		return "redirect:/admin/listaClientes";
+	}
+	
+	//MARCAR LIBRO COMO FAVORITO.
+	@GetMapping("/agregarAFavoritos")
+	public String marcarLibroComoFavorito(@ModelAttribute("usuario") Usuario u, 
+			@ModelAttribute("libro") Libro l) {
+		
+		u.getListadoFavoritos().add(l);
+		
+		return "pagFavoritos";
 	}
 	
 }
