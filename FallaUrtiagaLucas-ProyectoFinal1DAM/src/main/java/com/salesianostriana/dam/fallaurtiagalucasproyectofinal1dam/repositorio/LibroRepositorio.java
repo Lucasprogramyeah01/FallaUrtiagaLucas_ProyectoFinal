@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.repositorio;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,21 +12,32 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Tipo;
 
 public interface LibroRepositorio extends JpaRepository<Libro, Long>{
-
-	/*public List<Libro> findByCategoria(Categoria categoria);*/
 	
-	/*@Query("""
-			SELECT l FROM Libro l
-			WHERE l.fechaPublicacion <= '21day'::interval
-			""")
-	List<Libro> librosNuevos(@Param("fechaPublicacion") LocalDateTime fechaPublicacion);*/
-	
-	
+	//Encontrar IDs de libros.
 	@Query("""
 			SELECT l
 			FROM Libro l
 			""")
 	public List<Long> findLibrosIds();
+	
+	
+	//Ordenar libros de forma aleatoria con límite 15.
+	@Query("""
+			SELECT l
+			FROM Libro l
+			ORDER BY RAND()
+			LIMIT 15
+			""")
+	public List<Libro> findLibrosByRandomOrderAndLimit15();
+	
+	//Ordenar libros de forma aleatoria.
+		@Query("""
+				SELECT l
+				FROM Libro l
+				ORDER BY RAND()
+				""")
+	public List<Libro> findLibrosByRandomOrder();
+	
 
 //--- CONSULTAS TIPO Y CATEGORÍA ----------------------------------------------------------------------------------------------
 	
@@ -50,6 +62,7 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			SELECT l
 			FROM Libro l
 			WHERE l.tipo.idTipo = :tipo
+			ORDER BY RAND()
 			""")
 	public List<Libro> findLibroByTipoId(@Param("tipo") Long idTipo);
 	
@@ -60,6 +73,7 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			FROM Libro l
 				JOIN l.listadoCategorias c
 			WHERE c.idCategoria = :categoria
+			ORDER BY RAND()
 			""")
 	public List<Libro> findLibroByCategoriaId(@Param("categoria") Long idCategoria);
 	
@@ -91,6 +105,26 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			WHERE l.serie = :serie
 			""")
 	public List<Libro> findLibroBySerie(@Param("serie") String serie);
+	
+	
+	//Filtro de Novedades (Aquellos productos que hayan pasado menos de 21 días desde su publicación son considerados nuevos).
+	@Query("""
+			SELECT l 
+			FROM Libro l
+			WHERE l.fechaPublicacion BETWEEN ?1 AND ?2
+			ORDER BY RAND()
+			""")
+	public List<Libro> librosPosterioresAUnaFecha(LocalDateTime fecha, LocalDateTime hoy);
+	
+	
+	//Filtro de Próximamente (Aquellos productos cuya fecha de publicación sea superior a la fecha actual).
+	@Query("""
+			SELECT l 
+			FROM Libro l
+			WHERE l.fechaPublicacion > current_date
+			ORDER BY RAND()
+			""")
+	public List<Libro> findLibroByFechaPublicacion();
 	
 	
 	

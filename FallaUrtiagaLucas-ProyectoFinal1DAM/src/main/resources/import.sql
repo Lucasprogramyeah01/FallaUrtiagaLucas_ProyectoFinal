@@ -79,4 +79,40 @@ INSERT INTO Tiene(categoria_id, libro_id) VALUES (12, 10);
 INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (11, 'La Historia de Groenlandia: Un Viaje a Través de los Siglos', 'https://m.media-amazon.com/images/I/71RQHOEWDML._AC_UF1000,1000_QL80_.jpg', 'Portada La Historia de Groenlandia: Un Viaje a Través de los Siglos', 'Un Viaje a Través de los Siglos', 6.99, 0, 'Hugo Wilser-Lopez', 'Independently', '¡Embárcate en un viaje fascinante a través de la historia, la naturaleza y la cultura de Groenlandia en este libro único y cautivador! Te sumergirá en el fascinante pasado y el asombroso presente de esta hermosa isla del Ártico.', '2023-07-05 23:30:00', 72, 'TapaBlanda', 'Juvenil', 3);
 INSERT INTO Tiene(categoria_id, libro_id) VALUES (11, 11);
 
-ALTER SEQUENCE libro_seq RESTART WITH 61;
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (12, 'Maximum Berserk vol.12', 'https://m.media-amazon.com/images/I/71T9G+LzRnS._AC_UF894,1000_QL80_.jpg', 'Portada Maximum Berserk vol.12', 'Maximum Berserk', 16.10, 12, 'Kentaro Miura', 'Panini Comics', 'Una de las más aclamadas series mangas de todos los tiempos. Un viaje épico y salvaje a un reino de fantasía. Guts es un guerrero vestido de negro que porta una gigantesca espada más larga que su propia estatura y un robusto brazo ortopédico de hierro...', '2019-05-23 21:30:00', 408, 'Sobrecubierta', 'Adulto', 1);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 12);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (7, 12);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 12);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (10, 12);
+
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (13, 'Maximum Berserk vol.14', 'https://m.media-amazon.com/images/I/91QGyNgGv5L._AC_UF894,1000_QL80_.jpg', 'Portada Maximum Berserk vol.14', 'Maximum Berserk', 16.95, 0, 'Kentaro Miura', 'Panini Comics', 'Una de las más aclamadas series mangas de todos los tiempos. Un viaje épico y salvaje a un reino de fantasía. Guts es un guerrero vestido de negro que porta una gigantesca espada más larga que su propia estatura y un robusto brazo ortopédico de hierro...', '2022-09-15 22:00:00', 440, 'Sobrecubierta', 'Adulto', 1);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 13);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (7, 13);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 13);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (10, 13);
+
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (14, 'Maximum Berserk vol.18', 'https://m.media-amazon.com/images/I/61Noc1irzYS._AC_UF894,1000_QL80_.jpg', 'Portada Maximum Berserk vol.18', 'Maximum Berserk', 18.90, 18, 'Kentaro Miura', 'Panini Comics', 'Una de las más aclamadas series mangas de todos los tiempos. Un viaje épico y salvaje a un reino de fantasía. Guts es un guerrero vestido de negro que porta una gigantesca espada más larga que su propia estatura y un robusto brazo ortopédico de hierro...', '2022-09-15 22:30:00', 416, 'Sobrecubierta', 'Adulto', 1);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 14);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (7, 14);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 14);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (10, 14);
+
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (15, 'Maximum Berserk vol.21', 'https://udfshop.com/cdn/shop/products/berserk-color.jpg?v=1681422677', 'Portada Maximum Berserk vol.21', 'Maximum Berserk', 24.99, 50, 'Kentaro Miura', 'Panini Comics', 'Una de las más aclamadas series mangas de todos los tiempos. Un viaje épico y salvaje a un reino de fantasía. Guts es un guerrero vestido de negro que porta una gigantesca espada más larga que su propia estatura y un robusto brazo ortopédico de hierro...', '2024-09-21 00:00:00', 452, 'Sobrecubierta', 'Adulto', 1);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 15);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (7, 15);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 15);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (10, 15);
+
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (16, 'Solo Leveling vol.3', 'https://www.normaeditorial.com/upload/media/albumes/0001/19/a62f366fb2a0a4526d1e9eef2983ddc0042a8e3b.jpeg', 'Portada Solo Leveling vol.3', 'Solo Leveling', 14.20, 0, 'Chu-Gong, Dubu (Redice Studio)', 'NORMA Editorial', 'Sung Jinwoo sigue subiendo de nivel yendo de mazmorra en mazmorra. Sin embargo, en una de las incursiones parece que le acompañarán un grupo de presidiarios con tal de prestar servicios a la comunidad. ¿Qué le deparará a Sung y al resto del equipo?', '2024-06-04 15:45:00', 320, 'TapaBlanda', 'Juvenil', 4);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 16);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (2, 16);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (6, 16);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 16);
+
+INSERT INTO Libro(id_libro, titulo, imagen_portada, texto_alt_portada, serie, precio, stock, autor, editorial, descripcion, fecha_publicacion, num_paginas, cubierta, publico, tipo_id_tipo) VALUES (17, 'Solo Leveling vol.9', 'https://m.media-amazon.com/images/I/91-juYmiUrL._AC_UF894,1000_QL80_.jpg', 'Portada Solo Leveling vol.9', 'Solo Leveling', 19.53, 9, 'Chu-Gong, Dubu (Redice Studio)', 'NORMA Editorial', 'Jinwoo responde a la llamada del sistema y regresa a la doble mazmorra. Mientras tanto, el gobierno japonés se encuentra luchando con puertas algo desagradables y busca ayuda externa. ¿Podrá Jinwoo detener a las bestias mágicas antes de que arrasen Japón?', '2024-09-09 09:09:09', 168, 'TapaBlanda', 'Juvenil', 4);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (1, 17);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (2, 17);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (6, 17);
+INSERT INTO Tiene(categoria_id, libro_id) VALUES (9, 17);
+
+ALTER SEQUENCE libro_seq RESTART WITH 67;

@@ -17,8 +17,6 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.Tipo
 
 @Controller
 public class MainControlador {
-
-	//public static final int NumProductosAleatorios = 4;
 	
 	@Autowired
 	private LibroServicio servicio;
@@ -33,7 +31,10 @@ public class MainControlador {
 	//MOSTRAR PÁGINAS DEL NAV -----------------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
-	public String mostrarInicio() {
+	public String mostrarInicio(Model model) {
+		
+		model.addAttribute("listaLibros", servicio.filtrarLibrosPorOrdenAleatorioConLimite15());
+		
 		return "pagInicio";
 	}
 	
@@ -59,22 +60,18 @@ public class MainControlador {
 	
 	
 	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ----------------------------------------------------------------
-	
+
 	@GetMapping("/catalogo")
 	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo,Long idCategoria, Model model) {
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
 		
-		/*List<Libro> listaLibros;
-		
 		if(idTipo == null && idCategoria == null) {
-			//listaLibros = servicio.generarLibrosAleatorios(NumProductosAleatorios);
-		
-			model.addAttribute("listaLibros", servicio.generarLibrosAleatorios(16));
-		}*/
-		
-		model.addAttribute("listaLibros", servicio.findAll());
+			model.addAttribute("listaLibros", servicio.filtrarLibrosPorOrdenAleatorio());
+		}else {
+			model.addAttribute("listaLibros", servicio.findAll());
+		}
 		
 		return "pagBusqueda";
 	}
@@ -131,5 +128,22 @@ public class MainControlador {
 		return "pagBusqueda";
 	}
 	
+	//FILTRAR LIBROS POR FECHA DE PUBLICACIÓN.
+	@GetMapping("/proximamente")
+	public String mostrarLibrosPagInicioFiltradosPorFechaPublicacion(Model model) {
+			
+		model.addAttribute("listaLibros", servicio.filtrarLibrosPorFechaPublicacion());
+
+		return "pagInicio";
+	}
+	
+	//FILTRO DE NOVEDADES.
+	@GetMapping("/novedades")
+	public String mostrarLibrosPagInicioNuevos(Model model) {
+				
+		model.addAttribute("listaLibros", servicio.librosNuevos());
+
+		return "pagInicio";
+	}
 	
 }
