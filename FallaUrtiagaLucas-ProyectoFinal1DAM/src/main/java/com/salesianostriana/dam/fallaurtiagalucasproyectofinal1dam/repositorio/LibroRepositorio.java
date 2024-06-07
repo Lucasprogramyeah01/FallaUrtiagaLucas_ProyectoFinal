@@ -30,15 +30,29 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			""")
 	public List<Libro> findLibrosByRandomOrderAndLimit15();
 	
-	//Ordenar libros de forma aleatoria.
-		@Query("""
-				SELECT l
-				FROM Libro l
-				ORDER BY RAND()
-				""")
-	public List<Libro> findLibrosByRandomOrder();
 	
+	//Ordenar libros de forma aleatoria.
+	@Query("""
+			SELECT l
+			FROM Libro l
+			ORDER BY RAND()
+			""")
+	public List<Libro> findLibrosByRandomOrder();
+		
+	
+	//Filtrar libros por palabra clave.
+	@Query("""
+			SELECT l
+			FROM Libro l
+			WHERE l.titulo ILIKE %?1%
+				OR l.serie ILIKE %?1%
+				OR l.autor ILIKE %?1%
+				OR l.editorial ILIKE %?1%
+				ORDER BY RAND()
+			""")
+	public List<Libro> findLibrosByPalabraClave(String palabraClave);
 
+	
 //--- CONSULTAS TIPO Y CATEGORÍA ----------------------------------------------------------------------------------------------
 	
 	//Número de tipos que hay.

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,13 +63,22 @@ public class MainControlador {
 	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ----------------------------------------------------------------
 
 	@GetMapping("/catalogo")
-	public String mostrarCatalogo(@RequestParam(name="idTipo", required=false) Long idTipo,Long idCategoria, Model model) {
+	public String mostrarCatalogo(/*@RequestParam(name="idTipo", required=false)*/ Long idTipo, Long idCategoria, 
+			@Param("palabraClave") String palabraClave, Model model) {
 		
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
+
+		model.addAttribute("palabraClave", palabraClave);
 		
 		if(idTipo == null && idCategoria == null) {
-			model.addAttribute("listaLibros", servicio.filtrarLibrosPorOrdenAleatorio());
+			
+			if(palabraClave == null) {
+				model.addAttribute("listaLibros", servicio.filtrarLibrosPorOrdenAleatorio());
+			}else {
+				model.addAttribute("listaLibros", servicio.filtrarLibrosPorPalabraClave(palabraClave));
+			}
+			
 		}else {
 			model.addAttribute("listaLibros", servicio.findAll());
 		}
