@@ -37,6 +37,14 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 	}
 	
 	
+	//Filtrar libros por palabra clave.
+	public List<Libro> filtrarLibrosPorPalabraClave(String palabraClave){
+		List<Libro> librosFiltradosPorPalabraClave = repoLibro.findLibrosByPalabraClave(palabraClave);
+				
+		return librosFiltradosPorPalabraClave;
+	}
+	
+	
 	//Obtener el número de tipos.
 	public int cantidadDeTipos () {
 		return repoLibro.findNumTipos();

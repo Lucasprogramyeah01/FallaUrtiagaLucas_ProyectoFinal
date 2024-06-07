@@ -84,9 +84,9 @@
 		                </ul>
 		  
 		                  <!--Barra de búsqueda e icono de lupa-->
-		                  <form class="d-flex col-lg-4 mx-3 py-2">
-		                    <input class="form-control me-1" type="text" placeholder="Search">
-		                    <button class="btn btn-primary" type="button"><i class="bi bi-search"></i></button>
+		                  <form class="d-flex col-lg-4 mx-3 py-2" th:action="@{/buscar}">
+		                    <input type="text" class="form-control me-1" th:value="${palabraClave}" name="barraBusqueda" id="barraBusqueda" placeholder="Search">
+		                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
 		                  </form>
 						  
 						  <div class="nav-item mx-3">
