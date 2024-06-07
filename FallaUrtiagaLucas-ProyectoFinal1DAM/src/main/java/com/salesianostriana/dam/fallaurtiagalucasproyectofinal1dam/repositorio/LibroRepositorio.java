@@ -44,10 +44,11 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 	@Query("""
 			SELECT l
 			FROM Libro l
-			WHERE l.titulo LIKE %?1%
-				OR l.serie LIKE %?1%
-				OR l.autor LIKE %?1%
-				OR l.editorial LIKE %?1%
+			WHERE l.titulo ILIKE %?1%
+				OR l.serie ILIKE %?1%
+				OR l.autor ILIKE %?1%
+				OR l.editorial ILIKE %?1%
+				ORDER BY RAND()
 			""")
 	public List<Libro> findLibrosByPalabraClave(String palabraClave);
 
