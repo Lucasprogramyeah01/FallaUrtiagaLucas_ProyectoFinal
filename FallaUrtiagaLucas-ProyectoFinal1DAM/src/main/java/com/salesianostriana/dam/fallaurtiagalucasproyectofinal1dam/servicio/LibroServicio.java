@@ -19,7 +19,24 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 
 	@Autowired
 	private LibroRepositorio repoLibro;
-
+	
+	
+	//Filtrar libros por orden aleatorio con límite 15.
+	public List<Libro> filtrarLibrosPorOrdenAleatorioConLimite15(){
+		List<Libro> librosFiltradosAleatoriamenteConLimite = repoLibro.findLibrosByRandomOrderAndLimit15();
+		
+		return librosFiltradosAleatoriamenteConLimite;
+	}
+	
+	
+	//Filtrar libros por orden aleatorio con límite 15.
+	public List<Libro> filtrarLibrosPorOrdenAleatorio(){
+		List<Libro> librosFiltradosAleatoriamente = repoLibro.findLibrosByRandomOrder();
+			
+		return librosFiltradosAleatoriamente;
+	}
+	
+	
 	//Obtener el número de tipos.
 	public int cantidadDeTipos () {
 		return repoLibro.findNumTipos();
@@ -81,23 +98,5 @@ public class LibroServicio extends ServicioBaseImpl<Libro, Long, LibroRepositori
 					
 		return librosFiltradosPorFechaPub;
 	}
-	
-	
-	//Generar libros aleatorios.
-	public List<Libro> generarLibrosAleatorios (int numLibrosAleatorios){
-		List<Long> listaLibrosIds = repoLibro.findLibrosIds();
-		
-		Collections.shuffle(listaLibrosIds);	//Este método ordena la lista de forma aleatoria ¡Qué práctico!
-		
-		listaLibrosIds = listaLibrosIds.stream().limit(numLibrosAleatorios).collect(Collectors.toList());
-		
-		/*Se acaba de: coger la lista ordenada aleatoriamente, de los 200 productos que tiene se limita al
-		 * número establecido por parámetro en la variable 'numLibrosAleatorios', y por último, esos productos
-		 * seleccionados se guardan en una nueva lista ¡Qué practico!
-		 */
-		
-		return repoLibro.findAllById(listaLibrosIds);
-	}
-	
 	
 }

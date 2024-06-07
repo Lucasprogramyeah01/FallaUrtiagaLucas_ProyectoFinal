@@ -17,8 +17,6 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.Tipo
 
 @Controller
 public class MainControlador {
-
-	//public static final int NumProductosAleatorios = 4;
 	
 	@Autowired
 	private LibroServicio servicio;
@@ -35,7 +33,7 @@ public class MainControlador {
 	@GetMapping("/")
 	public String mostrarInicio(Model model) {
 		
-		model.addAttribute("listaLibros", servicio.findAll());
+		model.addAttribute("listaLibros", servicio.filtrarLibrosPorOrdenAleatorioConLimite15());
 		
 		return "pagInicio";
 	}
@@ -69,15 +67,11 @@ public class MainControlador {
 		model.addAttribute("listaCategorias", servicioCat.findAll());
 		model.addAttribute("listaTipos", servicioTipo.findAll());
 		
-		/*List<Libro> listaLibros;
-		
 		if(idTipo == null && idCategoria == null) {
-			//listaLibros = servicio.generarLibrosAleatorios(NumProductosAleatorios);
-		
-			model.addAttribute("listaLibros", servicio.generarLibrosAleatorios(16));
-		}*/
-		
-		model.addAttribute("listaLibros", servicio.findAll());
+			model.addAttribute("listaLibros", servicio.filtrarLibrosPorOrdenAleatorio());
+		}else {
+			model.addAttribute("listaLibros", servicio.findAll());
+		}
 		
 		return "pagBusqueda";
 	}
