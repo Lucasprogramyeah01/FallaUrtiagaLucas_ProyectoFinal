@@ -62,7 +62,7 @@
                       <div class="row mb-3">
                         <div class="col mb-3 mx-4">
                           <label for="nombreUsuarioReg" class="form-label p-0 m-0"><h5>Nombre de usuario <span class="text-danger">*</h5></span></label>
-                          <input type="text" th:field="*{nombreUsuario}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
+                          <input type="text" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
                         </div>
                         <div class="col mb-3 mx-4">
                           <label for="emailReg" class="form-label p-0 m-0"><h5>Email <span class="text-danger">*</h5></span></label>
@@ -76,7 +76,7 @@
                       <div class="row">
                           <div class="col mb-3 mx-4" th:if="${usuario.idUsuario==null}">
                               <label for="contrasenha1Reg"><h5>Contraseña <span class="text-danger">*</h5></span></label>
-                              <input type="password" th:field="*{contrasenha}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
+                              <input type="password" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
                               <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
                           </div>
                           <div class="col mb-3 mx-4">

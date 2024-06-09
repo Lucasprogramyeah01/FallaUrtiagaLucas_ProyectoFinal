@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 	<body>
 		  
 		  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3">
@@ -22,7 +25,7 @@
 		                <ul class="navbar-nav me-auto">
 		  
 		  
-		                  <!--Usuario (DROPDOWN)-->
+		                  <!--INICIAR SESIÓN (DROPDOWN)-->
 		                  <li class="nav-item dropdown">
 		                    <a class="nav-link dropdown-toggle ms-3" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 		                      <i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Usuario
@@ -37,18 +40,21 @@
 		                            </div>
 		                            <!--Dropdown body-->
 		                            <div class="p-0">
-		                              <form action="">
+										
+									  <!--Formulario de Iniciar sesión-->
+		                              <form action="#" th:action="@{/}">
 		                                <div class="m-4">
-		                                  <label for="nombreUsuarioIni" class="form-label mb-1">Nombre de usuario</label>
-		                                  <input type="text" class="form-control bg-secondary bg-opacity-25" id="emailIni" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioIni">
+		                                  <label for="username" class="form-label mb-1">Nombre de usuario</label>
+		                                  <input type="text" class="form-control bg-secondary bg-opacity-25" id="username" placeholder="Introduzca su nombre de usuario" name="username">
 		                                </div>
 		                                <div class="mb-4 mx-4">
-		                                  <label for="contrasenhaIni" class="form-label mb-1">Contraseña</label>
-		                                  <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenhaIni" placeholder="Introduzca su contraseña" name="contrasenhaIni">
+		                                  <label for="password" class="form-label mb-1">Contraseña</label>
+		                                  <input type="password" class="form-control bg-secondary bg-opacity-25" id="password" placeholder="Introduzca su contraseña" name="password">
 		                                </div>
 		                                <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
 		                                  <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary">Iniciar sesión</button>
 		                                </div>
+										
 		                              </form>
 		                            </div>
 		                            <!--Dropdown footer-->
@@ -62,6 +68,127 @@
 		                      </li>
 		                    </ul>
 		                  </li>
+						  
+						  <!--USUARIO (DROPDOWN)-->
+						  <security:authorize access="hasRole('ROLE_USER')">
+						                  <li class="nav-item dropdown">
+						                    <a class="nav-link dropdown-toggle ms-3" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						                      <i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Mi cuenta
+						                    </a>
+						                    <ul class="dropdown-menu p-1">
+						                      <li style="width: 650px;">
+						                        <div class="container-fluid">
+						                          <div class="row">
+						                            <!--Dropdown header-->
+						                            <div class="bg-primary py-3">
+						                              <div class="row m-0 p-0">
+						                                <div class="d-flex align-items-center" style="width: 77%;">
+						                                  <h3 class="text-white m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">&nbsp;Buenas, <span sec:authentication="name"></span></h3>
+						                                </div>
+						                                <!--div class="w-auto">
+						                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary me-1 bg-info" style="width: auto;">
+						                                    <i class="bi bi-gear-fill"></i>
+						                                  </a>
+						                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary" style="width: auto; background-color: rgb(155, 0, 0)">
+						                                    <i class="bi bi-trash3-fill"></i>
+						                                  </a>
+						                                </div-->
+						                              </div>
+						                            </div>
+						                            <!--Dropdown body-->
+						                            <div class="row">
+						                              <div class="p-4" style="width: 40%;">
+						                                  <img src="../static/img/logoMarca.png" class="rounded-4" style="width: 200px; height: 200px;" alt="Imagen de perfil">
+						                              </div>
+						                                <div class="p-2 ps-0" style="width: 60%;">
+						                                  <div class="row pb-2 pt-4 mt-1">
+						                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Nombre:&nbsp; </span><!--span th:text="${usuario.nombre}"></span--></h5>
+						                                </div>
+						                                <div class="row py-2">
+						                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Apellidos:&nbsp; </span><!--span th:text="${usuario.apellidos}"></span--></h5>
+						                                </div>
+						                                <div class="row py-2">
+						                                  <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Correo:&nbsp; </span><!--span th:text="${usuario.correo}"></span--></h5>
+						                                </div>
+						                                <div class="row py-2">
+						                                  <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+						                                    <i class="bi bi-hexagon-fill" style="color:rgb(96, 0, 185)"></i>&nbsp;Tienes <!--span style="color:rgb(96, 0, 185)" th:text="${usuario.numPuntosHon}"></span--> Hon
+						                                  </h2>
+						                                </div>
+						                              </div>
+						                            </div>
+						                            <!--Dropdown footer-->
+						                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
+						                              <div class="row mt-3 justify-content-center">
+														<form th:action="@{/logout}" method="post" id="logoutForm" class="justify-content-center">
+						                                	<a type="submit" class="btn btn-lg btn-dark mx-1" style="width: 35%;"><i class="bi bi-box-arrow-right"></i>&nbsp; Cerrar sesión</a>
+														</form>
+						                              </div>
+						                            </div>
+						                        </div>
+						                      </li>
+						                    </ul>
+						                  </li>
+						  </security:authorize>
+										  
+										  <!--ADMIN (DROPDOWN)-->
+										                   <li class="nav-item dropdown">
+										                    <a class="nav-link dropdown-toggle ms-3" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+										                      <i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Cuenta Admin
+										                    </a>
+										                    <ul class="dropdown-menu p-1">
+										                      <li style="width: 650px;">
+										                        <div class="container-fluid">
+										                          <div class="row">
+										                            <!--Dropdown header-->
+										                            <div class="bg-info py-3">
+										                              <div class="row m-0 p-0">
+										                                <div class="d-flex align-items-center" style="width: 77%;">
+										                                  <h3 class="text-white m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">&nbsp;Buenas, <span></span>elRisitasOMG</h3>
+										                                </div>
+										                                <!--div class="w-auto">
+										                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary me-1 bg-info" style="width: auto;">
+										                                    <i class="bi bi-gear-fill"></i>
+										                                  </a>
+										                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary" style="width: auto; background-color: rgb(155, 0, 0)">
+										                                    <i class="bi bi-trash3-fill"></i>
+										                                  </a>
+										                                </div-->
+										                              </div>
+										                            </div>
+										                            <!--Dropdown body-->
+										                            <div class="row">
+										                              <div class="p-4" style="width: 40%;">
+										                                  <img src="../static/img/logoMarca.png" class="rounded-4" style="width: 200px; height: 200px;" alt="Imagen de perfil">
+										                              </div>
+										                                <div class="p-2 ps-0" style="width: 60%;">
+										                                  <div class="row pb-2 pt-4 mt-1">
+										                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-info">Nombre:&nbsp;</span> Lucas</h5>
+										                                </div>
+										                                <div class="row py-2">
+										                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-info">Apellidos:&nbsp;</span> Falla Urtiaga</h5>
+										                                </div>
+										                                <div class="row py-2">
+										                                  <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-info">Correo:&nbsp;</span>elRisitasOMG@gmail.com</h5>
+										                                </div>
+										                                <div class="row py-2">
+										                                  <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+										                                    <i class="bi bi-lightning-charge-fill" style="color:rgb(0, 40, 216)"></i>&nbsp;Tienes <span style="color:rgb(0, 40, 216)">El Poder</span>
+										                                  </h2>
+										                                </div>
+										                              </div>
+										                            </div>
+										                            <!--Dropdown footer-->
+										                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
+										                              <div class="row mt-3 justify-content-center">
+										                                <!--h6 class="text-light text-center mt-3">¿No tienes una cuenta?</h6-->
+										                                <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-dark mx-1" style="width: 35%;"><i class="bi bi-box-arrow-right"></i>&nbsp; Cerrar sesión</a>
+										                              </div>
+										                            </div>
+										                        </div>
+										                      </li>
+										                    </ul>
+										                  </li>
 		  
 		                  <li class="nav-item mx-3">
 		                    <a class="nav-link" href="/" th:href="@{/}"><i class="bi bi-cart-fill" style="font-size: 25px; color: rgb(0, 183, 255);"></i> Cesta</a>
