@@ -29,7 +29,13 @@ public class MainControlador {
 	private TipoServicio servicioTipo;
 	
 	
-	//MOSTRAR PÁGINAS DEL NAV -----------------------------------------------------------------------------------------------
+	//Mostrar página de inicio de administrador.
+	@GetMapping("/admin/")
+	public String mostrarInicioAdmin() {
+		return "/admin/pagAdminInicio";
+	}
+	
+	//MOSTRAR PÁGINAS DEL NAV Y EL FOOTER --------------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarInicio(Model model) {

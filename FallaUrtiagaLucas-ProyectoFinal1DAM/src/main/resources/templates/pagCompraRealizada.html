@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MANGAZO VERSE [Admin] | Inicio</title>
-
+        <title>MANGAZO VERSE | Compra realizada</title>
+		
 		<!--CSS-->
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
 		<link rel="stylesheet" type="text/css" href="../css/estiloGeneral.css" th:href="@{/css/estiloGeneral.css}">
-		
-        <!--BOOTSTRAP-->
-        <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      </head>
+				
+		<!--BOOTSTRAP-->
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	</head>
     <body>
 
 <!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -26,11 +26,11 @@
 
 <!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<main class="d-flex flex-wrap">
+        <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
                 <h1 class="display-3 fw-bold fst-italic text-center" style="font-variant: small-caps;">
-                  <i class="bi bi-lightning-charge-fill" style="color:rgb(0, 40, 216)"></i>
-                  ¡Bienvenido a la zona de <span class="text-info">Administrador</span>!&nbsp; <i class="bi bi-lightning-charge-fill" style="color:rgb(0, 40, 216)"></i>
+                    <i class="bi bi-cart-check-fill text-primary"></i>
+                  ¡<span class="text-primary">Compra </span>realizada con<span class="text-success"> éxito</span>!&nbsp; <i class="bi bi-cart-check-fill text-primary"></i></i>
                 </h1>
             </div>
 
@@ -39,23 +39,30 @@
 			</div>
 
             <!--Contenido central-->
-            <div class="container w-75 mb-2 mt-4 pb-5 pt-1 px-4">
+            <div class="container w-75 mb-2 mt-2 pb-5 pt-1 px-4">
 
               <div class="container-fluid">
                 <div class="row pb-4 px-5 d-flex flex-row">
 
-                  <!--Imagen graciosa-->
+                  <!--Imagen compra realizada-->
                   <div class="w-100 d-flex justify-content-center">
-                    <img src="../img/pandaAdmin.jpg" th:src="@{../img/pandaAdmin.jpg}" class="text-center w-75 rounded-4" alt="Imagen de bienvenida al administrador">
+                    <img src="../img/tioCompras.jpg" th:src="@{../img/tioCompras.jpg}" class="text-center w-50 rounded-4" alt="Imagen compra realizada">
                   </div>
 
                 </div>
               </div>
 
-                <h5 class="pt-4" style="text-align: center; font-style: italic;">
-                  "Cada vez que veas un negocio exitoso, piensa que en algún momento alguien tomó una decisión valiente."</h5>
-                <h5 class="pt-2" style="text-align: center; font-style: italic; color: rgb(140, 140, 140);">
-                  - Peter Drucker, educador y consultor de gestión estadounidense.</h5>
+                <h4 class="pt-4 text-dark" style="text-align: center;">
+                    <i class="bi bi-check-circle-fill"></i>&nbsp; Su compra ha sido realizada correctamente.<br><br>
+                    <i class="bi bi-send-fill"></i>&nbsp; El pedido le llegará en un par de días.<br><br>
+                    <i class="bi bi-hexagon-fill"></i>&nbsp; Se han agregado 50 Hon a su cuenta.
+                </h4>
+                
+                <div class="d-flex justify-content-center mt-4 pt-4">
+                    <a href="#" class="btn btn-primary border border-0 w-auto px-5">
+                        <h3 class="m-0 py-2"><i class="bi bi-caret-left-fill"></i>&nbsp; Volver al inicio</h3>
+                      </a>
+                </div>
             </div>
 
 			<!--Columna derecha-->
@@ -65,7 +72,7 @@
 
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<footer th:replace="~{fragmentos/footer::footer}"></footer>
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>        
 
     </body>
 </html>

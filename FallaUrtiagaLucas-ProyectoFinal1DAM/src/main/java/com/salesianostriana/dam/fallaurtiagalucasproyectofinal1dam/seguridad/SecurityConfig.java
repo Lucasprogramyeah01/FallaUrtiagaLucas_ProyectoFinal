@@ -73,8 +73,8 @@ public class SecurityConfig  {
 				.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", 
 						"/quienesSomos", "/condicionesDeUso", "/politicaDePrivacidad", 
 						"/catalogo", "/infoLibro/{id}", "/serie/{nombre}", "/catalogo/tipo/{id}", 
-						"/catalogo/categoria/{id}", "/proximamente", "/novedades", "/admin/**").permitAll()
-				//.requestMatchers("").hasRole("ADMIN")
+						"/catalogo/categoria/{id}", "/proximamente", "/novedades").permitAll()
+				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
 			.requestCache(cache -> cache.requestCache(requestCache))
 			.formLogin((loginz) -> loginz

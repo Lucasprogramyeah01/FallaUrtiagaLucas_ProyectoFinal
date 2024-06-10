@@ -7,13 +7,6 @@
 		  
 		  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3">
 		            <div class="container-fluid">
-		              
-		              <!--Logo-->
-		              <div>
-		                <a class="navbar-brand ps-3" href="/" th:href="@{/}">
-							<img src="../img/logoMarca.png" th:src="@{/img/logoMarca.png}" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill">
-						</a>
-		              </div>
 					  
 					  <!--Logo de administrador-->
 					  <div>
@@ -75,68 +68,6 @@
 		                      </li>
 		                    </ul>
 		                  </li>
-						  
-						  <!--USUARIO (DROPDOWN)-->
-						  <security:authorize access="hasRole('ROLE_USER')">
-						                  <li class="nav-item dropdown">
-						                    <a class="nav-link dropdown-toggle ms-3" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						                      <i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Mi cuenta
-						                    </a>
-						                    <ul class="dropdown-menu p-1">
-						                      <li style="width: 650px;">
-						                        <div class="container-fluid">
-						                          <div class="row">
-						                            <!--Dropdown header-->
-						                            <div class="bg-primary py-3">
-						                              <div class="row m-0 p-0">
-						                                <div class="d-flex align-items-center" style="width: 77%;">
-						                                  <h3 class="text-white m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">&nbsp;Buenas, <span sec:authentication="name"></span></h3>
-						                                </div>
-						                                <!--div class="w-auto">
-						                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary me-1 bg-info" style="width: auto;">
-						                                    <i class="bi bi-gear-fill"></i>
-						                                  </a>
-						                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary" style="width: auto; background-color: rgb(155, 0, 0)">
-						                                    <i class="bi bi-trash3-fill"></i>
-						                                  </a>
-						                                </div-->
-						                              </div>
-						                            </div>
-						                            <!--Dropdown body-->
-						                            <div class="row">
-						                              <div class="p-4" style="width: 40%;">
-						                                  <img src="../static/img/logoMarca.png" class="rounded-4" style="width: 200px; height: 200px;" alt="Imagen de perfil">
-						                              </div>
-						                                <div class="p-2 ps-0" style="width: 60%;">
-						                                  <div class="row pb-2 pt-4 mt-1">
-						                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Nombre:&nbsp; </span><!--span th:text="${usuario.nombre}"></span--></h5>
-						                                </div>
-						                                <div class="row py-2">
-						                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Apellidos:&nbsp; </span><!--span th:text="${usuario.apellidos}"></span--></h5>
-						                                </div>
-						                                <div class="row py-2">
-						                                  <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Correo:&nbsp; </span><!--span th:text="${usuario.correo}"></span--></h5>
-						                                </div>
-						                                <div class="row py-2">
-						                                  <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-						                                    <i class="bi bi-hexagon-fill" style="color:rgb(96, 0, 185)"></i>&nbsp;Tienes <!--span style="color:rgb(96, 0, 185)" th:text="${usuario.numPuntosHon}"></span--> Hon
-						                                  </h2>
-						                                </div>
-						                              </div>
-						                            </div>
-						                            <!--Dropdown footer-->
-						                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
-						                              <div class="row mt-3 justify-content-center">
-														<form th:action="@{/logout}" method="post" id="logoutForm" class="justify-content-center">
-						                                	<a type="submit" class="btn btn-lg btn-dark mx-1" style="width: 35%;"><i class="bi bi-box-arrow-right"></i>&nbsp; Cerrar sesión</a>
-														</form>
-						                              </div>
-						                            </div>
-						                        </div>
-						                      </li>
-						                    </ul>
-						                  </li>
-						  </security:authorize>
 										  
 										  <!--ADMIN (DROPDOWN)-->
 										                   <li class="nav-item dropdown">
@@ -196,13 +127,7 @@
 										                      </li>
 										                    </ul>
 										                  </li>
-		  
-		                  <li class="nav-item mx-3">
-		                    <a class="nav-link" href="/" th:href="@{/}"><i class="bi bi-cart-fill" style="font-size: 25px; color: rgb(0, 183, 255);"></i> Cesta</a>
-		                  </li>
-		                  <li class="nav-item mx-3"> 
-		                    <a class="nav-link" href="/favoritos" th:href="@{/favoritos}"><i class="bi bi-suit-heart-fill" style="font-size: 25px; color: rgb(246, 55, 12);"></i> Favoritos</a>
-		                  </li>
+
 						  <li class="nav-item mx-3">
 						     <a class="nav-link" href="/admin/listaClientes" th:href="@{/admin/listaClientes}"><i class="bi bi-people-fill text-info" style="font-size: 25px;"></i> Clientes</a>
 						  </li>
@@ -223,9 +148,9 @@
 		                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
 		                  </form>
 						  
-						  <div class="nav-item mx-3">
+						  <!--div class="nav-item mx-3">
 						  	<a type="button" href="/catalogo" th:href="@{/catalogo}" id="botonCatalogo" class="btn btn-lg btn-primary"><i class="bi bi-shop"></i> Catálogo</a>
-						  </div>
+						  </div-->
 		          
 		              </div>
 		            </nav>
