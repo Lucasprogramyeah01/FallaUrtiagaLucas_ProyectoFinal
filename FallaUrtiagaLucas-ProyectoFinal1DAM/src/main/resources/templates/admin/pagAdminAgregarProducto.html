@@ -20,7 +20,9 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+            <nav th:replace="~{fragmentos/navAdmin::navAdmin}"></nav>
+        </div>
 
 <!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -156,11 +158,21 @@
                           <label for="editorialReg" class="form-label p-0 m-0"><h5>Categorías <span class="text-danger">*</h5></span></label>
                           <div class="d-flex flex-wrap">
 							
-							<div class="col-3 form-check pe-5 py-1" th:each="categoria : ${listaCategorias}">
-								<input type="checkbox" th:field="*{listadoCategorias}" th:value="${categoria.idCategoria}" 
-									th:text="${categoria.nombre}" class="form-check-input border border-1 border-dark">
-							    <label class="form-check-label"></label>
-							</div>
+							<!--Si hay categorías disponibles-->
+							<th:block th:if="${libro.listadoCategorias.size() != 0}">
+								<div class="col-3 form-check pe-5 py-1" th:each="categoria : ${listaCategorias}">
+									<input type="checkbox" th:field="*{listadoCategorias}" th:value="${categoria.idCategoria}" 
+										th:text="${categoria.nombre}" class="form-check-input border border-1 border-dark">
+								    <label class="form-check-label"></label>
+								</div>
+							</th:block>
+							
+							<!--Si NO hay categorías disponibles-->
+							<th:block th:if="${libro.listadoCategorias.size() != 0}">
+								<div class="col-3 form-check pe-5 py-1">
+									<h6>No hay ninguna categoría agregada en este momento.</h6>
+								</div>
+							</th:block>
 							
                           </div>
                         </div>

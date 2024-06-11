@@ -23,8 +23,8 @@ ALTER SEQUENCE tipo_seq RESTART WITH 54;
 
 -- CLIENTES ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO Usuario(id_usuario, nombre, apellidos, correo, username, password, imagen, texto_alt_imagen, num_puntos_hon, admin) VALUES (1, 'Laureano', 'Cayena  Barrenota', 'laureanoNormal@gmail.com', 'user', '1234', 'https://pbs.twimg.com/media/FnKYaf9XoAAodcK.png', 'Imagen de perfil', 0, 'false');
-INSERT INTO Usuario(id_usuario, nombre, apellidos, correo, username, password, imagen, texto_alt_imagen, num_puntos_hon, admin) VALUES (2, 'Duke', 'Java Mascot', 'adminadmin@gmail.com', 'admin', 'admin', 'https://cr.openjdk.java.net/~jeff/Duke/png/DukeCheers.png', 'Imagen de perfil', 0, 'true');
+INSERT INTO Usuario(id_usuario, nombre, apellidos, correo, username, password, imagen, texto_alt_imagen, num_puntos_hon, admin) VALUES (1, 'Laureano', 'Cayena  Barrenota', 'laureanoNormal@gmail.com', 'user', '{noop}1234', 'https://pbs.twimg.com/media/FnKYaf9XoAAodcK.png', 'Imagen de perfil', 0, 'false');
+INSERT INTO Usuario(id_usuario, nombre, apellidos, correo, username, password, imagen, texto_alt_imagen, num_puntos_hon, admin) VALUES (2, 'Duke', 'Java Mascot', 'adminadmin@gmail.com', 'admin', '{noop}admin', 'https://cr.openjdk.java.net/~jeff/Duke/png/DukeCheers.png', 'Imagen de perfil', 0, 'true');
 
 -- LIBROS ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 

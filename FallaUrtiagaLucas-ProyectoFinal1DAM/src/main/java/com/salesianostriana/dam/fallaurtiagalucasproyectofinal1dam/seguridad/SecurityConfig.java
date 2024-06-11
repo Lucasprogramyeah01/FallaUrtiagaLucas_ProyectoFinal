@@ -73,14 +73,17 @@ public class SecurityConfig  {
 				.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", 
 						"/quienesSomos", "/condicionesDeUso", "/politicaDePrivacidad", 
 						"/catalogo", "/infoLibro/{id}", "/serie/{nombre}", "/catalogo/tipo/{id}", 
-						"/catalogo/categoria/{id}", "/proximamente", "/novedades").permitAll()
+						"/catalogo/categoria/{id}", "/proximamente", "/novedades", "/registro").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
-			.requestCache(cache -> cache.requestCache(requestCache))
-			.formLogin((loginz) -> loginz
-					.loginPage("/")
-					.successHandler(authenticationSuccessHandler)
-					.permitAll());
+                .formLogin((loginz) -> loginz
+                        .loginPage("/login")
+                        .successHandler(authenticationSuccessHandler)
+                        .permitAll())
+                .logout((logoutz) -> logoutz
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll());
 
         // Añadimos esto para poder seguir accediendo a la consola de H2 con Spring Security habilitado.
         http.csrf(csrfz -> csrfz.disable());

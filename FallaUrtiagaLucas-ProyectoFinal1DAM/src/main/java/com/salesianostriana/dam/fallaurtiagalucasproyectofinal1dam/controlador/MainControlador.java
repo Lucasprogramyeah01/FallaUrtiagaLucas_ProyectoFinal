@@ -8,13 +8,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.TipoServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.UsuarioServicio;
 
 @Controller
 public class MainControlador {
@@ -28,11 +31,33 @@ public class MainControlador {
 	@Autowired
 	private TipoServicio servicioTipo;
 	
+	@Autowired
+	private UsuarioServicio servicioUsuario;
+	
 	
 	//Mostrar página de inicio de administrador.
 	@GetMapping("/admin/")
 	public String mostrarInicioAdmin() {
 		return "/admin/pagAdminInicio";
+	}
+	
+	//Mostrar página de registro.
+	@GetMapping("/registro")
+	public String mostrarFormularioRegistro(Model model) {
+		
+		Usuario u = new Usuario();
+		model.addAttribute("usuario", u);
+		
+		return "pagRegistro";
+	}
+	
+	//Registrar usuario.
+	@GetMapping("/registro/submit")
+	public String procesarFormularioRegistro(@ModelAttribute("usuario") Usuario u) {
+		
+		servicioUsuario.saveUsuarioConContrasenhaCodificada(u);
+		
+		return "redirect:/login";
 	}
 	
 	//MOSTRAR PÁGINAS DEL NAV Y EL FOOTER --------------------------------------------------------------------------------------

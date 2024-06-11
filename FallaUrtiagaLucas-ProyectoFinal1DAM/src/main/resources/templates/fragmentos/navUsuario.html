@@ -5,7 +5,7 @@
 
 	<body>
 		  
-		  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3">
+		  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3" th:fragment="navUsuario">
 		            <div class="container-fluid">
 		              
 		              <!--Logo-->
@@ -23,51 +23,6 @@
 		              <!--Opciones-->
 		              <div class="collapse navbar-collapse" id="navbarCliente">
 		                <ul class="navbar-nav me-auto">
-		  
-		  
-		                  <!--INICIAR SESIÓN (DROPDOWN)-->
-		                  <li class="nav-item dropdown">
-		                    <a class="nav-link dropdown-toggle ms-3" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-		                      <i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Usuario
-		                    </a>
-		                    <ul class="dropdown-menu p-1">
-		                      <li style="width: 400px;">
-		                        <div class="container-fluid">
-		                          <div class="row">
-		                            <!--Dropdown header-->
-		                            <div class="bg-primary pt-3 pb-2">
-		                              <h4 class="text-white">&nbsp;INICIAR SESIÓN</h4>
-		                            </div>
-		                            <!--Dropdown body-->
-		                            <div class="p-0">
-										
-									  <!--Formulario de Iniciar sesión-->
-		                              <form action="#" th:action="@{/}">
-		                                <div class="m-4">
-		                                  <label for="username" class="form-label mb-1">Nombre de usuario</label>
-		                                  <input type="text" class="form-control bg-secondary bg-opacity-25" id="username" placeholder="Introduzca su nombre de usuario" name="username">
-		                                </div>
-		                                <div class="mb-4 mx-4">
-		                                  <label for="password" class="form-label mb-1">Contraseña</label>
-		                                  <input type="password" class="form-control bg-secondary bg-opacity-25" id="password" placeholder="Introduzca su contraseña" name="password">
-		                                </div>
-		                                <div class="w-100 d-flex justify-content-center bg-secondary pt-3">
-		                                  <button type="submit" id="submitIni" class="w-75 btn btn-lg btn-primary">Iniciar sesión</button>
-		                                </div>
-										
-		                              </form>
-		                            </div>
-		                            <!--Dropdown footer-->
-		                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
-		                              <div class="row justify-content-center">
-		                                <h6 class="text-light text-center mt-3">¿No tienes una cuenta?</h6>
-		                                <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-dark w-75">Regístrate</a>
-		                              </div>
-		                            </div>
-		                        </div>
-		                      </li>
-		                    </ul>
-		                  </li>
 						  
 						  <!--USUARIO (DROPDOWN)-->
 						                  <li class="nav-item dropdown">
@@ -120,7 +75,7 @@
 						                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
 						                              <div class="row mt-3 justify-content-center">
 														<form th:action="@{/logout}" method="post" id="logoutForm" class="justify-content-center">
-						                                	<a type="submit" class="btn btn-lg btn-dark mx-1" style="width: 35%;"><i class="bi bi-box-arrow-right"></i>&nbsp; Cerrar sesión</a>
+						                                	<a type="submit" class="btn btn-lg btn-dark mx-1" style="width: 35%;"><i class="bi bi-box-arrow-left"></i>&nbsp; Cerrar sesión</a>
 														</form>
 						                              </div>
 						                            </div>

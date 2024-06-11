@@ -45,7 +45,7 @@ public class LibroControlador {
 	@GetMapping("/agregarLibro")
 	public String mostrarFormularioLibro(Model model, ArrayList<Long> listaIdsCat) {
 		
-		if(servicio.cantidadDeTipos()==0 || servicio.cantidadDeCategorias()==0) {
+		if(servicio.cantidadDeTipos()==0) {
 			return "redirect:/admin/listaLibros?error=true";
 		}else {
 	 		Libro l = new Libro();

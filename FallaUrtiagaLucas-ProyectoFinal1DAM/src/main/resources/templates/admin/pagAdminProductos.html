@@ -20,7 +20,9 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+            <nav th:replace="~{fragmentos/navAdmin::navAdmin}"></nav>
+        </div>
 
 <!--CONTENIDO------------------------------------------------------------------------------------------------------------------------------------------------>
 
@@ -42,7 +44,7 @@
 								<!--MENSAJITO DE ERROR-->
 								<div class="alert alert-danger alert-dismissible fade show mb-5" th:if="${param.error}">
 									<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-								 	<h5 class="m-0"><strong><i class="bi bi-exclamation-diamond-fill"></i></strong>&nbsp; Para que un producto pueda ser añadido debe pertenecer a un tipo y tener estar asociado a mínimo una categoría ¡Agrega por lo menos uno de cada!</h5>
+								 	<h5 class="m-0"><strong><i class="bi bi-exclamation-diamond-fill"></i></strong>&nbsp; Para que un producto pueda ser añadido debe pertenecer a un tipo ¡Agrega al menos uno!</h5>
 								</div>
 			
 								<!--Botón de agregar clientes-->
@@ -91,11 +93,20 @@
 			                                    <td th:text="${libro.editorial}"></td>
 												<td th:text="${libro.autor}"></td>
 			                                    <td th:text="${libro.tipo.nombre}"></td>
-			                                    <td>
-													<div th:each="categoria : ${libro.listadoCategorias}">
-													<p th:text="${categoria.nombre}" class="mb-2"></p>
-													</div>
-												</td>
+												
+												<!--Producto categorizado-->
+												<th:block th:if="${libro.listadoCategorias.size() != 0}">
+				                                    <td>
+														<div th:each="categoria : ${libro.listadoCategorias}">
+														<p th:text="${categoria.nombre}" class="mb-2"></p>
+														</div>
+													</td>
+												</th:block>
+												<!--Producto descategorizado-->
+												<th:block th:if="${libro.listadoCategorias.size() == 0}">
+													<td>Sin categorías</td>
+												</th:block>
+												
 			                                    <td th:text="${libro.cubierta.nombreCubierta}"></td>
 												<td th:text="${libro.publico}"></td>
 												<td th:text="${#strings.abbreviate(libro.descripcion,80)}"></td>

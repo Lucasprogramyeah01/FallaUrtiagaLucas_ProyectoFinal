@@ -25,7 +25,7 @@ public class RoleBasedSuccessHandler implements AuthenticationSuccessHandler {
 	private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 	
 	private final String ROLE_USER_URL = "/";
-	private final String ROLE_ADMIN_URL = "/admin/listaLibros";
+	private final String ROLE_ADMIN_URL = "/admin/";
 	private final String ROLE_DEFAULT_URL = "/login?error=Error en el rol asignado";
 	
 	@Override

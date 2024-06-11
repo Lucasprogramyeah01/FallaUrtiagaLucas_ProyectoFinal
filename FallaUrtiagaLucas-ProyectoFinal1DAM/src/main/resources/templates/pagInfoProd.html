@@ -20,7 +20,13 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+		<div sec:authorize="hasRole('ROLE_USER')">
+            <nav th:replace="~{fragmentos/navUsuario::navUsuario}"></nav>
+        </div>
+		
+		<div sec:authorize="!isAuthenticated()">
+		    <nav th:replace="~{fragmentos/nav::nav}"></nav>
+		</div>
 
 <!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -132,11 +138,20 @@
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Categorías</h5></td>
-                                  <td>
-									<div th:each="categoria : ${libro.listadoCategorias}">
-								  		<p th:text="${categoria.nombre}" class="m-0"></p>
-									</div>
-								  </td>
+								  
+								  <!--Producto categorizado-->
+								  <th:block th:if="${libro.listadoCategorias.size() != 0}">
+	                                  <td>
+										<div th:each="categoria : ${libro.listadoCategorias}">
+									  		<p th:text="${categoria.nombre}" class="m-0"></p>
+										</div>
+									  </td>
+								  </th:block>
+								  <!--Producto desategorizado-->
+								  <th:block th:if="${libro.listadoCategorias.size() == 0}">
+								  	  <td>---</td>
+								  </th:block>
+								  
                                 </tr>
                                 <tr>
                                   <td class="fw-bold"><h5 class="m-0 py-1">Cubierta</h5></td>

@@ -37,7 +37,7 @@
 
             <!--Formulario-->
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-                <form action="#" th:action="@{/}">
+                <form action="#" th:action="@{/login}" method="post">
                     <!--Nombre de usuario y Contraseña-->
                     <fieldset class="pb-1 pt-3">
                         <div class="row mb-3">
@@ -60,14 +60,12 @@
                     </div>
                 </form>
 
-                <!--div class="d-flex justify-content-center flex-column w-100 pb-3 border border-0"-->
                     <div class="row w-100 justify-content-center">
-                        <h6 class="text-dark text-center mt-4">¿No tienes una cuenta?</h6>
-                        <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-dark w-25">
+                        <h6 class="text-dark text-center mt-5">¿No tienes una cuenta?</h6>
+                        <a type="button" href="/" th:href="@{/registro}" id="botonReg" class="btn btn-lg btn-dark w-25">
                             <h4 class="m-0 py-1"><i class="bi bi-pencil-square"></i>&nbsp; Regístrate</h4>
                         </a>
                     </div>
-                <!--/div-->
             </div>
 
 			<!--Columna derecha-->
