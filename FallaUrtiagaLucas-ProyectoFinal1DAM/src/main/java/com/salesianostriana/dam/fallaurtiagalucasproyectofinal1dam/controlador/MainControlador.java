@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
@@ -52,10 +53,9 @@ public class MainControlador {
 	}
 	
 	//Registrar usuario.
-	@GetMapping("/registro/submit")
+	@PostMapping("/registro/submit")
 	public String procesarFormularioRegistro(@ModelAttribute("usuario") Usuario u) {
-		
-		servicioUsuario.saveUsuarioConContrasenhaCodificada(u);
+		servicioUsuario.save(u);
 		
 		return "redirect:/login";
 	}

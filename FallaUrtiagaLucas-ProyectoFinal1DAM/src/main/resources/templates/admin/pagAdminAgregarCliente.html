@@ -76,20 +76,25 @@
                     <!--Contraseña y cantidad puntos "Hon"-->
                     <fieldset class="py-2">
                       <div class="row">
-                          <div class="col mb-3 mx-4" th:if="${usuario.idUsuario==null}">
-                              <label for="contrasenha1Reg"><h5>Contraseña <span class="text-danger">*</h5></span></label>
-                              <input type="password" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
-                              <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
-                          </div>
+						  <!--Contraseña cuando el usuario NO se ha registrado-->
+						  <th:block th:if="${usuario.idUsuario==null}">
+	                          <div class="col mb-3 mx-4">
+	                              <label for="contrasenha1Reg"><h5>Contraseña <span class="text-danger">*</h5></span></label>
+	                              <input type="password" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
+	                              <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
+	                          </div>
+						  </th:block>
+						  
+						  <!--Contraseña cuando el usuario se ha registrado-->
+						  <th:block th:if="${usuario.idUsuario!=null}">
+						  		<div class="col mb-3 mx-4"></div>
+						  </th:block>
+						  
                           <div class="col mb-3 mx-4">
                             <label for="puntosReg"><h5>Cantidad de puntos <i>Hon</i><span class="text-danger"> *</h5></span></label>
                             <input type="number" th:field="*{numPuntosHon}" class="form-control bg-secondary bg-opacity-25 w-50" name="puntosReg" id="puntosReg" min="0" step="50" value="0" 
                                 placeholder="Puntos 'Hon' que van a ser asignados" required>
                           </div>
-						  
-						  <!--Bloque vacío que ocupa el lugar de la contraseña cuando se edita un usuario-->
-						  <div class="col mb-3 mx-4" th:if="${usuario.idUsuario!=null}">
-						   </div>
                       </div>
                     </fieldset>
 					

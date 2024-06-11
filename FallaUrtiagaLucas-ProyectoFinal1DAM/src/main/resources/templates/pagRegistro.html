@@ -9,9 +9,9 @@
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}">
         <link rel="stylesheet" type="text/css" href="../css/estiloGeneral.css" th:href="@{../css/estiloGeneral.css}">
 
-        <!--JS-->
-        <script src="../static/js/pagRegistro.js" defer></script>
-
+		<!--JS-->
+		<script src="../js/pagRegistro.js" th:src="@{/js/pagRegistro.js}" defer></script>
+		
         <!--BOOTSTRAP-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -41,7 +41,7 @@
 
             <!--Formulario-->
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
-                <form action="@{/registro/submit}" th:object="${usuario}" method="post" name="formularioReg" id="formularioReg">
+                <form th:action="@{/registro/submit}" th:object="${usuario}" method="post" name="formularioReg" id="formularioReg">
 
 					<input th:if="${usuario.idUsuario!= 0}" type="hidden" name="idReg" th:field="*{idUsuario}"/>
 					<input th:if="${usuario.idUsuario!= 0}" type="hidden" name="puntosHonReg" th:field="*{numPuntosHon}"/>
@@ -82,10 +82,10 @@
                               <input type="password" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
                               <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
                           </div>
-                          <div class="col mb-3 mx-4">
+                          <!--div class="col mb-3 mx-4">
                               <label for="contrasenha2Reg"><h5>Repetir contraseña <span class="text-danger">*</h5></span></label>
                               <input type="password" class="form-control bg-secondary bg-opacity-25" id="contrasenha2Reg" placeholder="Repita su contraseña" name="contrasenha2Reg" required>
-                          </div>
+                          </div-->
                       </div>
                     </fieldset>
 					
@@ -108,7 +108,7 @@
                       <div class="form-check mb-3 mx-4">
                         <label class="form-check-label">
                           <input class="form-check-input border border-1 border-dark" type="checkbox" name="remember" required><h6 class="mt-1">He leído y aceptado la
-                            <a class="text-info" style="text-decoration: none;" href="pagPoliticaDePrivacidad.html"><i>Política de Privacidad</i></a><span class="text-danger"> *</span></h6>
+                            <a class="text-info" style="text-decoration: none;" th:href="@{/politicaDePrivacidad}" href="pagPoliticaDePrivacidad.html"><i>Política de Privacidad</i></a><span class="text-danger"> *</span></h6>
                         </label>
                       </div>
                     </fieldset>

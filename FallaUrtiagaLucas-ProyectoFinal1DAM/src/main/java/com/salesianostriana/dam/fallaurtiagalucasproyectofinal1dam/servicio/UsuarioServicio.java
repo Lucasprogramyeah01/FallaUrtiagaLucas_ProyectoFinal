@@ -14,12 +14,14 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.base
 public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepositorio>{
 
 	@Autowired
+	private UsuarioRepositorio repoUsuario;
+	
+	@Autowired
     private PasswordEncoder encoder;
 	
 	public Usuario saveUsuarioConContrasenhaCodificada(Usuario u) {
-        u.setPassword(encoder.encode(u.getPassword()));
-        return save(u);
+		u.setPassword(encoder.encode(u.getPassword()));
+		return save(u);
     }
-
 	
 }
