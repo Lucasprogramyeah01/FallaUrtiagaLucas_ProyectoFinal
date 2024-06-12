@@ -22,6 +22,7 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
     private PasswordEncoder encoder;
 
 	
+	//PASSWORD ENCODER.
 	public void saveUsuarioConContrasenhaCodificada(Usuario u) {
 		u.setPassword(encoder.encode(u.getPassword()));
 		repoUsuario.save(u);
@@ -33,6 +34,22 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 		List<Libro> librosFavoritosFiltrados = repoUsuario.findLibroByFavorito();
 		
 		return librosFavoritosFiltrados;
+	}
+	
+	
+	//Obtener una lista de todos los usuarios.
+	public List<Usuario> filtrarListaUsuarios () {
+		List<Usuario> listaUsuarios = repoUsuario.findListaUsuarios();
+			
+		return listaUsuarios;
+	}
+	
+	
+	//Obtener una lista de todos los usuarios menos aquel que tenga el nombre pasado por parámetro.
+	public List<Usuario> filtrarListaUsuariosExcluyendoAquelCuyoIdSeaIgualAlPasPar (Long idUsuario) {
+		List<Usuario> listaUsuarios = repoUsuario.findListaUsuariosByExcludingUsername(idUsuario);
+				
+		return listaUsuarios;
 	}
 	
 }

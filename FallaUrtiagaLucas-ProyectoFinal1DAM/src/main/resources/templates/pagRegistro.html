@@ -39,8 +39,15 @@
             <div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
 
-            <!--Formulario-->
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
+				
+				<!--MENSAJITO DE ERROR-->
+				<div class="alert alert-danger alert-dismissible fade show mb-5 mx-4" th:if="${param.error}">
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+					<h5 class="m-0"><strong><i class="bi bi-exclamation-diamond-fill"></i></strong>&nbsp; El nombre de usuario introducido no está disponible, ya pertenece a otro usuario ¡Intoduzca sus datos de nuevo teniéndolo en cuenta!</h5>
+				</div>
+				
+				<!--Formulario-->
                 <form th:action="@{/registro/submit}" th:object="${usuario}" method="post" name="formularioReg" id="formularioReg">
 
 					<input th:if="${usuario.idUsuario != 0}" type="hidden" name="idReg" th:field="*{idUsuario}"/>

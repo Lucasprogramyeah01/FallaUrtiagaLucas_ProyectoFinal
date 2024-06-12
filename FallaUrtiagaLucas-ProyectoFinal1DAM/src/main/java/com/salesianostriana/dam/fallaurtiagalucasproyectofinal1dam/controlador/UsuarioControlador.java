@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,18 @@ public class UsuarioControlador {
 	
 	//AGREGAR USUARIO.
 	@PostMapping("/agregarCliente/submit")
-	public String procesarFormularioRegistroClientes(@ModelAttribute("usuario") Usuario u, Model model) {
+	public String procesarFormularioRegistroClientes(@ModelAttribute("usuario") Usuario u) {
+		
+		List<Usuario> listaUsuarios = servicio.filtrarListaUsuarios();
+		
+		List<Usuario> listaIdUsuarios = 
+				servicio.filtrarListaUsuariosExcluyendoAquelCuyoIdSeaIgualAlPasPar(u.getIdUsuario());
+		
+		for(Usuario usuario : listaUsuarios) {
+			if(usuario.getUsername().equals(u.getUsername()) && !listaIdUsuarios.contains(u)) {
+				return "redirect:/admin/agregarCliente?error=true";
+			}
+		}
 		servicio.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/admin/listaClientes";
@@ -71,7 +83,18 @@ public class UsuarioControlador {
 	//EDITAR USUARIO.
 	@PostMapping("editarCliente/submit")
 	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
-		servicio.save(u);
+		
+		List<Usuario> listaUsuarios = servicio.filtrarListaUsuarios();
+		
+		List<Usuario> listaIdUsuarios = 
+				servicio.filtrarListaUsuariosExcluyendoAquelCuyoIdSeaIgualAlPasPar(u.getIdUsuario());
+		
+		for(Usuario usuario : listaUsuarios) {
+			if(usuario.getUsername().equals(u.getUsername()) && !listaIdUsuarios.contains(u)) {
+				return "redirect:/admin/agregarCliente?error=true";
+			}
+		}
+		servicio.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/admin/listaClientes";
 	}

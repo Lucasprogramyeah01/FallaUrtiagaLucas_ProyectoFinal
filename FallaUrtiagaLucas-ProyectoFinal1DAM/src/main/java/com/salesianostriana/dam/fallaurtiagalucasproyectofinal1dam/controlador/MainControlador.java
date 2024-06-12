@@ -57,6 +57,14 @@ public class MainControlador {
 	//Registrar usuario.
 	@PostMapping("/registro/submit")
 	public String procesarFormularioRegistro(@ModelAttribute("usuario") Usuario u) {
+		
+		List<Usuario> listaUsuarios = servicioUsuario.filtrarListaUsuarios();
+		
+		for(Usuario usuario : listaUsuarios) {	
+			if(usuario.getUsername().equals(u.getUsername())) {
+				return "redirect:/registro?error=true";
+			}
+		}
 		servicioUsuario.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/login";

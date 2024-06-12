@@ -20,4 +20,21 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 			""")
 	public List<Libro> findLibroByFavorito();
 	
+	
+	//Obtener una lista de todos los usuarios.
+	@Query("""
+			SELECT u 
+			FROM Usuario u
+			""")
+	public List<Usuario> findListaUsuarios();
+	
+	
+	//Obtener una lista de todos los usuarios menos aquel que tenga el nombre pasado por parámetro.
+	@Query("""
+			SELECT u 
+			FROM Usuario u
+			WHERE u.idUsuario != ?1
+			""")
+	public List<Usuario> findListaUsuariosByExcludingUsername(Long idUsuario);
+	
 }
