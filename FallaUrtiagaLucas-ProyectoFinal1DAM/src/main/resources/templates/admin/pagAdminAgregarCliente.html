@@ -47,7 +47,7 @@
                     <fieldset class="pb-2 pt-3">
                         <div class="row mb-3">
                             <div class="col mb-3 mx-4">
-								<input th:if="${usuario.idUsuario!= 0}" type="hidden" name="idReg" th:field="*{idUsuario}"/>
+								<input th:if="${usuario.idUsuario!=0}" type="hidden" name="idReg" th:field="*{idUsuario}"/>
 								
                                 <label for="nombreReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
                                 <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreReg" placeholder="Introduzca su nombre" name="nombreReg" required>
@@ -62,10 +62,21 @@
                     <!--Nombre de usuario y Correo electrónico-->
                     <fieldset class="py-2">
                       <div class="row mb-3">
-                        <div class="col mb-3 mx-4">
-                          <label for="nombreUsuarioReg" class="form-label p-0 m-0"><h5>Nombre de usuario <span class="text-danger">*</h5></span></label>
-                          <input type="text" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
-                        </div>
+						<!--Nombre de usuario cuando el usuario NO se ha registrado-->
+						<th:block th:if="${usuario.idUsuario==null}">
+	                        <div class="col mb-3 mx-4">
+	                          <label for="nombreUsuarioReg" class="form-label p-0 m-0"><h5>Nombre de usuario <span class="text-danger">*</h5></span></label>
+	                          <input type="text" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
+	                        </div>
+						</th:block>
+						
+						<!--Nombre de usuario cuando el usuario se ha registrado-->
+						<th:block th:if="${usuario.idUsuario!=null}">
+							<div class="col mb-3 mx-4">
+								<input type="hidden" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
+							</div>
+						</th:block>
+						
                         <div class="col mb-3 mx-4">
                           <label for="emailReg" class="form-label p-0 m-0"><h5>Email <span class="text-danger">*</h5></span></label>
                           <input type="email" th:field="*{correo}" class="form-control bg-secondary bg-opacity-25" id="emailReg" placeholder="Introduzca su correo electrónico" name="emailReg" required>
@@ -87,7 +98,9 @@
 						  
 						  <!--Contraseña cuando el usuario se ha registrado-->
 						  <th:block th:if="${usuario.idUsuario!=null}">
-						  		<div class="col mb-3 mx-4"></div>
+							<div class="col mb-3 mx-4">
+								<input type="hidden" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
+							</div>
 						  </th:block>
 						  
                           <div class="col mb-3 mx-4">

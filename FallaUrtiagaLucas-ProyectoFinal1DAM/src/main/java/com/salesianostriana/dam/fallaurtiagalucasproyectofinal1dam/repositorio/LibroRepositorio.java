@@ -140,6 +140,4 @@ public interface LibroRepositorio extends JpaRepository<Libro, Long>{
 			""")
 	public List<Libro> findLibroByFechaPublicacion();
 	
-	
-	
 }

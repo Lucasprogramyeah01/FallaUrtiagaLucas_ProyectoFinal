@@ -47,7 +47,7 @@ public class UsuarioControlador {
 	//AGREGAR USUARIO.
 	@PostMapping("/agregarCliente/submit")
 	public String procesarFormularioRegistroClientes(@ModelAttribute("usuario") Usuario u, Model model) {
-		servicio.save(u);
+		servicio.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/admin/listaClientes";
 	}

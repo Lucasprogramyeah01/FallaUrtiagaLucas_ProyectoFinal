@@ -1,10 +1,12 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +57,7 @@ public class MainControlador {
 	//Registrar usuario.
 	@PostMapping("/registro/submit")
 	public String procesarFormularioRegistro(@ModelAttribute("usuario") Usuario u) {
-		servicioUsuario.save(u);
+		servicioUsuario.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/login";
 	}
@@ -85,9 +87,34 @@ public class MainControlador {
 		return "pagPoliticaDePrivacidad";
 	}
 	
+	//MOSTRAR PÁGINA DE FAVORITOS.
 	@GetMapping("/favoritos")
-	public String mostrarFavoritos() {
+	public String mostrarFavoritos(@AuthenticationPrincipal Usuario u, Model model) {
+
+		model.addAttribute("listaLibros", servicioUsuario.filtrarlibrosFavoritos());
+		
 		return "pagFavoritos";
+	}
+	
+	//AGREGAR A FAVORITOS (Al clickar en el botón de Favoritos).
+	@GetMapping("/agregarAFavoritos/{id}")
+	public String agregarAFavoritos(@PathVariable("id") Long idLibro, 
+		@AuthenticationPrincipal Usuario u, @ModelAttribute("listaLibros") ArrayList<Libro> listaLibros, Model model) {
+		
+		/*Optional<Libro> libroFavorito = servicio.findById(idLibro);
+		
+		if(libroFavorito.isPresent()) {
+			u.getListadoFavoritos().add(libroFavorito.get());
+		}*/
+		
+		for (Libro libro : listaLibros) {
+			u.getListadoFavoritos().add(servicio.findById(idLibro).get());
+		}
+		/*if(u.getListadoFavoritos().contains(libroFavorito.get())) {
+			
+		}*/
+		
+		return "redirect:/favoritos";
 	}
 	
 	

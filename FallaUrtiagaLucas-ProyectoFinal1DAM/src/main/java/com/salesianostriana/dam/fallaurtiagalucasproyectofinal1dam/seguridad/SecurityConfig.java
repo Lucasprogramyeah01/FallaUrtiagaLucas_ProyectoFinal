@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -73,7 +74,8 @@ public class SecurityConfig  {
 				.requestMatchers("/css/**", "/img/**", "/js/**", "/h2-console/**", "/", 
 						"/quienesSomos", "/condicionesDeUso", "/politicaDePrivacidad", 
 						"/catalogo", "/infoLibro/{id}", "/serie/{nombre}", "/catalogo/tipo/{id}", 
-						"/catalogo/categoria/{id}", "/proximamente", "/novedades", "/registro").permitAll()
+						"/catalogo/categoria/{id}", "/proximamente", "/novedades", "/registro/**",
+						"/favoritos").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
                 .formLogin((loginz) -> loginz
@@ -92,7 +94,5 @@ public class SecurityConfig  {
 
         return http.build();
     }
-	
-	
 	
 }
