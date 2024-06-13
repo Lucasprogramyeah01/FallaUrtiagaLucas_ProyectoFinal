@@ -122,7 +122,7 @@
 
                     <!--Botón de registro-->
                     <div class="row w-100 d-flex justify-content-center mt-4">
-                      <button type="submit" id="submitReg" class="w-25 btn btn-lg btn-primary"><h4>Registrarse</h4></button>
+                      <button type="submit" data-bs-toggle="modal" data-bs-target="#modalUsuarioRegistrado" id="submitReg" class="w-25 btn btn-lg btn-primary"><h4>Registrarse</h4></button>
                     </div>
                 </form>
             </div>
@@ -130,11 +130,46 @@
             <!--Columna derecha-->
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
+
+            <!--MODAL USUARIO REGISTRADO-->
+            <div class="modal fade" id="modalUsuarioRegistrado">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header bg-success">
+                  <h1 class="m-0 bg-white p-2 rounded-4"><i class="bi bi-check-lg m-0" style="color: rgb(0, 222, 0);"></i></h1>
+                  <h4 class="modal-title text-white" style="text-indent: 10px;">USUARIO REGISTRADO</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body py-4 px-3" style="text-align: justify;">
+                  <h5>El usuario se ha registrado correctamente, disfrute de su cuenta ¡Y de la tienda!</h5>
+                  <span class="text-success">Ahora podrá marcar los libros como "favoritos" y comprar productos.</span>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer bg-secondary p-2 d-flex justify-content-around">
+                  <a type="button" th:href="@{/login}" id="confirmarBorrado" class="btn btn-dark w-auto">Volver a la página de registro</a>
+                </div>
+
+                </div>
+                </div>
+              </div>
+
         </main>
 
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<footer th:replace="~{fragmentos/footer::footer}"></footer>          
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>   
+    
+    <!--Librerías para los modal-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+            
+    <script src="../js/modalUsuarioRegistrado.js" th:src="@{/js/modalUsuarioRegistrado.js}" defer></script>
 
     </body>
 </html>

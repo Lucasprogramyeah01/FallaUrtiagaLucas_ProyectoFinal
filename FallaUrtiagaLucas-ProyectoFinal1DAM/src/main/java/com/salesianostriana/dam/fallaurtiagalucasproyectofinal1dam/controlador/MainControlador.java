@@ -93,7 +93,7 @@ public class MainControlador {
 	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
 		servicioUsuario.save(u);
 			
-		return "redirect:/";
+		return "redirect:/logout";
 	}
 	
 	//MOSTRAR PÁGINAS DEL NAV Y EL FOOTER -----------------------------------------------------------------------------------

@@ -117,7 +117,7 @@
 			                                    <td class="ps-3 pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
 			                                    <td class="ps-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>
 			                                    <td class="pe-1"><a type="button" th:href="@{/admin/editarLibro/{id}(id=${libro.idLibro})}" id="botonEditarLibro" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
-			                                    <td class="ps-1 pe-3"><a type="button" th:href="@{/admin/borrarLibro/{id}(id=${libro.idLibro})}" id="botonBorrarLibro" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
+			                                    <td class="ps-1 pe-3"><button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrarLibro" th:data-id="${libro.idLibro}" id="botonBorrarLibro" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></button></td>
 			                                </tr> 
 			                            </tbody>
 			
@@ -134,11 +134,47 @@
             <!--Columna derecha>
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div-->
+
+			<!--MODAL BORRAR LIBRO-->
+			<div class="modal fade" id="modalBorrarLibro">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header bg-info">
+						<h1 class="m-0 bg-white p-2 rounded-4"><i class="bi bi-journal-text m-0" style="color: rgb(243, 227, 0);"></i></h1>
+						<h4 class="modal-title text-white" style="text-indent: 10px;">BORRAR LIBRO</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body py-4 px-3">
+						<h5>¿Está seguro de que quiere borrar este libro?</h5>
+						<span style="color: red;">Tenga en cuenta que será borrado definitivamente.</span>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer bg-secondary p-2 d-flex justify-content-around">
+						<a type="button" id="confirmarBorrado" class="btn btn-info w-25">SÍ</a>
+						<button type="button" class="btn btn-dark w-25" data-bs-dismiss="modal">NO</button>
+					</div>
+
+				</div>
+				</div>
+			</div>
+
         </main>
 
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<footer th:replace="~{fragmentos/footer::footer}"></footer>          
+		<footer th:replace="~{fragmentos/footer::footer}"></footer> 
+		
+		<!--Librerías para los modal-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+                
+        <script src="../js/modalBorrarProducto.js" th:src="@{/js/modalBorrarProducto.js}" defer></script>
 
     </body>
 </html>

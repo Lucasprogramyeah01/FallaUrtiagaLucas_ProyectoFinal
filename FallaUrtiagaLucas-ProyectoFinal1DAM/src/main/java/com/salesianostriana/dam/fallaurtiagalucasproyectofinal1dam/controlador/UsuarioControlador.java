@@ -61,38 +61,6 @@ public class UsuarioControlador {
 		return "redirect:/admin/listaClientes";
 	}
 	
-	//MOSTRAR FORMULARIO PARA EDITAR USUARIO.
-	/*@GetMapping("/editarCliente/{id}")
-	public String mostrarFormularioEditarClientes(@PathVariable("id") long id, Model model) {
-		
-		Optional<Usuario> usuario = servicio.findById(id);
-		
-		if (usuario.isPresent()) {
-			model.addAttribute("usuario", usuario.get());
-			
-			return "/admin/pagAdminAgregarCliente";
-		}else {
-			
-			return "redirect:/admin/listaClientes";
-		}
-	}
-	
-	//EDITAR USUARIO.
-	@PostMapping("/editarCliente/submit")
-	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
-		
-		List<Usuario> listaUsuarios = servicio.filtrarListaUsuarios();
-		
-		for(Usuario usuario : listaUsuarios) {
-			if(usuario.getUsername().equals(u.getUsername()) && !usuario.getIdUsuario().equals(u.getIdUsuario())) {
-				return "redirect:/admin/agregarCliente?error=true";
-			}
-		}
-		servicio.saveUsuarioConContrasenhaCodificada(u);
-		
-		return "redirect:/admin/listaClientes";
-	}*/
-	
 	//BORRAR USUARIO.
 	@GetMapping("/borrarCliente/{id}")
 	public String borrarCliente(@PathVariable("id") long idUsuario) {
