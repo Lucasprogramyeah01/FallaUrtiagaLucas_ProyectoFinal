@@ -51,11 +51,8 @@ public class UsuarioControlador {
 		
 		List<Usuario> listaUsuarios = servicio.filtrarListaUsuarios();
 		
-		List<Usuario> listaIdUsuarios = 
-				servicio.filtrarListaUsuariosExcluyendoAquelCuyoIdSeaIgualAlPasPar(u.getIdUsuario());
-		
 		for(Usuario usuario : listaUsuarios) {
-			if(usuario.getUsername().equals(u.getUsername()) && !listaIdUsuarios.contains(u)) {
+			if(usuario.getUsername().equals(u.getUsername())) {
 				return "redirect:/admin/agregarCliente?error=true";
 			}
 		}
@@ -65,7 +62,7 @@ public class UsuarioControlador {
 	}
 	
 	//MOSTRAR FORMULARIO PARA EDITAR USUARIO.
-	@GetMapping("/editarCliente/{id}")
+	/*@GetMapping("/editarCliente/{id}")
 	public String mostrarFormularioEditarClientes(@PathVariable("id") long id, Model model) {
 		
 		Optional<Usuario> usuario = servicio.findById(id);
@@ -81,23 +78,20 @@ public class UsuarioControlador {
 	}
 	
 	//EDITAR USUARIO.
-	@PostMapping("editarCliente/submit")
+	@PostMapping("/editarCliente/submit")
 	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
 		
 		List<Usuario> listaUsuarios = servicio.filtrarListaUsuarios();
 		
-		List<Usuario> listaIdUsuarios = 
-				servicio.filtrarListaUsuariosExcluyendoAquelCuyoIdSeaIgualAlPasPar(u.getIdUsuario());
-		
 		for(Usuario usuario : listaUsuarios) {
-			if(usuario.getUsername().equals(u.getUsername()) && !listaIdUsuarios.contains(u)) {
+			if(usuario.getUsername().equals(u.getUsername()) && !usuario.getIdUsuario().equals(u.getIdUsuario())) {
 				return "redirect:/admin/agregarCliente?error=true";
 			}
 		}
 		servicio.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/admin/listaClientes";
-	}
+	}*/
 	
 	//BORRAR USUARIO.
 	@GetMapping("/borrarCliente/{id}")

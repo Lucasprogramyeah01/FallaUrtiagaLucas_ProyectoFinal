@@ -36,17 +36,14 @@
 						                            <!--Dropdown header-->
 						                            <div class="bg-primary py-3">
 						                              <div class="row m-0 p-0">
-						                                <div class="d-flex align-items-center" style="width: 77%;">
+						                                <div class="d-flex align-items-center" style="width: 86%;">
 						                                  <h3 class="text-white m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">&nbsp;Buenas, <span sec:authentication="name"></span></h3>
 						                                </div>
-						                                <!--div class="w-auto">
-						                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary me-1 bg-info" style="width: auto;">
+						                                <div class="w-auto">
+						                                  <a type="button" href="/" th:href="@{/editarPerfil/{id}(id=${#authentication.principal.idUsuario})}" id="botonEdit" class="btn btn-lg btn-primary me-1 bg-dark" style="width: auto;">
 						                                    <i class="bi bi-gear-fill"></i>
-						                                  </a>
-						                                  <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-primary" style="width: auto; background-color: rgb(155, 0, 0)">
-						                                    <i class="bi bi-trash3-fill"></i>
-						                                  </a>
-						                                </div-->
+						                                  </a> 
+						                                </div>
 						                              </div>
 						                            </div>
 						                            <!--Dropdown body-->

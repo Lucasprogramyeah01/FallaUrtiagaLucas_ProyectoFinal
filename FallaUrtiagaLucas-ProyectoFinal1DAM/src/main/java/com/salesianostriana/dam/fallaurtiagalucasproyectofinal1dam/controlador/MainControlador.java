@@ -70,7 +70,33 @@ public class MainControlador {
 		return "redirect:/login";
 	}
 	
-	//MOSTRAR PÁGINAS DEL NAV Y EL FOOTER --------------------------------------------------------------------------------------
+	//EDITAR PERFIL DE USUARIO ----------------------------------------------------------------------------------------------
+	
+	//MOSTRAR FORMULARIO PARA EDITAR PERFIL.
+	@GetMapping("/editarPerfil/{id}")
+	public String mostrarFormularioEditarClientes(@PathVariable("id") Long id, Model model) {
+			
+		Optional<Usuario> usuario = servicioUsuario.findById(id);
+			
+		if (usuario.isPresent()) {
+			model.addAttribute("usuario", usuario.get());
+				
+			return "pagEditarUsuario";
+		}else {
+				
+			return "redirect:/";
+		}
+	}
+	
+	//EDITAR PERFIL.
+	@PostMapping("/editarPerfil/submit")
+	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
+		servicioUsuario.save(u);
+			
+		return "redirect:/";
+	}
+	
+	//MOSTRAR PÁGINAS DEL NAV Y EL FOOTER -----------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarInicio(Model model) {

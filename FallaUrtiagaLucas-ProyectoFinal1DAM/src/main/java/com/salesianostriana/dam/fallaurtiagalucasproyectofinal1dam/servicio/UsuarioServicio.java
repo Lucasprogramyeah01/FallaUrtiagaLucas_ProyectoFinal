@@ -45,11 +45,19 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
 	}
 	
 	
-	//Obtener una lista de todos los usuarios menos aquel que tenga el nombre pasado por parámetro.
+	//Obtener una lista de todos los usuarios menos aquel que tenga el ID pasado por parámetro.
 	public List<Usuario> filtrarListaUsuariosExcluyendoAquelCuyoIdSeaIgualAlPasPar (Long idUsuario) {
-		List<Usuario> listaUsuarios = repoUsuario.findListaUsuariosByExcludingUsername(idUsuario);
+		List<Usuario> listaUsuarios = repoUsuario.findListaUsuariosByExcludingId(idUsuario);
 				
 		return listaUsuarios;
 	}
+	
+	
+	//Obtener una lista de todos los usuarios menos aquel que tenga el ID pasado por parámetro.
+	/*public List<Usuario> filtrarListaUsuariosDeUnUsuarioPorId (Long idUsuario) {
+		List<Usuario> listaUsuarios = repoUsuario.findListaUsuariosById(idUsuario);
+					
+		return listaUsuarios;
+	}*/
 	
 }

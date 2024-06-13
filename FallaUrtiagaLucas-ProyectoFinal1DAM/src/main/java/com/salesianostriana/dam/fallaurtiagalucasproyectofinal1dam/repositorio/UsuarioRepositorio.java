@@ -29,12 +29,21 @@ public interface UsuarioRepositorio extends JpaRepository<Usuario, Long>{
 	public List<Usuario> findListaUsuarios();
 	
 	
-	//Obtener una lista de todos los usuarios menos aquel que tenga el nombre pasado por parámetro.
+	//Obtener una lista de todos los usuarios menos aquel que tenga el ID pasado por parámetro.
 	@Query("""
 			SELECT u 
 			FROM Usuario u
 			WHERE u.idUsuario != ?1
 			""")
-	public List<Usuario> findListaUsuariosByExcludingUsername(Long idUsuario);
+	public List<Usuario> findListaUsuariosByExcludingId(Long idUsuario);
+	
+	
+	//Obtener una lista de todos los usuarios menos aquel que tenga el nombre pasado por parámetro.
+	/*@Query("""
+			SELECT u 
+			FROM Usuario u
+			WHERE u.idUsuario == ?1
+			""")
+	public List<Usuario> findListaUsuariosById(Long idUsuario);*/
 	
 }
