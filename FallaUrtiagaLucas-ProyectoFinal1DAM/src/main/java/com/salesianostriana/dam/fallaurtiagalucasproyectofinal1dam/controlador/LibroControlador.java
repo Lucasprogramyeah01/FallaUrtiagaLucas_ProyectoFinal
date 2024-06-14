@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +80,6 @@ public class LibroControlador {
 	//MOSTRAR FORMULARIO PARA EDITAR LIBRO.
 	@GetMapping("/editarLibro/{id}")
 	public String mostrarFormularioEditarLibro(@PathVariable("id") Long idLibro, Model model) {
-		//model.addAttribute("listaCategorias", servicioCat.findAll());	//CUIDAO
 			
 		Optional<Libro> libro = servicio.findById(idLibro);
 			
@@ -91,8 +89,6 @@ public class LibroControlador {
 			model.addAttribute("listaTipos", servicioTipo.findAll());
 			model.addAttribute("listaCubiertas", Cubierta.values());
 			model.addAttribute("listaPublicos", Publico.values());
-			
-			/*model.addAttribute("libro", libro);*/		//CUIDAO
 			
 			return "/admin/pagAdminAgregarProducto";
 		}else {

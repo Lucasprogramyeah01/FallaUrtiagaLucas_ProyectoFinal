@@ -47,6 +47,8 @@ public class Venta {
 	
 	private int codigoPostal;
 	
+	private boolean finalizada;
+	
 	
 	//ASOCIACIÓN CON USUARIO [1U - MV]
 	

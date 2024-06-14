@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,7 +72,7 @@
                                             <!--Precio-->
                                             <div class="row p-2 pt-3 d-flex justify-content-around">
                                                 <div style="width: auto;">
-                                                    <h3 class="text-center"><i class="bi bi-bar-chart-line-fill text-primary"></i> Total: <span class="text-primary" style="font-size: 35px">8.55 €</span></h3>
+                                                    <h3 class="text-center"><i class="bi bi-bar-chart-line-fill text-primary"></i> Precio: <span class="text-primary" style="font-size: 35px">8.55 €</span></h3>
                                                 </div>
                                                 <div style="width: auto;">
                                                     <h3 class="text-center"><i class="bi bi-credit-card-2-front-fill" style="color: rgb(2, 156, 48);"></i> 
@@ -100,7 +100,7 @@
                                                 <label for="codPostalReg" class="form-label p-0 m-0"><h5>País</h5></label>
                                                 <input type="text" class="form-control bg-light text-dark" id="codPostalReg" placeholder="España" text="España" name="codPostalReg" disabled>
                                             </div>
-                                            <div class="row py-2 pt-3">
+                                            <!--div class="row py-2 pt-3">
                                                 <label for="provinciaReg" class="form-label p-0 m-0"><h5>Provincia <span class="text-danger">*</h5></span></label>
                                                 <select th:field="*{cubierta}" class="form-select" id="provinciaReg" name="provinciaReg">
 						                            <option th:each="cubierta : ${listaCubiertas}" th:field="*{cubierta}" th:value="${cubierta}" th:text="${cubierta.nombreCubierta}"></option>
@@ -108,7 +108,7 @@
                                                     <option>Sevilla</option>
                                                     <option>Galicia</option>
                                                 </select>
-                                            </div>
+                                            </div-->
                                             <div class="row py-2 pt-3">
                                                 <label for="codPostalReg" class="form-label p-0 m-0"><h5>Código Postal <span class="text-danger">*</h5></span></label>
                                                 <input type="text" class="form-control bg-light" id="codPostalReg" placeholder="Introduzca el código postal" name="codPostalReg" required>

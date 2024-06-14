@@ -69,7 +69,7 @@ public class UsuarioControlador {
 		return "redirect:/admin/listaClientes";
 	}
 	
-	//MARCAR LIBRO COMO FAVORITO.
+	//MARCAR LIBRO COMO FAVORITO. [NO FUNCIONA CORRECTAMENTE] ---------------------------------------------------------
 	@GetMapping("/agregarAFavoritos")
 	public String marcarLibroComoFavorito(@ModelAttribute("usuario") Usuario u, 
 			@ModelAttribute("libro") Libro l) {
