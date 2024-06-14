@@ -25,7 +25,13 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+		<div sec:authorize="hasRole('ROLE_USER')">
+            <nav th:replace="~{fragmentos/navUsuario::navUsuario}"></nav>
+        </div>
+		
+        <div sec:authorize="!isAuthenticated()">
+            <nav th:replace="~{fragmentos/nav::nav}"></nav>
+        </div>
 
 <!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
 

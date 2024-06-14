@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+	<body>
+		  
+		  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top py-3" th:fragment="navUsuario">
+		            <div class="container-fluid">
+		              
+		              <!--Logo-->
+		              <div>
+		                <a class="navbar-brand ps-3" href="/" th:href="@{/}">
+							<img src="../img/logoMarca.png" th:src="@{/img/logoMarca.png}" alt="Logo de MANGAZO VERSE" style="width:50px;" class="rounded-pill">
+						</a>
+		              </div>
+		  
+		              <!--Botón menú desplegable (para dispositivos móviles)-->
+		              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCliente" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+		                <span class="navbar-toggler-icon"></span>
+		              </button>
+		  
+		              <!--Opciones-->
+		              <div class="collapse navbar-collapse" id="navbarCliente">
+		                <ul class="navbar-nav me-auto">
+						  
+						  <!--USUARIO (DROPDOWN)-->
+						                  <li class="nav-item dropdown">
+						                    <a class="nav-link dropdown-toggle ms-3" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						                      <i class="bi bi-person-fill text-light" style="font-size: 25px;"></i> Mi cuenta
+						                    </a>
+						                    <ul class="dropdown-menu p-1">
+						                      <li style="width: 650px;">
+						                        <div class="container-fluid">
+						                          <div class="row">
+						                            <!--Dropdown header-->
+						                            <div class="bg-primary py-3">
+						                              <div class="row m-0 p-0">
+						                                <div class="d-flex align-items-center" style="width: 86%;">
+						                                  <h3 class="text-white m-0" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">&nbsp;Buenas, <span sec:authentication="name"></span></h3>
+						                                </div>
+						                                <div class="w-auto">
+						                                  <a type="button" href="/" th:href="@{/editarPerfil/{id}(id=${#authentication.principal.idUsuario})}" id="botonEdit" class="btn btn-lg btn-primary me-1 bg-dark" style="width: auto;">
+						                                    <i class="bi bi-gear-fill"></i>
+						                                  </a> 
+						                                </div>
+						                              </div>
+						                            </div>
+						                            <!--Dropdown body-->
+						                            <div class="row">
+						                              <div class="p-4" style="width: 40%;">
+						                                  <img th:src="${#authentication.principal.imagen}" class="rounded-4" style="width: 200px; height: 200px;" alt="Imagen de perfil">
+						                              </div>
+						                                <div class="p-2 ps-0" style="width: 60%;">
+						                                  <div class="row pb-2 pt-4 mt-1">
+						                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Nombre:&nbsp; <span th:text="${#authentication.principal.nombre}" class="text-dark"></span></h5>
+						                                </div>
+						                                <div class="row py-2">
+						                                    <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Apellidos:&nbsp; <span th:text="${#authentication.principal.apellidos}" class="text-dark"></span></h5>
+						                                </div>
+						                                <div class="row py-2">
+						                                  <h5 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span class="text-primary">Correo:&nbsp; <span th:text="${#authentication.principal.correo}" class="text-dark"></span></h5>
+						                                </div>
+						                                <div class="row py-2">
+						                                  <h2 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+						                                    <i class="bi bi-hexagon-fill" style="color:rgb(96, 0, 185)"></i>&nbsp;Tienes <span th:text="${#authentication.principal.numPuntosHon}" style="color:rgb(96, 0, 185)"></span> Hon
+						                                  </h2>
+						                                </div>
+						                              </div>
+						                            </div>
+						                            <!--Dropdown footer-->
+						                            <div class="bg-secondary d-flex justify-content-center flex-column w-100 pb-3 border border-0">
+						                              <div class="row mt-3 justify-content-center">
+														<form th:action="@{/logout}" method="post" id="logoutForm" class="d-flex justify-content-center">
+						                                	<button type="submit" class="btn btn-lg btn-dark mx-1 text-center" style="width: 35%;"><i class="bi bi-box-arrow-left"></i>&nbsp; Cerrar sesión</button>
+														</form>
+						                              </div>
+						                            </div>
+						                        </div>
+						                      </li>
+						                    </ul>
+						                  </li>
+		  
+						  <!--Cesta-->
+		                  <li class="nav-item mx-3">
+		                    <a class="nav-link" href="/" th:href="@{/}"><i class="bi bi-cart-fill" style="font-size: 25px; color: rgb(0, 183, 255);"></i> Cesta</a>
+		                  </li>
+						  <!--Favoritos-->
+		                  <li class="nav-item mx-3"> 
+		                    <a class="nav-link" href="/favoritos" th:href="@{/favoritos}"><i class="bi bi-suit-heart-fill" style="font-size: 25px; color: rgb(246, 55, 12);"></i> Favoritos</a>
+		                  </li>
+						  <!--li class="nav-item mx-3">
+						    <a type="button" href="/" th:href="@{/}" id="botonCerrarSesion" class="btn btn-lg btn-danger">Cerrar Sesión</a>
+						  </li-->
+		                </ul>
+		  
+		                  <!--Barra de búsqueda e icono de lupa-->
+		                  <form class="d-flex col-lg-4 mx-3 py-2 form-inline" th:action="@{/catalogo}">
+		                    <input type="text" class="form-control me-1" th:value="${palabraClave}" name="palabraClave" id="palabraClave" placeholder="Search">
+		                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+		                  </form>
+						  
+						  <div class="nav-item mx-3">
+						  	<a type="button" href="/catalogo" th:href="@{/catalogo}" id="botonCatalogo" class="btn btn-lg btn-primary"><i class="bi bi-shop"></i> Catálogo</a>
+						  </div>
+		          
+		              </div>
+		            </nav>
+		
+	</body>
+</html>

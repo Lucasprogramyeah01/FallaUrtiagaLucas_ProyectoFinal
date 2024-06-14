@@ -3,18 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MANGAZO VERSE [Admin] | Formulario de Usuarios</title>
+        <title>MANGAZO VERSE | Editar perfil</title>
 
         <!--CSS-->
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" type="text/css" href="../css/estiloGeneral.css" th:href="@{/css/bootstrap.min.css}">
 
         <!--JS-->
-        <script src="../js/pagRegistro.js" th:src="@{/js/pagRegistro.js}" defer></script>
+        <!--script src="../js/pagRegistro.js" th:src="@{/js/pagRegistro.js}" defer></script-->
+
+        <script src="../js/modalEditarUsuario.js" th:src="@{/js/modalEditarUsuario.js}" defer></script>
 
         <!--BOOTSTRAP-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
     </head>
     <body>
 
@@ -24,15 +27,15 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<div sec:authorize="hasRole('ROLE_ADMIN')">
-            <nav th:replace="~{fragmentos/navAdmin::navAdmin}"></nav>
+		<div sec:authorize="hasRole('ROLE_USER')">
+            <nav th:replace="~{fragmentos/navUsuario::navUsuario}"></nav>
         </div>
 
 <!--CONTENIDO------------------------------------------------------------------------------------------------------------------------------------------------>
 
         <main class="d-flex flex-wrap">
             <div class="container-fluid py-2 px-5 mb-4 mt-2">
-                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">C</span>lientes</h1>
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-primary">E</span>ditar perfil</h1>
             </div>
 
             <!--Columna izquierda-->
@@ -41,14 +44,8 @@
 
             <div class="container w-75 mb-2 mt-4 pb-5 pt-3">
 				
-				<!--MENSAJITO DE ERROR-->
-				<div class="alert alert-danger alert-dismissible fade show mb-5 mx-4" th:if="${param.error}">
-					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-					<h5 class="m-0"><strong><i class="bi bi-exclamation-diamond-fill"></i></strong>&nbsp; El nombre de usuario introducido no está disponible, ya pertenece a otro usuario ¡Intoduzca los datos del cliente teniéndolo en cuenta!</h5>
-				</div>
-				
 				<!--Formulario-->
-                <form th:action="@{/admin/agregarCliente/submit}" th:object="${usuario}" method="post" class="formularioReg" name="formularioReg" id="formularioReg">
+                <form th:action="@{/editarPerfil/submit}" th:object="${usuario}" method="post" class="formularioReg" name="formularioReg" id="formularioReg">
 
                     <!--Nombre y apellidos-->
                     <fieldset class="pb-2 pt-3">
@@ -59,6 +56,7 @@
                                 <label for="nombreReg"><h5>Nombre <span class="text-danger">*</h5></span></label>
                                 <input type="text" th:field="*{nombre}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreReg" placeholder="Introduzca su nombre" name="nombreReg" required>
                             </div>
+							
                             <div class="col mb-3 mx-4">
                                 <label for="apellidosReg"><h5>Apellidos <span class="text-danger">*</h5></span></label>
                                 <input type="text" th:field="*{apellidos}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="apellidosReg" placeholder="Introduzca sus apellidos" name="apellidosReg" required>
@@ -69,53 +67,17 @@
                     <!--Nombre de usuario y Correo electrónico-->
                     <fieldset class="py-2">
                       <div class="row mb-3">
-						<!--Nombre de usuario cuando el usuario NO se ha registrado-->
-						<th:block th:if="${usuario.idUsuario==null}">
-	                        <div class="col mb-3 mx-4">
-	                          <label for="nombreUsuarioReg" class="form-label p-0 m-0"><h5>Nombre de usuario <span class="text-danger">*</h5></span></label>
-	                          <input type="text" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
-	                        </div>
-						</th:block>
-						
-						<!--Nombre de usuario cuando el usuario se ha registrado-->
-						<th:block th:if="${usuario.idUsuario!=null}">
-							<div class="col mb-3 mx-4">
-								<input type="hidden" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
-							</div>
-						</th:block>
-						
                         <div class="col mb-3 mx-4">
                           <label for="emailReg" class="form-label p-0 m-0"><h5>Email <span class="text-danger">*</h5></span></label>
                           <input type="email" th:field="*{correo}" class="form-control bg-secondary bg-opacity-25" id="emailReg" placeholder="Introduzca su correo electrónico" name="emailReg" required>
                         </div>
                       </div>
-                    </fieldset>
-
-                    <!--Contraseña y cantidad puntos "Hon"-->
-                    <fieldset class="py-2">
-                      <div class="row">
-						  <!--Contraseña cuando el usuario NO se ha registrado-->
-						  <th:block th:if="${usuario.idUsuario==null}">
-	                          <div class="col mb-3 mx-4">
-	                              <label for="contrasenha1Reg"><h5>Contraseña <span class="text-danger">*</h5></span></label>
-	                              <input type="password" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
-	                              <i class="w-25">Seguridad: </i><span id="segContrasenhaReg" class="segContra">0%</span>
-	                          </div>
-						  </th:block>
-						  
-						  <!--Contraseña cuando el usuario se ha registrado-->
-						  <th:block th:if="${usuario.idUsuario!=null}">
-							<div class="col mb-3 mx-4">
-								<input type="hidden" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
-							</div>
-						  </th:block>
-						  
-                          <div class="col mb-3 mx-4">
-                            <label for="puntosReg"><h5>Cantidad de puntos <i>Hon</i><span class="text-danger"> *</h5></span></label>
-                            <input type="number" th:field="*{numPuntosHon}" class="form-control bg-secondary bg-opacity-25 w-50" name="puntosReg" id="puntosReg" min="0" step="50" value="0" 
-                                placeholder="Puntos 'Hon' que van a ser asignados" required>
-                          </div>
-                      </div>
+					  
+					  <th:block th:if="${usuario.idUsuario!=null}">
+					  	<div class="col mb-3 mx-4">
+					  		<input type="hidden" th:field="*{username}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="nombreUsuarioReg" placeholder="Introduzca su nombre de usuario" name="nombreUsuarioReg" required>
+					  	</div>
+					  </th:block>
                     </fieldset>
 					
 					<!--Imagen y Texto alternativo de la imagen-->
@@ -125,16 +87,35 @@
 					        	<label for="imagenClienteReg" class="form-label p-0 m-0"><h5>Imagen de perfil <span class="text-danger">*</h5></span></label>
 					            <input type="text" th:field="*{imagen}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="imagenClienteReg" placeholder="Introduzca la URL de tu imagen de perfil" name="imagenClienteReg" required>
 					        </div>
+							
 					        <div class="col mb-3 mx-4">
 					            <label for="txtAltImgReg" class="form-label p-0 m-0"><h5>Texto alternativo de la imagen de perfil <span class="text-danger">*</h5></span></label>
 					            <input type="text" th:field="*{textoAltImagen}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="txtAltImgReg" placeholder="Describa que aparece en su imagen de perfil" name="txtAltImgReg" required>
 					    	</div>
 					 	</div>
 					 </fieldset>
+					 
+					 <!--Contraseña y cantidad puntos "Hon"-->
+					 <fieldset class="py-2">
+					 	<div class="row">
+					 		<th:block th:if="${usuario.idUsuario!=null}">
+					 			<div class="col mb-3 mx-4">
+					 				<input type="hidden" th:field="*{password}" class="form-control bg-secondary bg-opacity-25" maxlength="255" id="contrasenha1Reg" placeholder="Introduzca su contraseña" name="contrasenha1Reg" required>
+					 			</div>
+					 		</th:block>
+					 						  
+					 		<th:block th:if="${usuario.idUsuario!=null}">
+					 	    	<div class="col mb-3 mx-4">
+					 	            <input type="hidden" th:field="*{numPuntosHon}" class="form-control bg-secondary bg-opacity-25 w-50" name="puntosReg" id="puntosReg" min="0" step="50" value="0" 
+					 	            	placeholder="Puntos 'Hon' que van a ser asignados" required>
+					 	        </div>
+					 		</th:block>
+					 	</div>
+					 </fieldset>
 
                     <!--Botón de registro-->
                     <div class="row w-100 d-flex justify-content-center mt-4">
-                      <button type="submit" id="submitDatosCliente" class="w-25 btn btn-lg btn-info"><h4>Guardar</h4></button>
+                      <button type="submit" id="submitDatosCliente" class="w-25 btn btn-lg btn-primary"><h4>Guardar</h4></button>
                     </div>
                 </form>
             </div>
@@ -142,6 +123,34 @@
             <!--Columna derecha-->
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(/img/fondoPagina.jpg);">
             </div>
+
+			<!--MODAL EDITAR USUARIO-->
+			<div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-hidden="true">
+				<div class="modal-dialog">
+			    	<div class="modal-content">
+			
+			        <!-- Modal Header -->
+			        <div class="modal-header bg-danger" style="background-color: rgb(255, 81, 0);">
+			        	<h1 class="m-0 bg-white p-2 rounded-4"><i class="bi bi-gear-fill m-0 text-secondary"></i></h1>
+			        	<h4 class="modal-title text-white" style="text-indent: 10px;">USUARIO EDITADO</h4>
+			        	<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			        </div>
+			
+			        <!-- Modal body -->
+			        <div class="modal-body py-4 px-3">
+			        	<h5>Su cuenta de usuario ha sido modificada correctamente.</h5>
+			        	<span style="color: rgb(255, 81, 0);">Por motivos de seguridad, se va a cerrar sesión.</span>
+			        </div>
+			
+			        <!-- Modal footer -->
+			        <div class="modal-footer bg-secondary p-2 d-flex justify-content-around">
+			        	<button type="button" id="confirmarLogout" class="btn btn-dark w-25" data-bs-dismiss="modal">Entendido</button>
+			        </div>
+			
+			       </div>
+			     </div>
+			  </div>
+
         </main>
 
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->

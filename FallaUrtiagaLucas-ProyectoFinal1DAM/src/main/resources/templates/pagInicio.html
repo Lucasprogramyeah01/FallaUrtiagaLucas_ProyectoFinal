@@ -26,7 +26,13 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-        <nav th:replace="~{fragmentos/nav::nav}"></nav>
+		<div sec:authorize="hasRole('ROLE_USER')">
+            <nav th:replace="~{fragmentos/navUsuario::navUsuario}"></nav>
+        </div>
+
+        <div sec:authorize="!isAuthenticated()">
+            <nav th:replace="~{fragmentos/nav::nav}"></nav>
+        </div>
 		
 <!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -103,8 +109,12 @@
 															    	<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
 															    	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
 															    	<div class="d-flex flex-wrap align-items-center">
-															        	<a href="#" th:href="@{/admin/agregarAFavoritos}" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
-															        	<a href="#" class="btn btn-light me-3" style="background-color: rgb(0, 183, 255);"><i class="bi bi-bag-fill text-white"></i></a>
+																		
+																		<div sec:authorize="hasRole('ROLE_USER')" class="m-0 p-0">
+															        		<a type="button" href="#" th:href="@{/agregarAFavoritos/{id}(id=${libro.idLibro})}" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
+															        	</div>
+																		
+																		<a href="#" class="btn btn-light me-3" style="background-color: rgb(0, 183, 255);"><i class="bi bi-bag-fill text-white"></i></a>
 															        <div class="align-items-center flex-grow-1">
 															        	<h6 class="text-center text-white m-0 bg-primary rounded-start-5 p-1"><i>En stock</i></h6>
 															     	</div>

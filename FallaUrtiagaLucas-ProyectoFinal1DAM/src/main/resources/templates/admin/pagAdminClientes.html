@@ -20,7 +20,9 @@
 
 <!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
 
-		<nav th:replace="~{fragmentos/nav::nav}"></nav>
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+            <nav th:replace="~{fragmentos/navAdmin::navAdmin}"></nav>
+        </div>
 
 <!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
 
@@ -57,7 +59,7 @@
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Nombre de usuario</h5></th>
 			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Puntos Hon</h5></th>
 			                                    <th colspan="2" class="border border-0" style="background-color: #369;"></th>
-			                                    <th colspan="2" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
+			                                    <th colspan="3" class="rounded-end-3 border border-0" style="background-color: #369;"></th>
 			                                </tr>
 			                            </thead>
 			
@@ -68,12 +70,13 @@
 			                                    <td th:text="${usuario.nombre}"></td>
 			                                    <td th:text="${usuario.apellidos}"></td>
 			                                    <td th:text="${usuario.correo}"></td>
-			                                    <td th:text="${usuario.nombreUsuario}"></td>
+			                                    <td th:text="${usuario.username}"></td>
 			                                    <td th:text="${usuario.numPuntosHon}"></td>
 			                                    <td class="pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);;"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
-			                                    <td class="ps-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>
-			                                    <td class="pe-1"><a type="button" th:href="@{/admin/editarCliente/{id}(id=${usuario.idUsuario})}" id="botonEditarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td>
-			                                    <td class="ps-1"><a type="button" th:href="@{/admin/borrarCliente/{id}(id=${usuario.idUsuario})}" id="botonBorrarUsuario" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></a></td>
+			                                    <td class="px-1"><a type="button" href="" id="botonMirarVentas" class="btn btn-lg btn-success"><i class="bi bi-graph-up-arrow"></i></a></td>
+			                                    <!--td class="pe-1"><a type="button" th:href="@{/admin/editarCliente/{id}(id=${usuario.idUsuario})}" id="botonEditarUsuario" class="btn btn-lg btn-secondary"><i class="bi bi-gear-fill"></i></a></td-->
+			                                    <td th:if="${!usuario.admin}" class="ps-1"><button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrarCliente" th:data-id="${usuario.idUsuario}" id="botonBorrarUsuario" class="btn btn-lg btn-dark"><i class="bi bi-trash3-fill"></i></button></td>
+												<td th:if="${usuario.admin}" class="ps-1"><button type="button" data-bs-toggle="modal" data-bs-target="#modalBorrarAdmin" id="botonBorrarAdmin" class="btn btn-lg btn-secondary" style="background-color: rgb(0, 40, 216);"><i class="bi bi-lightning-charge-fill"></i></button></td>
 			                                </tr> 
 			                            </tbody>
 			
@@ -90,11 +93,75 @@
             <!--Columna derecha-->
             <div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
             </div>
+
+			<!--MODAL BORRAR CLIENTE-->
+			<div class="modal fade" id="modalBorrarCliente">
+				<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header bg-info">
+						<h1 class="m-0 bg-white p-2 rounded-4"><i class="bi bi-people-fill m-0" style="color: rgb(0, 94, 188);"></i></h1>
+						<h4 class="modal-title text-white" style="text-indent: 10px;">BORRAR CLIENTE</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body py-4 px-3">
+						<h5>¿Está seguro de que quiere borrar la cuenta de este cliente?</h5>
+						<span style="color: red">Tenga en cuenta que será borrada definitivamente.</span>
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer bg-secondary p-2 d-flex justify-content-around">
+						<a type="button" id="confirmarBorrado" class="btn btn-info w-25">SÍ</a>
+						<button type="button" class="btn btn-dark w-25" data-bs-dismiss="modal">NO</button>
+					</div>
+
+				</div>
+				</div>
+			</div>
+
+			<!--MODAL BORRAR ADMIN-->
+			<div class="modal fade" id="modalBorrarAdmin">
+				<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header bg-info">
+						<h1 class="m-0 bg-white p-2 rounded-4"><i class="bi bi-lightning-charge-fill m-0" style="color: rgb(0, 40, 216);"></i></h1>
+						<h4 class="modal-title text-white" style="text-indent: 10px;">¿BORRAR ADMIN?</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body py-4 px-3">
+						<h5 class="text-center">No puedes borrar al admin.<h5>
+            			<h3 class="text-center mb-4">TIENE <span style="color: rgb(0, 40, 216);">EL PODER</span> DE LA PÁGINA.</h3>
+            			<img src="../img/dukeSurfero.jpeg" th:src="@{/img/dukeSurfero.jpeg}" class="rounded-4 w-100" alt="Duke surfero">
+					</div>
+
+					<!-- Modal footer -->
+					<div class="modal-footer bg-secondary p-2 d-flex justify-content-around">
+						<button type="button" class="btn btn-dark w-auto" data-bs-dismiss="modal">Perdón por mi ignorancia</button>
+					</div>
+
+				</div>
+				</div>
+			</div>
+
         </main>
 
 <!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
 
 		<footer th:replace="~{fragmentos/footer::footer}"></footer>          
+
+		<!--Librerías para los modal-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+				
+		<script src="../js/modalBorrarCliente.js" th:src="@{/js/modalBorrarCliente.js}" defer></script>
 
     </body>
 </html>

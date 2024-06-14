@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,32 +47,16 @@ public class UsuarioControlador {
 	
 	//AGREGAR USUARIO.
 	@PostMapping("/agregarCliente/submit")
-	public String procesarFormularioRegistroClientes(@ModelAttribute("usuario") Usuario u, Model model) {
-		servicio.save(u);
+	public String procesarFormularioRegistroClientes(@ModelAttribute("usuario") Usuario u) {
 		
-		return "redirect:/admin/listaClientes";
-	}
-	
-	//MOSTRAR FORMULARIO PARA EDITAR USUARIO.
-	@GetMapping("/editarCliente/{id}")
-	public String mostrarFormularioEditarClientes(@PathVariable("id") long id, Model model) {
+		List<Usuario> listaUsuarios = servicio.filtrarListaUsuarios();
 		
-		Optional<Usuario> usuario = servicio.findById(id);
-		
-		if (usuario.isPresent()) {
-			model.addAttribute("usuario", usuario.get());
-			
-			return "/admin/pagAdminAgregarCliente";
-		}else {
-			
-			return "redirect:/admin/listaClientes";
+		for(Usuario usuario : listaUsuarios) {
+			if(usuario.getUsername().equals(u.getUsername())) {
+				return "redirect:/admin/agregarCliente?error=true";
+			}
 		}
-	}
-	
-	//EDITAR USUARIO.
-	@PostMapping("editarCliente/submit")
-	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
-		servicio.save(u);
+		servicio.saveUsuarioConContrasenhaCodificada(u);
 		
 		return "redirect:/admin/listaClientes";
 	}

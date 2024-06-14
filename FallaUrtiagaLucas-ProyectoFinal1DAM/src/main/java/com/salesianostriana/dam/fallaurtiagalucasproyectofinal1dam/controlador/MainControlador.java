@@ -1,20 +1,26 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CategoriaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.TipoServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.UsuarioServicio;
 
 @Controller
 public class MainControlador {
@@ -28,8 +34,69 @@ public class MainControlador {
 	@Autowired
 	private TipoServicio servicioTipo;
 	
+	@Autowired
+	private UsuarioServicio servicioUsuario;
 	
-	//MOSTRAR PÁGINAS DEL NAV -----------------------------------------------------------------------------------------------
+	
+	//Mostrar página de inicio de administrador.
+	@GetMapping("/admin/")
+	public String mostrarInicioAdmin() {
+		return "/admin/pagAdminInicio";
+	}
+	
+	//Mostrar página de registro.
+	@GetMapping("/registro")
+	public String mostrarFormularioRegistro(Model model) {
+		
+		Usuario u = new Usuario();
+		model.addAttribute("usuario", u);
+		
+		return "pagRegistro";
+	}
+	
+	//Registrar usuario.
+	@PostMapping("/registro/submit")
+	public String procesarFormularioRegistro(@ModelAttribute("usuario") Usuario u) {
+		
+		List<Usuario> listaUsuarios = servicioUsuario.filtrarListaUsuarios();
+		
+		for(Usuario usuario : listaUsuarios) {	
+			if(usuario.getUsername().equals(u.getUsername())) {
+				return "redirect:/registro?error=true";
+			}
+		}
+		servicioUsuario.saveUsuarioConContrasenhaCodificada(u);
+		
+		return "redirect:/login";
+	}
+	
+	//EDITAR PERFIL DE USUARIO ----------------------------------------------------------------------------------------------
+	
+	//MOSTRAR FORMULARIO PARA EDITAR PERFIL.
+	@GetMapping("/editarPerfil/{id}")
+	public String mostrarFormularioEditarClientes(@PathVariable("id") Long id, Model model) {
+			
+		Optional<Usuario> usuario = servicioUsuario.findById(id);
+			
+		if (usuario.isPresent()) {
+			model.addAttribute("usuario", usuario.get());
+				
+			return "pagEditarUsuario";
+		}else {
+				
+			return "redirect:/";
+		}
+	}
+	
+	//EDITAR PERFIL.
+	@PostMapping("/editarPerfil/submit")
+	public String procesarFormularioEdicion(@ModelAttribute("usuario") Usuario u) {
+		servicioUsuario.save(u);
+			
+		return "redirect:/logout";
+	}
+	
+	//MOSTRAR PÁGINAS DEL NAV Y EL FOOTER -----------------------------------------------------------------------------------
 	
 	@GetMapping("/")
 	public String mostrarInicio(Model model) {
@@ -54,9 +121,34 @@ public class MainControlador {
 		return "pagPoliticaDePrivacidad";
 	}
 	
+	//MOSTRAR PÁGINA DE FAVORITOS.
 	@GetMapping("/favoritos")
-	public String mostrarFavoritos() {
+	public String mostrarFavoritos(@AuthenticationPrincipal Usuario u, Model model) {
+
+		model.addAttribute("listaLibros", servicioUsuario.filtrarlibrosFavoritos());
+		
 		return "pagFavoritos";
+	}
+	
+	//AGREGAR A FAVORITOS (Al clickar en el botón de Favoritos).
+	@GetMapping("/agregarAFavoritos/{id}")
+	public String agregarAFavoritos(@PathVariable("id") Long idLibro, 
+		@AuthenticationPrincipal Usuario u, @ModelAttribute("listaLibros") ArrayList<Libro> listaLibros, Model model) {
+		
+		/*Optional<Libro> libroFavorito = servicio.findById(idLibro);
+		
+		if(libroFavorito.isPresent()) {
+			u.getListadoFavoritos().add(libroFavorito.get());
+		}*/
+		
+		for (Libro libro : listaLibros) {
+			u.getListadoFavoritos().add(servicio.findById(idLibro).get());
+		}
+		/*if(u.getListadoFavoritos().contains(libroFavorito.get())) {
+			
+		}*/
+		
+		return "redirect:/favoritos";
 	}
 	
 	

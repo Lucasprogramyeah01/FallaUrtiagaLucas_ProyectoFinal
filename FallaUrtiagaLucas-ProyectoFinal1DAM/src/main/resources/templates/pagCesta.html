@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MANGAZO VERSE | Cesta</title>
+
+		<!--CSS-->
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" href="../css/estiloGeneral.css" th:href="@{/css/estiloGeneral.css}">
+				
+		<!--BOOTSTRAP-->
+		<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<header th:replace="~{fragmentos/header::header}"></header>
+
+<!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<div sec:authorize="hasRole('ROLE_USER')">
+            <nav th:replace="~{fragmentos/navUsuario::navUsuario}"></nav>
+        </div>
+
+<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <main class="d-flex flex-wrap">
+            <div class="container-fluid py-2 px-5 mb-4 mt-2">
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-primary">C</span>esta</h1>
+            </div>
+
+			<!--Columna izquierda-->
+			<div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+			</div>
+
+            <!--Contenido central-->
+            <div class="container w-75 mb-5 pb-2 mt-4 pt-4">
+
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="container d-flex flex-column" style="width: 65%;">
+							<!--Línea de venta-->
+                            <div class="container w-100 pb-2">
+                                <div class="row">
+                                    <div class="rounded-3 d-flex p-3" style="background-color: rgb(213, 213, 213)">
+                                        <div class="w-auto">
+                                            <img class="img-fluid rounded-3" src="../static/img/bleach1.jpg" alt="Card image" style="max-width:570px; height: 210px;">
+                                        </div>
+                
+                                        <div class="w-100 d-flex flex-column ps-4 pe-3 justify-content-between">
+                                            <!--Fila lateral-->
+                                            <div class="row">
+                                                <div class="pt-3 pb-2 px-2" style="width: 86%;">
+                                                    <h2 class="m-0" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bleach vol.1</h2>
+                                                </div>
+                                                <div class="w-auto align-items-center align-content-center pt-2">
+                                                    <a type="button" href="/" th:href="@{/}" id="botonReg" class="btn btn-lg btn-dark" style="width: auto;">
+                                                        <i class="bi bi-trash3-fill"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="w-25 p-2 ps-0">
+                                                <label for="cantidadReg"><h5>Cantidad</h5></label>
+                                                <input class="form-control bg-light" type="number" name="cantidadReg" id="cantidadReg" min="0" max="1000" step="1" value="0" 
+                                                    placeholder="0" required>
+                                            </div>
+                                            <!--Precio-->
+                                            <div class="row p-2 pt-3 d-flex justify-content-around">
+                                                <div style="width: auto;">
+                                                    <h3 class="text-center"><i class="bi bi-bar-chart-line-fill text-primary"></i> Total: <span class="text-primary" style="font-size: 35px">8.55 €</span></h3>
+                                                </div>
+                                                <div style="width: auto;">
+                                                    <h3 class="text-center"><i class="bi bi-credit-card-2-front-fill" style="color: rgb(2, 156, 48);"></i> 
+                                                        Subtotal: <span style="font-size: 35px; color: rgb(2, 156, 48);">10.55 €</span></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							
+                    </div>
+            
+						<!--Resumen del pedido-->
+                        <div class="rounded-3" style="width: 34%; background-color: rgb(240, 189, 188)">
+                            <div class="row">
+                                <div class="bg-primary p-3 text-center rounded-top-3">
+                                    <h1 class="text-light m-0">RESUMEN</h1>
+                                </div>
+                                <div class="d-flex justify-content-center flex-column">
+                                    <p class="px-3 pt-3" style="text-align: justify;">Ingrese su dirección para obtener una estimación del envío.</p>
+                                    <form class="px-4">
+                                        <fieldset>
+                                            <div class="row pb-2 pt-1">
+                                                <label for="codPostalReg" class="form-label p-0 m-0"><h5>País</h5></label>
+                                                <input type="text" class="form-control bg-light text-dark" id="codPostalReg" placeholder="España" text="España" name="codPostalReg" disabled>
+                                            </div>
+                                            <div class="row py-2 pt-3">
+                                                <label for="provinciaReg" class="form-label p-0 m-0"><h5>Provincia <span class="text-danger">*</h5></span></label>
+                                                <select th:field="*{cubierta}" class="form-select" id="provinciaReg" name="provinciaReg">
+						                            <option th:each="cubierta : ${listaCubiertas}" th:field="*{cubierta}" th:value="${cubierta}" th:text="${cubierta.nombreCubierta}"></option>
+                                                    <option>Bilbao</option>
+                                                    <option>Sevilla</option>
+                                                    <option>Galicia</option>
+                                                </select>
+                                            </div>
+                                            <div class="row py-2 pt-3">
+                                                <label for="codPostalReg" class="form-label p-0 m-0"><h5>Código Postal <span class="text-danger">*</h5></span></label>
+                                                <input type="text" class="form-control bg-light" id="codPostalReg" placeholder="Introduzca el código postal" name="codPostalReg" required>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div class="table-responsive w-100 py-2 pt-4 px-4">
+                                    <table class="table table-condensed table-hover caption-top" style="border-radius: 10px; overflow: hidden;">
+                                        <thead>
+                                        </thead>
+            
+                                        <tbody class="text-center align-center align-middle">
+                                          <tr class="rounded-top-3">
+                                              <td class="fw-bold w-50"><h5 class="m-0 py-1">Subtotal</h5></td>
+                                              <td class="w-50">11,50 €</td>
+                                          </tr>
+                                          <tr>
+                                            <td class="fw-bold w-50"><h5 class="m-0 py-1">Gastos de envío</h5></td>
+                                            <td class="w-50">+ 3,95 €</td>
+                                          </tr>
+                                          <tr>
+                                            <td class="fw-bold w-50"><h5 class="m-0 py-1">Gastos de envío</h5></td>
+                                            <td class="w-50">+ 0,00 €</td>
+                                          </tr>
+                                        </tbody>
+            
+                                        <tfoot>
+                                        </tfoot>
+                                    </table>
+                                </div>
+								<!--DESCUENTOS-->
+                                <div class="d-flex justify-content-center flex-column">
+                                    <div class="text-white w-auto p-2 px-3 rounded-4 mx-4 mb-2" style="background-color: orangered;">
+                                        <h5 class="m-0"><i class="bi bi-star-fill"></i>&nbsp; ¡Desuento de fan de serie! <span style="font-size: 17px;">&nbsp; 20% de descuento</span></h5>
+                                    </div>
+                                    <div class="text-white w-auto pb-2 pt-3 px-3 rounded-4 mx-4 mb-2" style="background-color: rgb(37, 9, 160);">
+                                        <h5 class="m-0"><i class="bi bi-send-fill"></i>&nbsp; ¡Compra superior a 30 €! <span style="font-size: 17px;">&nbsp; Envío gratuito</span></h5>
+                                    </div>
+                                    <div class="text-white w-auto p-2 px-3 rounded-4 mt-4 mx-4 mb-2" style="background-color: rgb(96, 0, 185)">
+                                      <h5 class="m-0"><i class="bi bi-hexagon-fill"></i>&nbsp; Puntos Hon a aplicar:</h5>
+                                      <div class="py-2">
+                                        <input class="form-control bg-light" type="number" name="phReg" id="phReg" min="0" step="1" value="0" placeholder="0">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="d-flex justify-content-center flex-column">
+                                    <div class="w-auto px-3 py-4 text-center">
+                                        <h3 class="m-0">Total pedido: <span style="font-size: 35px;">341.54 €</span></h3>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center pb-5">
+                                    <a href="#" class="btn btn-dark border border-0 w-auto bg-dark px-5">
+                                      <h3 class="m-0 py-2"><i class="bi bi-cart-check-fill text-white"></i>&nbsp; Tramitar pedido</h3>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+			<!--Columna derecha-->
+			<div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+			</div>
+        </main>
+
+<!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>          
+
+    </body>
+</html>
