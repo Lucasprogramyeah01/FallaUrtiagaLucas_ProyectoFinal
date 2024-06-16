@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
             let id = button.getAttribute("data-id");
             
-            document.getElementById('confirmarBorrado').href = '/admin/borrarCategoria/' + id;
+            document.getElementById('confirmarBorrado2').href = '/admin/borrarCategoria/' + id;
         });
     });
 });

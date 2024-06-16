@@ -110,9 +110,26 @@
 															    	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
 															    	<div class="d-flex flex-wrap align-items-center">
 																		
-																		<div sec:authorize="hasRole('ROLE_USER')" class="m-0 p-0">
+																		<!--Marcar como Favorito sin haber iniciado sesión>											
+																		<div sec:authorize="!isAuthenticated()" class="m-0 p-0">
 															        		<a type="button" href="#" th:href="@{/agregarAFavoritos/{id}(id=${libro.idLibro})}" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
-															        	</div>
+															        	</div-->
+																		
+																		<!--Marcar como Favorito habiendo iniciado sesión-->
+																		<div sec:authorize="hasRole('ROLE_USER')" class="m-0 p-0">
+																			<!--FAVORITO-->
+																			<th:block th:if="${#authentication.principal.listadoFavoritos.contains(libro)}">
+																				<form th:action="@{/borrarDeFavoritos/{id}(id=${libro.idLibro})}" class="m-0 p-0">
+																					<button type="submit" class="btn btn-light me-1" style="background-color: rgb(246, 55, 12);"><i class="bi bi-suit-heart-fill text-white"></i></button>
+																				</form>
+																			</th:block>
+																			<!--NO FAVORITO-->
+																			<th:block th:if="${!#authentication.principal.listadoFavoritos.contains(libro)}">
+																				<form th:action="@{/agregarAFavoritos/{id}(id=${libro.idLibro})}" class="m-0 p-0">
+																				<button type="submit" href="#" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></button>
+																				</form>
+																			</th:block>
+																		</div>
 																		
 																		<a href="#" class="btn btn-light me-3" style="background-color: rgb(0, 183, 255);"><i class="bi bi-bag-fill text-white"></i></a>
 															        <div class="align-items-center flex-grow-1">

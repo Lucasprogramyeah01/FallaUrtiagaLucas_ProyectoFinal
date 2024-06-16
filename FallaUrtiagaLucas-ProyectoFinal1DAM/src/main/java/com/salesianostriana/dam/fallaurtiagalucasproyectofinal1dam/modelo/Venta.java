@@ -3,8 +3,12 @@ package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.VentaServicio;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -50,26 +54,7 @@ public class Venta {
 	private boolean finalizada;
 	
 	
-	//ASOCIACIÓN CON USUARIO [1U - MV]
-	
-		@ManyToOne
-		@JoinColumn(foreignKey = @ForeignKey(name="fk_venta_usuario"))
-		private Usuario usuario;
-		
-		//Métodos "helper".
-		
-		public void agregarAUsuario(Usuario usuario) {
-			this.usuario = usuario;
-			usuario.getVenta().add(this);
-		}
-		
-		public void borrarDeUsuario(Usuario usuario) {
-			usuario.getVenta().remove(this);
-			this.usuario = null;
-		}
-	
-	
-	//COMPOSICIÓN CON VENTA [MLV - 1V]
+	//COMPOSICIÓN CON LÍNEA DE VENTA [MLV - 1V]
 	
 		@ToString.Exclude
 		@EqualsAndHashCode.Exclude
@@ -90,7 +75,32 @@ public class Venta {
 				
 		public void borrarLineaVenta(LineaVenta lineaVenta) {
 			this.listadoLineaVenta.remove(lineaVenta);
-			lineaVenta.setVenta(null);
+			//lineaVenta.setVenta(null);
 		}
+		
+		
+	//ASOCIACIÓN CON USUARIO [1U - MV]
+		
+		@ManyToOne
+		@JoinColumn(foreignKey = @ForeignKey(name="fk_venta_usuario"))
+		private Usuario usuario;
+			
+		//Métodos "helper".
+			
+		public void agregarAUsuario(Usuario usuario) {
+			this.usuario = usuario;
+			usuario.getVenta().add(this);
+		}
+			
+		public void borrarDeUsuario(Usuario usuario) {
+			usuario.getVenta().remove(this);
+			this.usuario = null;
+		}
+		
+		
+//-- A PARTIR DE AQUÍ SE ENCUENTRAN LOS MÉTODOS PARA LA CESTA --------------------------------------------------------
+		
+	/*@Autowired
+	private VentaServicio servicioVenta;*/	
 	
 }
