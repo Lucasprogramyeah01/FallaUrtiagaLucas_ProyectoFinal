@@ -46,10 +46,10 @@ public class Venta {
 	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime fechaVenta;
 	
-	@Enumerated(value = EnumType.STRING)
+	/*@Enumerated(value = EnumType.STRING)
 	private Provincia provincia;
 	
-	private int codigoPostal;
+	private int codigoPostal;*/
 	
 	private boolean finalizada;
 	

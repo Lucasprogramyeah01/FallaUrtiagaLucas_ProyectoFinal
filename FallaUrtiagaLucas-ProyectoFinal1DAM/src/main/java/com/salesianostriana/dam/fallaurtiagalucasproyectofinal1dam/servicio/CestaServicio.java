@@ -1,9 +1,12 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.swing.text.LabelView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +29,9 @@ public class CestaServicio {
 	
 	//CREAR CESTA.
 	public Venta crearCesta(Usuario u) {
-		Venta cesta = new Venta();
+		Venta cesta = Venta.builder().usuario(u).finalizada(false).listadoLineaVenta(new ArrayList<>()).gastosEnvio(3.95).build();
 		
+		servicioVenta.save(cesta);
 		return cesta;
 	}
 	
@@ -40,7 +44,7 @@ public class CestaServicio {
 	private Optional <LineaVenta> obtenerLineaVentaPorLibro(Usuario u, Libro l) {
 		Venta cesta = obtenerCesta(u);
 				
-		return cesta.getListadoLineaVenta().stream().filter(lv -> lv.getLibro().getIdLibro() == l.getIdLibro()).findFirst();
+		return cesta.getListadoLineaVenta().stream().filter(lv -> lv.getLibro().getIdLibro().equals(l.getIdLibro())).findFirst();
 	}
 	
 	//CALCULAR EL PRECIO FINAL DE LA VENTA.
@@ -51,14 +55,15 @@ public class CestaServicio {
 //---------------------------------------------------------------
 	
 	//AÑADIR PRODUCTO A LA CESTA.
-    public void agregarProducto(Usuario u, Libro l, int cantidad){ 
+    public void agregarProducto(Usuario u, Libro l /*int cantidad*/){ 
     	Venta cesta = obtenerCesta(u);
     	
     	if(!servicioVenta.hayProductoEnCesta(u, l)){
+    		int cantidad = 1;
     		
-    		cesta.agregarLineaVenta(LineaVenta.builder().libro(l).cantidad(cantidad).build());
+    		cesta.agregarLineaVenta(LineaVenta.builder().libro(l).cantidad(cantidad).subtotal(l.getPrecio()).venta(cesta).build());
     	}else{
-    		Optional<LineaVenta> lv = servicioVenta.obtenerLineaVentaPorLibro(u, l);
+    		Optional<LineaVenta> lv = obtenerLineaVentaPorLibro(u, l);
 
 	        if(lv.isPresent()){
 	          modificarCantidad(u, l, lv.get().getCantidad()+1);
@@ -67,7 +72,7 @@ public class CestaServicio {
 
       servicioVenta.edit(cesta);
     }
-	
+    
 	//MODIFICAR PRODUCTO DE LA CESTA.
 	public void modificarCantidad(Usuario u, Libro l, int cantidad){
 		Venta cesta = obtenerCesta(u);
@@ -75,15 +80,16 @@ public class CestaServicio {
 		if(cantidad <= 0){
 			eliminarProducto(u, l);
 	    }else{
-	    	Optional <LineaVenta> lineaVentaAModificar = servicioVenta.obtenerLineaVentaPorLibro(u, l);
+	    	Optional <LineaVenta> lineaVentaAModificar = obtenerLineaVentaPorLibro(u, l);
 
 		    if(lineaVentaAModificar.isPresent()){
 		    	LineaVenta lv = lineaVentaAModificar.get();
 		    	lv.setCantidad(cantidad);
+		    	lv.setSubtotal(lv.calcularSubtotalLineaVenta());
 		    	
 		        servicioVenta.edit(cesta);
 		    }else{
-		        agregarProducto(u, l /*, cantidad*/);
+		        agregarProducto(u, l);
 		    }
 	    }
 	}
@@ -92,7 +98,7 @@ public class CestaServicio {
 	public void eliminarProducto(Usuario u, Libro l){
 		Venta cesta = obtenerCesta(u);
 
-		Optional<LineaVenta> LineaVentaAEliminar = servicioVenta.obtenerLineaVentaPorLibro(u, l);
+		Optional<LineaVenta> LineaVentaAEliminar = obtenerLineaVentaPorLibro(u, l);
 
 		if(LineaVentaAEliminar.isPresent()){
 			cesta.borrarLineaVenta(LineaVentaAEliminar.get());

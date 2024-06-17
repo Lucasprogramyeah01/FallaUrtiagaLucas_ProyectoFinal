@@ -19,6 +19,7 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuari
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Venta;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.CestaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LineaVentaServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.VentaServicio;
 
 @Controller
@@ -33,11 +34,14 @@ public class VentaControlador {
 	@Autowired
 	private LibroServicio servicioLibro;
 	
+	@Autowired
+	private LineaVentaServicio servicioLV;
+	
 	//MOSTRAR PÁGINA CESTA.
 	@GetMapping("/cesta")
-	public String mostrarCesta(@AuthenticationPrincipal Usuario u, Model model) {
+	public String mostrarCesta(@AuthenticationPrincipal Usuario u, Libro l, Model model) {
 
-		model.addAttribute("listaLineasVenta", servicioVenta.obtenerVentaSinFinalizar(u).get().getListadoLineaVenta());
+		model.addAttribute("listaLineasVenta", servicioLV.findAll());
 		
 		return "pagCesta";
 	}
@@ -45,12 +49,12 @@ public class VentaControlador {
 	//AGREGAR UN PRODUCTO A LA CESTA.
 	@GetMapping("/agregarACesta/{id}")
 	public String agregarProductoACesta(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u, 
-			int cantidad, Model model) {
+			Model model) {
 		
 		Optional<Libro> productoAAgregar = servicioLibro.findById(idLibro);
 		
 		if(productoAAgregar.isPresent()) {
-			servicioCesta.agregarProducto(u, productoAAgregar.get()/*, cantidad*/);
+			servicioCesta.agregarProducto(u, productoAAgregar.get());
 			
 			return "redirect:/cesta";
 		}else {
@@ -77,7 +81,7 @@ public class VentaControlador {
 	//AGREGAR UN PRODUCTO A LA CESTA.
 	@GetMapping("/borrarDeCesta/{id}")
 	public String borrarProductoDeCesta(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u, 
-			int cantidad, Model model) {
+			Model model) {
 		
 		Optional<Libro> productoABorrar = servicioLibro.findById(idLibro);
 		

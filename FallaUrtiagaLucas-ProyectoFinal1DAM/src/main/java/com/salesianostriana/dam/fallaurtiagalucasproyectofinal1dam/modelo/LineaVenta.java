@@ -24,11 +24,13 @@ public class LineaVenta {
 	
 	private int cantidad;
 	
+	private double subtotal;
 	
 	//COMPOSICIÓN CON VENTA [MLV - 1V]
 	
 		@Id
 		@ManyToOne
+		@JoinColumn(foreignKey = @ForeignKey(name="fk_lineaVenta_venta"))
 		private Venta venta;
 	
 		
@@ -55,7 +57,7 @@ public class LineaVenta {
 		
 	//CALCULAR SUBTOTAL DE UNA LÍNEA DE VENTA.	
 	public double calcularSubtotalLineaVenta() {
-		return libro.getPrecio()*cantidad;
+		return subtotal = libro.getPrecio()*cantidad;
 	}
 
 }
