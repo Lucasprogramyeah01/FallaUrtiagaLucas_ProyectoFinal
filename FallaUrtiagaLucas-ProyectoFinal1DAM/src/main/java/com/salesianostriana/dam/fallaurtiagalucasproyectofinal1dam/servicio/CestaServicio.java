@@ -6,12 +6,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.LineaVenta;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Venta;
 
+@Service
 public class CestaServicio {
 
 	@Autowired
@@ -53,6 +55,7 @@ public class CestaServicio {
     	Venta cesta = obtenerCesta(u);
     	
     	if(!servicioVenta.hayProductoEnCesta(u, l)){
+    		
     		cesta.agregarLineaVenta(LineaVenta.builder().libro(l).cantidad(cantidad).build());
     	}else{
     		Optional<LineaVenta> lv = servicioVenta.obtenerLineaVentaPorLibro(u, l);
@@ -80,7 +83,7 @@ public class CestaServicio {
 		    	
 		        servicioVenta.edit(cesta);
 		    }else{
-		        agregarProducto(u, l, cantidad);
+		        agregarProducto(u, l /*, cantidad*/);
 		    }
 	    }
 	}

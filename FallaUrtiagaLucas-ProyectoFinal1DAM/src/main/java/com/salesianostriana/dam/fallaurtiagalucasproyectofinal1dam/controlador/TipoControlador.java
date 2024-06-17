@@ -69,7 +69,7 @@ public class TipoControlador {
 		return "redirect:/admin/listaCategorias";
 	}
 	
-	//BORRAR CATEGORÍA.
+	//BORRAR TIPO.
 	@GetMapping("/borrarTipo/{id}")
 	public String borrarTipo(@PathVariable("id") Long idTipo, Model model) {
 		
