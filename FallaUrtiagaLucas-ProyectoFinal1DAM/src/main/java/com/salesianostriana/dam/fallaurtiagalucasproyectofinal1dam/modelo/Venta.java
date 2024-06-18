@@ -97,10 +97,31 @@ public class Venta {
 			this.usuario = null;
 		}
 		
+
+//--------------------------------------------------------------
 		
-//-- A PARTIR DE AQUÍ SE ENCUENTRAN LOS MÉTODOS PARA LA CESTA --------------------------------------------------------
-		
-	/*@Autowired
-	private VentaServicio servicioVenta;*/	
+		//CALCULAR DESCUENTO DE FAN DE SERIE
+		public double calcularDescuentoDeFanDeSerie(double subtotalLV) {
+			int numPorcentaje = 20;
+			int cien = 100;
+			
+			subtotal = subtotalLV - ((subtotalLV*numPorcentaje)/cien);
+			
+			return subtotal;
+		}
 	
+		//CALCULAR DESCUENTO ENVÍO GRATIS.
+		public double calcularDescuentoEnvioGratuito() {
+			if(subtotal > 30) {
+				setGastosEnvio(0.00);
+				
+				return gastosEnvio;
+			}else {
+				setGastosEnvio(3.95);
+				
+				return gastosEnvio;
+			}
+		}
+		
+		
 }

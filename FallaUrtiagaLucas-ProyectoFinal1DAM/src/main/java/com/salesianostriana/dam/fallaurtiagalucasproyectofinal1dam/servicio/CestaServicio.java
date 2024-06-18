@@ -2,8 +2,10 @@ package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.swing.text.LabelView;
@@ -41,15 +43,49 @@ public class CestaServicio {
 	}
 	
 	//OBTENER LINEA DE VENTA POR LIBRO.
-	private Optional <LineaVenta> obtenerLineaVentaPorLibro(Usuario u, Libro l) {
+	public Optional <LineaVenta> obtenerLineaVentaPorLibro(Usuario u, Libro l) {
 		Venta cesta = obtenerCesta(u);
 				
 		return cesta.getListadoLineaVenta().stream().filter(lv -> lv.getLibro().getIdLibro().equals(l.getIdLibro())).findFirst();
 	}
 	
+	//COMPROBAR SI HAY 3 MANGAS DE LA MISMA SERIE EN LA VENTA
+	public boolean comprobarSiHay3MangasDeUnaMismaSerie(Usuario u) {
+		Venta cesta = obtenerCesta(u);
+
+		Map<String, Long> frecuenciasSeries = cesta.getListadoLineaVenta().stream().map(LineaVenta::getLibro).collect(Collectors.groupingBy(Libro::getSerie, Collectors.counting()));
+		
+		return frecuenciasSeries.entrySet().stream().anyMatch(e -> e.getValue() >= 3);
+
+	}
+	
+//---------------------------------------------------------------
+	
+	//CALCULAR SUBTOTAL DE LA VENTA
+	public double calcularSubtotalVenta(Usuario u) {
+		double subtotalLV;
+		
+		Venta cesta = obtenerCesta(u);
+		
+		subtotalLV = cesta.getListadoLineaVenta().stream().mapToDouble(LineaVenta::calcularSubtotalLineaVenta).sum();
+		
+		if(comprobarSiHay3MangasDeUnaMismaSerie(u)) {
+			return cesta.calcularDescuentoDeFanDeSerie(subtotalLV);
+		}else {
+			return subtotalLV;
+		}
+	}
+	
 	//CALCULAR EL PRECIO FINAL DE LA VENTA.
     public double calcularPrecioFinal(Usuario u){
-    	return obtenerCesta(u).getListadoLineaVenta().stream().mapToDouble(LineaVenta::calcularSubtotalLineaVenta).sum();
+    	
+    	Venta cesta = obtenerCesta(u);
+    	
+    	cesta.setSubtotal(calcularSubtotalVenta(u));
+    	
+    	return cesta.calcularDescuentoEnvioGratuito() + calcularSubtotalVenta(u);
+    	
+    	/*return obtenerCesta(u).getListadoLineaVenta().stream().mapToDouble(LineaVenta::calcularSubtotalLineaVenta).sum();*/
     }
 		
 //---------------------------------------------------------------
@@ -73,12 +109,31 @@ public class CestaServicio {
       servicioVenta.edit(cesta);
     }
     
+  //ELIMINAR PRODUCTO DE LA CESTA.
+    public void eliminarProducto(Usuario u, Libro l, int cantidad) {
+    	Venta cesta = obtenerCesta(u);
+    	
+    	if(cantidad <= 0){
+			eliminarLineaDeVenta(u, l);
+	    }else{
+	    	Optional <LineaVenta> lineaVentaAModificar = obtenerLineaVentaPorLibro(u, l);
+
+		    if(lineaVentaAModificar.isPresent()){
+		    	modificarCantidad(u, l, lineaVentaAModificar.get().getCantidad()-1);
+		    }
+
+	    }
+    	
+    	 servicioVenta.edit(cesta);
+    }
+    
+    
 	//MODIFICAR PRODUCTO DE LA CESTA.
 	public void modificarCantidad(Usuario u, Libro l, int cantidad){
 		Venta cesta = obtenerCesta(u);
 
 		if(cantidad <= 0){
-			eliminarProducto(u, l);
+			eliminarLineaDeVenta(u, l);
 	    }else{
 	    	Optional <LineaVenta> lineaVentaAModificar = obtenerLineaVentaPorLibro(u, l);
 
@@ -94,8 +149,8 @@ public class CestaServicio {
 	    }
 	}
 	
-	//ELIMINAR PRODUCTO DE LA CESTA.
-	public void eliminarProducto(Usuario u, Libro l){
+	//ELIMINAR LÍNEA DE VENTA DE LA CESTA.
+	public void eliminarLineaDeVenta(Usuario u, Libro l){
 		Venta cesta = obtenerCesta(u);
 
 		Optional<LineaVenta> LineaVentaAEliminar = obtenerLineaVentaPorLibro(u, l);

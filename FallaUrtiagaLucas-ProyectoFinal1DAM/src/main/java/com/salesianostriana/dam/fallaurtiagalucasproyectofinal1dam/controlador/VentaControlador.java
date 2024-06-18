@@ -40,8 +40,12 @@ public class VentaControlador {
 	//MOSTRAR PÁGINA CESTA.
 	@GetMapping("/cesta")
 	public String mostrarCesta(@AuthenticationPrincipal Usuario u, Libro l, Model model) {
-
+		
 		model.addAttribute("listaLineasVenta", servicioLV.findAll());
+		
+		servicioCesta.calcularPrecioFinal(u);
+		
+		//servicioCesta.finalizarCompra(u);
 		
 		return "pagCesta";
 	}
@@ -55,6 +59,24 @@ public class VentaControlador {
 		
 		if(productoAAgregar.isPresent()) {
 			servicioCesta.agregarProducto(u, productoAAgregar.get());
+			
+			return "redirect:/cesta";
+		}else {
+			return "redirect:/";
+		}
+	}
+	
+	//AGREGAR UN PRODUCTO A LA CESTA.
+	@GetMapping("/borrarDeCesta/{id}")
+	public String borrarProductoDeCesta(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u, 
+			Model model) {
+		
+		Optional<Libro> productoABorrar = servicioLibro.findById(idLibro);
+		
+		Optional <LineaVenta> lv = servicioCesta.obtenerLineaVentaPorLibro(u, productoABorrar.get());
+		
+		if(productoABorrar.isPresent()) {
+			servicioCesta.eliminarProducto(u, productoABorrar.get(), lv.get().getCantidad());
 			
 			return "redirect:/cesta";
 		}else {
@@ -78,15 +100,15 @@ public class VentaControlador {
 		}
 	}
     	
-	//AGREGAR UN PRODUCTO A LA CESTA.
-	@GetMapping("/borrarDeCesta/{id}")
-	public String borrarProductoDeCesta(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u, 
+	//ELIMINAR LÍNEA DE VENTA DE LA CESTA.
+	@GetMapping("/borrarLineaVentaDeCesta/{id}")
+	public String borrarLineaDeVentaDeCesta(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u, 
 			Model model) {
 		
 		Optional<Libro> productoABorrar = servicioLibro.findById(idLibro);
 		
 		if(productoABorrar.isPresent()) {
-			servicioCesta.eliminarProducto(u, productoABorrar.get());
+			servicioCesta.eliminarLineaDeVenta(u, productoABorrar.get());
 			
 			return "redirect:/cesta";
 		}else {
