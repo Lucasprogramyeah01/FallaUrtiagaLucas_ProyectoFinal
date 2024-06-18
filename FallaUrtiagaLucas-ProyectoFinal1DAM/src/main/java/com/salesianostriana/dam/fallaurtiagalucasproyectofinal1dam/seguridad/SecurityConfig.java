@@ -75,7 +75,7 @@ public class SecurityConfig  {
 						"/quienesSomos", "/condicionesDeUso", "/politicaDePrivacidad", 
 						"/catalogo", "/infoLibro/{id}", "/serie/{nombre}", "/catalogo/tipo/{id}", 
 						"/catalogo/categoria/{id}", "/proximamente", "/novedades", "/registro/**",
-						"/favoritos","/editarPerfil/{id}", "/cesta").permitAll()
+						"/favoritos","/editarPerfil/{id}", "/cesta", "/seccionReemplazo").permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated())
                 .formLogin((loginz) -> loginz

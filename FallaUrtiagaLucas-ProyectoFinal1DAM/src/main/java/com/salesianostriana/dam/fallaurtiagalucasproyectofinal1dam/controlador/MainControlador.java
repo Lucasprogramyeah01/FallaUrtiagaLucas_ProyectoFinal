@@ -105,6 +105,11 @@ public class MainControlador {
 		return "pagInicio";
 	}
 	
+	@GetMapping("/seccionReemplazo")
+	public String mostrarSeccionReemplazo() {
+		return "pagSeccionReemplazo";
+	}
+	
 	@GetMapping("/quienesSomos")
 	public String mostrarQuienesSomos() {
 		return "pagQuienesSomos";

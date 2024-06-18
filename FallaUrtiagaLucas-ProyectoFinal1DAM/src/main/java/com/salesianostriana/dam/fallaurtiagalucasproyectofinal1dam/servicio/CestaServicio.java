@@ -97,12 +97,22 @@ public class CestaServicio {
     	if(!servicioVenta.hayProductoEnCesta(u, l)){
     		int cantidad = 1;
     		
+    		l.setStock(l.getStock()-1);
+    		
     		cesta.agregarLineaVenta(LineaVenta.builder().libro(l).cantidad(cantidad).subtotal(l.getPrecio()).venta(cesta).build());
     	}else{
     		Optional<LineaVenta> lv = obtenerLineaVentaPorLibro(u, l);
 
 	        if(lv.isPresent()){
-	          modificarCantidad(u, l, lv.get().getCantidad()+1);
+	          
+	        	if(lv.get().getLibro().getStock() > 0) {
+	        		l.setStock(l.getStock()-1);
+	 	        	
+	        		modificarCantidad(u, l, lv.get().getCantidad()+1);
+	        	}else {
+	        		modificarCantidad(u, l, lv.get().getCantidad());
+	        	}
+	         
 	        }
     	}
 
@@ -119,7 +129,13 @@ public class CestaServicio {
 	    	Optional <LineaVenta> lineaVentaAModificar = obtenerLineaVentaPorLibro(u, l);
 
 		    if(lineaVentaAModificar.isPresent()){
-		    	modificarCantidad(u, l, lineaVentaAModificar.get().getCantidad()-1);
+		    	
+		    	if(lineaVentaAModificar.get().getCantidad() > 0) {
+		    		l.setStock(l.getStock()+1);
+		    		
+		    		modificarCantidad(u, l, lineaVentaAModificar.get().getCantidad()-1);
+		    	}
+		    	
 		    }
 
 	    }
@@ -156,6 +172,9 @@ public class CestaServicio {
 		Optional<LineaVenta> LineaVentaAEliminar = obtenerLineaVentaPorLibro(u, l);
 
 		if(LineaVentaAEliminar.isPresent()){
+			LineaVentaAEliminar.get().getLibro()
+				.setStock(LineaVentaAEliminar.get().getLibro().getStock()+LineaVentaAEliminar.get().getCantidad());
+			
 			cesta.borrarLineaVenta(LineaVentaAEliminar.get());
 			
 			servicioVenta.edit(cesta);

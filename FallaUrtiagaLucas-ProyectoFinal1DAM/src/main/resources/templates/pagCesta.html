@@ -44,7 +44,8 @@
             <div class="container w-75 mb-5 pb-2 mt-4 pt-4">
 
                 <div class="container-fluid">
-                    <div class="row">						
+                    <div class="row">
+<!------------------> <!--form th:action="@{/cesta/submit}" th:object="${venta}" class="p-0 m-0"-->						
 						
                         <div class="container d-flex flex-column" style="width: 65%;">
 							<!--Línea de venta-->
@@ -164,30 +165,31 @@
                                     <div class="text-white w-auto p-2 px-3 rounded-4 mx-4 mb-2" style="background-color: orangered;">
                                         <h5 class="m-0"><i class="bi bi-star-fill"></i>&nbsp; ¡Desuento de fan de serie! <span style="font-size: 17px;">&nbsp; 20% de descuento</span></h5>
                                     </div>
-                                    <div th:if="${listaLineasVenta[0].venta.gastosEnvio} == 0" class="text-white w-auto pb-2 pt-3 px-3 rounded-4 mx-4 mb-2" style="background-color: rgb(37, 9, 160);">
+                                    <div th:if="${venta.gastosEnvio} == 0" class="text-white w-auto pb-2 pt-3 px-3 rounded-4 mx-4 mb-2" style="background-color: rgb(37, 9, 160);">
                                         <h5 class="m-0"><i class="bi bi-send-fill"></i>&nbsp; ¡Compra superior a 30 €! <span style="font-size: 17px;">&nbsp; Envío gratuito</span></h5>
                                     </div>
                                     <div class="text-white w-auto p-2 px-3 rounded-4 mt-4 mx-4 mb-2" style="background-color: rgb(96, 0, 185)">
                                       <h5 class="m-0"><i class="bi bi-hexagon-fill"></i>&nbsp; Puntos Hon a aplicar:</h5>
                                       <div class="py-2">
-                                        <input class="form-control bg-light" type="number" name="phReg" id="phReg" min="0" step="1" value="0" placeholder="0">
+                                        <input class="form-control bg-light" type="number" th:max="${#authentication.principal.numPuntosHon}" onkeydown = "return false" name="phReg" id="phReg" min="0" step="1" value="0" placeholder="0">
                                     </div>
                                   </div>
                                 </div>
                                 <div class="d-flex justify-content-center flex-column">
                                     <div class="w-auto px-3 py-4 text-center">
-                                        <h3 class="m-0">Total pedido: <span style="font-size: 35px;">341.54 €</span></h3>
+                                        <h3 class="m-0">Total pedido: <span th:text="${#numbers.formatDecimal(listaLineasVenta[0].venta.precioFinal,1,2,'COMMA')}+' €'" style="font-size: 35px;"></span></h3>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-center pb-5">
-                                    <a href="#" class="btn btn-dark border border-0 w-auto bg-dark px-5">
+                                    <button type="submit" class="btn btn-dark border border-0 w-auto bg-dark px-5">
                                       <h3 class="m-0 py-2"><i class="bi bi-cart-check-fill text-white"></i>&nbsp; Tramitar pedido</h3>
-                                    </a>
+                                    </button>
                                 </div>
                                 
                             </div>
                         </div>
                         
+<!------------------> <!--/form-->
                     </div>
                 </div>
 

@@ -15491,3 +15491,53 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 16 more
+2024-06-18 19:13:58.535693+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a\000d\000a[*]SELECT * FROM LIBRO"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a\000d\000a[*]SELECT * FROM LIBRO"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8
+
+SELECT * FROM LIBRO [42000-224]
+2024-06-18 19:14:02.083265+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a\000d\000a[*]SELECT * FROM LIBRO"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a\000d\000a[*]SELECT * FROM LIBRO"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8
+
+SELECT * FROM LIBRO [42000-224]
+2024-06-18 19:29:29.484180+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a[*]SELECT * FROM LIBRO"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a[*]SELECT * FROM LIBRO"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8
+SELECT * FROM LIBRO [42000-224]
+2024-06-18 19:30:18.884540+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a[*]SELECT * FROM LIBRO"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a[*]SELECT * FROM LIBRO"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8
+SELECT * FROM LIBRO [42000-224]
+2024-06-18 20:12:40.949282+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 8
+SELECT * FROM LIBRO
+
+SELECT * FROM VENTA [42000-224]
+2024-06-18 22:41:49.076788+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3
+SELECT * FROM LIBRO
+
+SELECT * FROM VENTA [42000-224]
+2024-06-18 22:42:07.208129+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA JOIN LINEA_VENTA"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA JOIN LINEA_VENTA"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3
+SELECT * FROM LIBRO
+
+SELECT * FROM VENTA JOIN LINEA_VENTA [42000-224]
+2024-06-18 22:49:58.472306+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA JOIN LINEA_VENTA"
+Syntax error in SQL statement "SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3\000d\000a[*]SELECT * FROM LIBRO\000d\000a\000d\000aSELECT * FROM VENTA JOIN LINEA_VENTA"; SQL statement:
+SELECT * FROM LINEA_VENTA JOIN LIBRO l WHERE l.id_libro = 3
+SELECT * FROM LIBRO
+
+SELECT * FROM VENTA JOIN LINEA_VENTA [42000-224]

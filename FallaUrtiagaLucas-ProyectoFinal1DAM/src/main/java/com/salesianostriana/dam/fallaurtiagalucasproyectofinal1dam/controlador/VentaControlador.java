@@ -41,13 +41,20 @@ public class VentaControlador {
 	@GetMapping("/cesta")
 	public String mostrarCesta(@AuthenticationPrincipal Usuario u, Libro l, Model model) {
 		
+		model.addAttribute("venta", servicioCesta.obtenerCesta(u));	//CUIDAO
 		model.addAttribute("listaLineasVenta", servicioLV.findAll());
 		
 		servicioCesta.calcularPrecioFinal(u);
 		
-		//servicioCesta.finalizarCompra(u);
-		
 		return "pagCesta";
+	}
+	
+	//MOSTRAR PÁGINA CESTA.
+	@PostMapping("/cesta/submit")
+	public String procesarCesta(@AuthenticationPrincipal Usuario u, Libro l, Model model) {
+		servicioCesta.finalizarCompra(u);
+		
+		return "pagCompraRealizada";
 	}
 	
 	//AGREGAR UN PRODUCTO A LA CESTA.
