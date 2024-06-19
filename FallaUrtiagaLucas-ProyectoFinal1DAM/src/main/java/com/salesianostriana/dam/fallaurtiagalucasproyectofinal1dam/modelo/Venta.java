@@ -53,6 +53,7 @@ public class Venta {
 	
 	private boolean finalizada;
 	
+	private boolean descuentoFanSerie;
 	
 	//COMPOSICIÓN CON LÍNEA DE VENTA [MLV - 1V]
 	

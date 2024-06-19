@@ -109,9 +109,8 @@ public class LibroControlador {
 	@GetMapping("/borrarLibro/{id}")
 	public String borrarLibro(@PathVariable("id") Long idLibro) {
 		servicio.deleteById(idLibro);
-			
+		
 		return "redirect:/admin/listaLibros";
 	}
-	
 	
 }

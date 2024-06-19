@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -41,18 +42,24 @@ public class VentaControlador {
 	@GetMapping("/cesta")
 	public String mostrarCesta(@AuthenticationPrincipal Usuario u, Libro l, Model model) {
 		
-		model.addAttribute("venta", servicioCesta.obtenerCesta(u));	//CUIDAO
-		model.addAttribute("listaLineasVenta", servicioLV.findAll());
+		model.addAttribute("venta", servicioCesta.obtenerCesta(u));
+		model.addAttribute("listaLineasVenta", servicioCesta.obtenerCesta(u).getListadoLineaVenta());
 		
 		servicioCesta.calcularPrecioFinal(u);
+		
+		servicioCesta.actualizarPrecioFinal(u);
 		
 		return "pagCesta";
 	}
 	
 	//MOSTRAR PÁGINA CESTA.
-	@PostMapping("/cesta/submit")
-	public String procesarCesta(@AuthenticationPrincipal Usuario u, Libro l, Model model) {
+	@GetMapping("/cesta/submit")
+	public String procesarCesta(@AuthenticationPrincipal Usuario u, Libro l, @ModelAttribute("venta") Venta v, Model model) {
+		int puntosASumar = 50;
+		
 		servicioCesta.finalizarCompra(u);
+		
+		u.setNumPuntosHon(u.getNumPuntosHon()+puntosASumar);
 		
 		return "pagCompraRealizada";
 	}

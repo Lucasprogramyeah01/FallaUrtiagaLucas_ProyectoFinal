@@ -82,7 +82,7 @@
                             
 							<!--Botón cesta para comprar SI HAY STOCK-->
 							<th:block th:if="${libro.stock > 0 && libro.fechaPublicacion < #temporals.createNow()}">
-								<a href="#" class="btn btn-dark me-3 border border-0" style="width: 35%; background-color: rgb(0, 183, 255);">
+								<a th:href="@{/agregarACesta/{id}(id=${libro.idLibro})}" class="btn btn-dark me-3 border border-0" style="width: 35%; background-color: rgb(0, 183, 255);">
 	                                <h5 class="m-0 py-2">Añadir a la cesta &nbsp;<i class="bi bi-bag-fill text-white"></i></h5>
 	                            </a>
 							</th:block>
@@ -101,7 +101,7 @@
 								</a>
 							</th:block>
 							
-                            <a href="#" class="btn btn-dark me-1 border border-0 text-dark" style="width: 35%; background-color: rgb(213, 213, 213)">
+                            <a class="btn btn-dark me-1 border border-0 text-dark" style="width: 35%; background-color: rgb(213, 213, 213)">
                                 <h5 class="m-0 py-2">Añadir a favoritos &nbsp;<i class="bi bi-suit-heart-fill" style="color: rgb(246, 55, 12)"></i></h5>
                             </a>
                         </div>

@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,13 @@ public class VentaServicio extends ServicioBaseImpl<Venta, Long, VentaRepositori
 //---------------------------------------------------------------------------------------------------------------------
 	
 	//Obtener LineaVenta por libro (para cesta).
-	public Optional<LineaVenta> obtenerLineaVentaPorLibro(Usuario u, Libro l) {
+	/*public Optional<LineaVenta> obtenerLineaVentaPorLibro(Usuario u, Libro l) {
 		return repoVenta.findLineaVentaByLibro(u, l);
+	}*/
+	
+	//Filtrar ventas por Usuario.
+	public List<Venta> filtrarVentasPorUsuario(Long idUsuario){
+		return repoVenta.findVentaByUsuarioId(idUsuario);
 	}
 	
 }

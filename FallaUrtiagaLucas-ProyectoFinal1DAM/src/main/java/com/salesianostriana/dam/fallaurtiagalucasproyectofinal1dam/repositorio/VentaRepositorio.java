@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.repositorio;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -62,8 +63,14 @@ public interface VentaRepositorio extends JpaRepository<Venta, Long>{
 	public Optional<LineaVenta> findLineaVentaByLibro(Usuario u, Libro l);
 	
 	
-	
-	
+	//Obtener la lista de venta de un usuario.
+	@Query("""
+			SELECT v
+			FROM Venta v JOIN v.usuario u
+			WHERE v.finalizada = true
+				AND u.idUsuario = ?1
+			""")
+	public List<Venta> findVentaByUsuarioId(Long idUsuario);
 	
 	
 }

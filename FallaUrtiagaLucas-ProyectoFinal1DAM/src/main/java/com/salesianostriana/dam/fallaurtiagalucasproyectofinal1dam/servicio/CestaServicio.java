@@ -70,6 +70,8 @@ public class CestaServicio {
 		subtotalLV = cesta.getListadoLineaVenta().stream().mapToDouble(LineaVenta::calcularSubtotalLineaVenta).sum();
 		
 		if(comprobarSiHay3MangasDeUnaMismaSerie(u)) {
+			cesta.setDescuentoFanSerie(true);
+			
 			return cesta.calcularDescuentoDeFanDeSerie(subtotalLV);
 		}else {
 			return subtotalLV;
@@ -83,7 +85,7 @@ public class CestaServicio {
     	
     	cesta.setSubtotal(calcularSubtotalVenta(u));
     	
-    	return cesta.calcularDescuentoEnvioGratuito() + calcularSubtotalVenta(u);
+    	return cesta.calcularDescuentoEnvioGratuito() + /*calcularSubtotalVenta(u)*/ cesta.getSubtotal();
     	
     	/*return obtenerCesta(u).getListadoLineaVenta().stream().mapToDouble(LineaVenta::calcularSubtotalLineaVenta).sum();*/
     }
@@ -181,6 +183,15 @@ public class CestaServicio {
 		}
 	}
 
+	//SETEAR PRECIO FINAL.
+	public void actualizarPrecioFinal (Usuario u) {
+		Venta cesta = obtenerCesta(u);
+		
+		cesta.setPrecioFinal(calcularPrecioFinal(u));
+		
+		servicioVenta.edit(cesta);
+	}
+	
 	//FINALIZAR COMPRA.
 	public void finalizarCompra (Usuario u){
 		Venta cesta = obtenerCesta(u);

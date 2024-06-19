@@ -16,6 +16,7 @@ import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.LibroServicio;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.UsuarioServicio;
+import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.servicio.VentaServicio;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,6 +27,9 @@ public class UsuarioControlador {
 	
 	@Autowired
 	private LibroServicio libroServicio;
+	
+	@Autowired
+	private VentaServicio servicioVenta;
 	
 	//MOSTRAR LISTA DE USUARIOS.
 	@GetMapping("/listaClientes")
@@ -64,10 +68,27 @@ public class UsuarioControlador {
 	//BORRAR USUARIO.
 	@GetMapping("/borrarCliente/{id}")
 	public String borrarCliente(@PathVariable("id") long idUsuario) {
+		
+		
 		servicio.deleteById(idUsuario);
 		
 		return "redirect:/admin/listaClientes";
 	}
+	
+	
+	//BORRAR USUARIO.
+	@GetMapping("/ventas/{id}")
+	public String mostrarVentasCliente(@PathVariable("id") Long idUsuario, Model model) {
+		model.addAttribute("listaVentas", servicioVenta.filtrarVentasPorUsuario(idUsuario));
+		
+		return "/admin/pagAdminVentasCliente";
+	}
+	
+	
+	
+	
+	
+	
 	
 	//MARCAR LIBRO COMO FAVORITO. [NO FUNCIONA CORRECTAMENTE] ---------------------------------------------------------
 	@GetMapping("/agregarAFavoritos")
