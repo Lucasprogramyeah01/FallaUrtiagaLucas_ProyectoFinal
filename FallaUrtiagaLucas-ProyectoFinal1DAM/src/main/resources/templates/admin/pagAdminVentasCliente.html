@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MANGAZO VERSE [Admin] | Ventas</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+<!--HEADER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<header th:replace="~{fragmentos/header::header}"></header>
+
+<!--ÍNDICE-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+            <nav th:replace="~{fragmentos/navAdmin::navAdmin}"></nav>
+        </div>
+
+<!--CONTENIDO----------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <main class="d-flex flex-wrap">
+            <div class="container-fluid py-2 px-5 mb-4 mt-2">
+                <h1 class="display-3 fw-bold fst-italic" style="font-variant: small-caps;"><span class="text-info">V</span>entas de <span class="text-primary"></span></h1>
+            </div>
+
+			<!--Columna izquierda-->
+			<div class="container pb-5 rounded-end-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+			</div>
+
+			<!--Contenido central-->
+			            <div class="container w-75 mb-2 mt-4 pb-5 pt-3 px-4">
+			
+			              <div class="container-fluid">
+			                <div class="row pb-4 px-5 d-flex flex-row">
+			
+			                    <!--Tabla de clientes-->
+			                    <div class="table-responsive">
+			                        <table class="table table-condensed table-hover">
+			                            <thead>
+			                                <tr class="text-center table-info align-middle">
+			                                    <th class="text-white rounded-start-3 border border-0 px-3" style="background-color: #369;"><h5 class="m-0">ID</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Gastos de envío</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Subtotal</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Precio final</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Fecha de compra</h5></th>
+			                                    <!--th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Código Postal</h5></th>
+			                                    <th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Provincia</h5></th>
+												<th class="text-white  border border-0" style="background-color: #369;"><h5 class="m-0">Puntos Hon aplicados</h5></th-->
+												<th class="text-white  rounded-end-3 border border-0" style="background-color: #369;"><h5 class="m-0">Ver detalles</h5></th>
+			                                </tr>
+			                            </thead>
+			
+			                            <tbody class="text-center align-center align-middle">
+			                                <tr th:each="venta : ${listaVentas}">
+			                                    <td th:text="@{${venta.idVenta}}" class="fw-bold"></td>
+												<td th:text="${venta.gastosEnvio}"></td>
+			                                    <td th:text="${venta.subtotal}"></td>
+			                                    <td th:text="${venta.precioFinal}"></td>
+			                                    <td th:text="${#temporals.format(venta.fechaVenta, 'dd/MMM/yyyy HH:mm')}"></td>
+			                                    <!--td th:text="${venta.codigoPostal}"></td>
+			                                    <td th:text="${venta.provincia}"></td>
+												<td th:text="${venta.numPuntosHon}"></td-->
+			                                    <td class="pe-1"><a type="button" href="" id="botonMirarFavoritos" class="btn btn-lg" style="background-color:rgb(246, 55, 12);"><i class="bi bi-suit-heart-fill text-white"></i></a></td>
+			                                </tr> 
+			                            </tbody>
+			
+			                            <tfoot>
+			                            </tfoot>
+			                        </table>
+			                      </div>
+			
+			                </div>
+			              </div>
+			
+			            </div>
+
+			<!--Columna derecha-->
+			<div class="container pb-5 rounded-start-5 m-0" style="width: 12%; background-image: url(../img/fondoPagina.jpg);">
+			</div>
+				
+        </main>
+
+<!--FOOTER-------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<footer th:replace="~{fragmentos/footer::footer}"></footer>          
+
+		<!--Librerías para los modal-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+				
+		<script src="../js/modalBorrarCliente.js" th:src="@{/js/modalBorrarCliente.js}" defer></script>
+
+    </body>
+</html>

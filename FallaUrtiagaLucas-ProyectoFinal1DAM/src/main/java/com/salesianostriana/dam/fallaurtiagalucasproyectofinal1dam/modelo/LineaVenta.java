@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Builder
+@IdClass(LineaVentaPK.class)
 public class LineaVenta {
 	
 	@Id @GeneratedValue
@@ -22,9 +24,11 @@ public class LineaVenta {
 	
 	private int cantidad;
 	
+	private double subtotal;
 	
 	//COMPOSICIÓN CON VENTA [MLV - 1V]
 	
+		@Id
 		@ManyToOne
 		@JoinColumn(foreignKey = @ForeignKey(name="fk_lineaVenta_venta"))
 		private Venta venta;
@@ -47,5 +51,13 @@ public class LineaVenta {
 			libro.getListaLineaVenta().remove(this);
 			this.libro = null;
 		}
+		
+		
+//--------------------------------------------------------------
+		
+	//CALCULAR SUBTOTAL DE UNA LÍNEA DE VENTA.	
+	public double calcularSubtotalLineaVenta() {
+		return subtotal = libro.getPrecio()*cantidad;
+	}
 
 }

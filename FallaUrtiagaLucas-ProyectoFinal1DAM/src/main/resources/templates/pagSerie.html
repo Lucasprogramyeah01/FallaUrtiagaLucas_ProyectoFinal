@@ -52,66 +52,68 @@
                 <div class="row pb-4 px-5 d-flex flex-row justify-content-around">
   
 					<div th:each="libro : ${listaLibros}" class="w-auto p-0 m-0">
-											<!--LIBRO DISPONIBLE-->
-											<th:block th:if="${libro.stock > 0 && libro.fechaPublicacion < #temporals.createNow()}">
-												<div class="card mx-2 my-4 p-0 border border-3 border-primary shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
-													<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
-														<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
-													</a>
-												    <div class="card-body pe-0">
-												    	<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
-												    	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
-												    	<div class="d-flex flex-wrap align-items-center">
-												        	<a href="#" th:href="@{/admin/agregarAFavoritos}" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
-												        	<a href="#" class="btn btn-light me-3" style="background-color: rgb(0, 183, 255);"><i class="bi bi-bag-fill text-white"></i></a>
-												        <div class="align-items-center flex-grow-1">
-												        	<h6 class="text-center text-white m-0 bg-primary rounded-start-5 p-1"><i>En stock</i></h6>
-												     	</div>
-												   	 </div>
-												   </div>
-												</div>
-											</th:block>
-											
-											<!--LIBRO AGOTADO-->
-											<th:block th:if="${libro.stock == 0 && libro.fechaPublicacion < #temporals.createNow()}">
-												<div class="card mx-2 my-4 p-0 border border-3 border-secondary shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
-													<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
-														<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
-													</a>
-													<div class="card-body pe-0">
-														<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
-													 	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
-														<div class="d-flex flex-wrap align-items-center">
-															<a href="#" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
-															<a href="#" class="btn btn-light me-3 disabled" aria-disabled="true" style="background-color: rgb(131, 220, 255);"><i class="bi bi-bag-fill text-white"></i></a>
-															<div class="align-items-center flex-grow-1">
-																<h6 class="text-center text-white m-0 bg-secondary rounded-start-5 p-1"><i>Agotado</i></h6>
-															</div>
-														</div>
-													</div>
-												</div>
-											</th:block>
-											
-											<!--LIBRO POR SALIR-->
-											<th:block th:if="${libro.fechaPublicacion > #temporals.createNow()}">
-												<div class="card mx-2 my-4 p-0 border border-3 border-info shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
-													<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
-														<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
-													</a>
-													<div class="card-body pe-0">
-														<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
-														<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
-														<div class="d-flex flex-wrap align-items-center">
-															<a href="#" class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
-															<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}" class="btn btn-light me-3" aria-disabled="true" style="background-color: rgb(146, 0, 0)"><i class="bi bi-bell-fill fa-spin text-white"></i></a>
-															<div class="align-items-center flex-grow-1">
-																<h6 class="text-center text-white m-0 bg-info rounded-start-5 p-1"><i>Por salir</i></h6>
-															</div>
-														</div>
-													</div>
-												</div>
-											</th:block>
+						<!--LIBRO DISPONIBLE-->
+						<th:block th:if="${libro.stock > 0 && libro.fechaPublicacion < #temporals.createNow()}">
+							<div class="card mx-2 my-4 p-0 border border-3 border-primary shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
+								<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+									<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								</a>
+							    <div class="card-body pe-0">
+							    	<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
+							    	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
+							    	<div class="d-flex flex-wrap align-items-center">
+							        	<a class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
+										<!--form th:action="@{/agregarACesta/{id}(id=${libro.idLibro})}" method="post"-->
+							        		<a type="button" th:href="@{/agregarACesta/{id}(id=${libro.idLibro})}" class="btn btn-light me-3" style="background-color: rgb(0, 183, 255);"><i class="bi bi-bag-fill text-white"></i></a>
+										</form>
+							        <div class="align-items-center flex-grow-1">
+							        	<h6 class="text-center text-white m-0 bg-primary rounded-start-5 p-1"><i>En stock</i></h6>
+							     	</div>
+							   	 </div>
+							   </div>
+							</div>
+						</th:block>
+						
+						<!--LIBRO AGOTADO-->
+						<th:block th:if="${libro.stock == 0 && libro.fechaPublicacion < #temporals.createNow()}">
+							<div class="card mx-2 my-4 p-0 border border-3 border-secondary shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
+								<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+									<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								</a>
+								<div class="card-body pe-0">
+									<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
+								 	<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
+									<div class="d-flex flex-wrap align-items-center">
+										<a class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
+										<a href="#" class="btn btn-light me-3 disabled" aria-disabled="true" style="background-color: rgb(131, 220, 255);"><i class="bi bi-bag-fill text-white"></i></a>
+										<div class="align-items-center flex-grow-1">
+											<h6 class="text-center text-white m-0 bg-secondary rounded-start-5 p-1"><i>Agotado</i></h6>
 										</div>
+									</div>
+								</div>
+							</div>
+						</th:block>
+						
+						<!--LIBRO POR SALIR-->
+						<th:block th:if="${libro.fechaPublicacion > #temporals.createNow()}">
+							<div class="card mx-2 my-4 p-0 border border-3 border-info shadow" data-aos="fade-up-right" id="tarjetaProducto" style="width: 216.44px;">
+								<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}">
+									<img class="card-img-top" th:src="${libro.imagenPortada}" alt="Imagen del libro" style="max-width:678px; height: 318.69px;">
+								</a>
+								<div class="card-body pe-0">
+									<h5 class="card-title mb-1 pe-3" th:text="${libro.titulo}" style="text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></h5>
+									<h2 class="card-text" th:text="${#numbers.formatDecimal(libro.precio,1,2,'COMMA')}+' €'"></h2>
+									<div class="d-flex flex-wrap align-items-center">
+										<a class="btn btn-light me-1" style="background-color: rgb(213, 213, 213);"><i class="bi bi-suit-heart-fill text-dark"></i></a>
+										<a href="#" th:href="@{/infoLibro/{id}(id=${libro.idLibro})}" class="btn btn-light me-3" aria-disabled="true" style="background-color: rgb(146, 0, 0)"><i class="bi bi-bell-fill fa-spin text-white"></i></a>
+										<div class="align-items-center flex-grow-1">
+											<h6 class="text-center text-white m-0 bg-info rounded-start-5 p-1"><i>Por salir</i></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</th:block>
+					</div>
                   
                 </div>
               </div>

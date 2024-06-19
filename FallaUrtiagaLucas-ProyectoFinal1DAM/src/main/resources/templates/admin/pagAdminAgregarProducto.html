@@ -159,7 +159,7 @@
                           <div class="d-flex flex-wrap">
 							
 							<!--Si hay categorías disponibles-->
-							<th:block th:if="${libro.listadoCategorias.size() != 0}">
+							<th:block th:if="${listaCategorias.size() != 0}">
 								<div class="col-3 form-check pe-5 py-1" th:each="categoria : ${listaCategorias}">
 									<input type="checkbox" th:field="*{listadoCategorias}" th:value="${categoria.idCategoria}" 
 										th:text="${categoria.nombre}" class="form-check-input border border-1 border-dark">
@@ -168,9 +168,9 @@
 							</th:block>
 							
 							<!--Si NO hay categorías disponibles-->
-							<th:block th:if="${libro.listadoCategorias.size() != 0}">
-								<div class="col-3 form-check pe-5 py-1">
-									<h6>No hay ninguna categoría agregada en este momento.</h6>
+							<th:block th:if="${listaCategorias.size() == 0}">
+								<div class="form-check pe-5 py-1 ps-0">
+									<p class="mb-0">No hay ninguna categoría agregada en este momento.</p>
 								</div>
 							</th:block>
 							

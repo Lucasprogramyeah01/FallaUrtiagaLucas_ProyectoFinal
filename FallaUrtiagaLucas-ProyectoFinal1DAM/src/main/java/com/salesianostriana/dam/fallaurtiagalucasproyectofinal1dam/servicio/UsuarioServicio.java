@@ -22,6 +22,7 @@ public class UsuarioServicio extends ServicioBaseImpl<Usuario, Long, UsuarioRepo
     private PasswordEncoder encoder;
 
 	
+	
 	//PASSWORD ENCODER.
 	public void saveUsuarioConContrasenhaCodificada(Usuario u) {
 		u.setPassword(encoder.encode(u.getPassword()));

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Libro;
 import com.salesianostriana.dam.fallaurtiagalucasproyectofinal1dam.modelo.Usuario;
@@ -106,6 +105,11 @@ public class MainControlador {
 		return "pagInicio";
 	}
 	
+	@GetMapping("/seccionReemplazo")
+	public String mostrarSeccionReemplazo() {
+		return "pagSeccionReemplazo";
+	}
+	
 	@GetMapping("/quienesSomos")
 	public String mostrarQuienesSomos() {
 		return "pagQuienesSomos";
@@ -130,27 +134,57 @@ public class MainControlador {
 		return "pagFavoritos";
 	}
 	
-	//AGREGAR A FAVORITOS (Al clickar en el botón de Favoritos).
+	//AGREGAR A FAVORITOS (Al clickar en el botón de corazón si el libro no está marcado como favorito).
 	@GetMapping("/agregarAFavoritos/{id}")
-	public String agregarAFavoritos(@PathVariable("id") Long idLibro, 
-		@AuthenticationPrincipal Usuario u, @ModelAttribute("listaLibros") ArrayList<Libro> listaLibros, Model model) {
+	public String agregarAFavoritos(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u, 
+			Model model, ArrayList<Libro> listaLibros) {
 		
-		/*Optional<Libro> libroFavorito = servicio.findById(idLibro);
+		Optional<Libro> libroFavorito = servicio.findById(idLibro);
 		
-		if(libroFavorito.isPresent()) {
-			u.getListadoFavoritos().add(libroFavorito.get());
-		}*/
-		
-		for (Libro libro : listaLibros) {
-			u.getListadoFavoritos().add(servicio.findById(idLibro).get());
+		for(Libro libro : listaLibros) {
+			if(libroFavorito.isPresent() && libro.getIdLibro() != libroFavorito.get().getIdLibro()) {
+				u.getListadoFavoritos().add(libroFavorito.get());
+			}
 		}
-		/*if(u.getListadoFavoritos().contains(libroFavorito.get())) {
-			
-		}*/
+
+		//if(!u.getListadoFavoritos().contains(libroFavorito)) {
 		
-		return "redirect:/favoritos";
+		servicioUsuario.edit(u);
+		
+		return "redirect:/favoritos";	//METER SCRIPT PARA QUE SE MANTENGA LA PÁGINA SIN REFRESCAR.
 	}
 	
+	//PROCESAR "AGREGAR A FAVORITOS".
+	/*@PostMapping("/agregarAFavoritos/submit")
+	public String procesarAgregarAFavoritos(@ModelAttribute("usuario") Usuario u) {
+		servicioUsuario.save(u);
+				
+		return "redirect:/favoritos";
+	}*/
+	
+	//BORRAR DE FAVORITOS (Al clickar en el botón de corazón si el libro está marcado como favorito).
+	@PostMapping("/borrarDeFavoritos/{id}/submit")
+	public String borrarDeFavoritos(@PathVariable("id") Long idLibro, @AuthenticationPrincipal Usuario u,
+			Model model) {
+		
+		Optional<Libro> libroFavorito = servicio.findById(idLibro);
+		
+		if(libroFavorito.isPresent()) {
+			u.getListadoFavoritos().remove(libroFavorito.get());
+		}
+		
+		servicioUsuario.save(u);
+		
+		return "redirect:/favoritos";	//METER SCRIPT PARA QUE SE MANTENGA LA PÁGINA SIN REFRESCAR.
+	}
+	
+	//PROCESAR "AGREGAR A FAVORITOS".
+	/*@PostMapping("/borrarDeFavoritos/submit")
+	public String procesarBorrarDeFavoritos(@ModelAttribute("usuario") Usuario u) {
+		servicioUsuario.save(u);
+					
+		return "redirect:/favoritos";
+	}*/
 	
 	//AQUELLO QUE TIENE QUE VER CON EL CATÁLOGO EMPIEZA AQUÍ ----------------------------------------------------------------
 
