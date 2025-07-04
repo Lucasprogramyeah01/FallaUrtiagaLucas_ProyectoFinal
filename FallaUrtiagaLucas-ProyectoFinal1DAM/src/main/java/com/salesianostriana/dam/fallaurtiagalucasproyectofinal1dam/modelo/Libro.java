@@ -4,20 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,7 +38,8 @@ public class Libro {
 	private String autor;
 	
 	private String editorial;
-	
+
+	@Column(length = 1000)
 	private String descripcion;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
